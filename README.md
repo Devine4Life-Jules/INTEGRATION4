@@ -1,10 +1,10 @@
 # INTEGRATION4
 
 ## members and roles
-- Liza -> Planner UX, DESIGN
-- Andreea -> UX, DESIGN
-- Jules Desmet -> DESIGN, CODE
-- Oliwier -> CODE, Technical Research
+- Liza -> Cooördinator/Plant UX, DESIGN -> 
+- Andreea -> recourse investigator/Teamworker UX, DESIGN
+- Jules Desmet -> Shaper/Evaluator DESIGN, CODE
+- Oliwier -> Implementer/Specialist CODE, Technical Research
 
 ## list agreements
 - show up every session workshop etc...
