@@ -11,11 +11,8 @@
 - if a session is being planned in groupschat and you can't be there, notifiy everyone
 - Communicate what you are working on on a daily basis
 - stay respectfull
-<<<<<<< HEAD
 - hello test
-=======
 - use pull request
->>>>>>> 8dd351d (added line to readme)
   
 
 
