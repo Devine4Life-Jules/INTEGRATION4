@@ -1,0 +1,18 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { ClientRouter } from "astro:transitions";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ClientRouter />
+  </head>
+  <body>
+    <h1>You create the new chapter</h1>
+    <p>Thumbs up to continue 👍</p>
+    <!-- !TODO visualization of a user story -->
+  </body>
+</html>
