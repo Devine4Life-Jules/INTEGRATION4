@@ -1,0 +1,28 @@
+---
+import BaseHead from "../../../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
+import { ClientRouter } from "astro:transitions";
+import ContinuationProgress from "../../../components/ContinuationProgress.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ClientRouter />
+  </head>
+  <body>
+    <h1>After having fun in Abby<br /><span>Share your story</span></h1>
+    <p>
+      You will have an opportunity to upload a picture from the activity and be
+      part of Abby’s story
+    </p>
+    <button>🗺 Find Abby</button>
+    <ContinuationProgress level={3} />
+    <p>Come and let's create Abby's story together</p>
+    <div>
+      <a href="./2">&lt; Previous</a>
+      <a href="./4">I'll be there &#x2713;</a>
+    </div>
+  </body>
+</html>

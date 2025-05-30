@@ -1,0 +1,28 @@
+---
+import BaseHead from "../../../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
+import { ClientRouter } from "astro:transitions";
+import ContinuationProgress from "../../../components/ContinuationProgress.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ClientRouter />
+  </head>
+  <body>
+    <h1>See you there!</h1>
+    <p>You are the key, We can’t wait for you to open up the slaon</p>
+    <!-- !TODO image -->
+    <div>
+      <a href="./1">🙋‍♂️ Invite a friend</a>
+      <a href="./2">🗺 Find Abby</a>
+      <a href="./3">📸 Upload a picture</a>
+      <a href="./4">📚 Checkout chapters</a>
+    </div>
+    <div>
+      <a href="./2">&lt; Previous</a>
+    </div>
+  </body>
+</html>
