@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PoseNet 360 Spin Detection (Both Directions)</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ml5@0.12.2/dist/ml5.min.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; font-family: sans-serif; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script>
+    let video;
+    let poseNet;
+    let pose;
+    let spinState = 0;
+    let spinDirection = null; // "cw" or "ccw"
+
+    function setup() {
+      createCanvas(640, 480);
+      video = createCapture(VIDEO);
+      video.size(width, height);
+      video.hide();
+
+      poseNet = ml5.poseNet(video, () => console.log("PoseNet Ready"));
+      poseNet.on("pose", (results) => {
+        if (results.length > 0) {
+          pose = results[0].pose;
+        }
+      });
+    }
+
+    function draw() {
+      image(video, 0, 0);
+
+      if (pose) {
+        drawKeypoints();
+        checkSpinState();
+      }
+
+      // Debug info
+      fill(255);
+      textSize(16);
+      text(`State: ${spinState} | Dir: ${spinDirection || "none"}`, 10, height - 10);
+    }
+
+    function drawKeypoints() {
+      fill(0, 255, 0);
+      noStroke();
+      for (let kp of pose.keypoints) {
+        if (kp.score > 0.5) {
+          ellipse(kp.position.x, kp.position.y, 10, 10);
+        }
+      }
+    }
+
+    function checkSpinState() {
+      let nose = pose.nose;
+      let leftShoulder = pose.leftShoulder;
+      let rightShoulder = pose.rightShoulder;
+
+      if (
+        nose.confidence < 0.5 ||
+        leftShoulder.confidence < 0.5 ||
+        rightShoulder.confidence < 0.5
+      ) return;
+
+      let noseX = nose.x;
+      let leftX = leftShoulder.x;
+      let rightX = rightShoulder.x;
+
+      let direction = "forward";
+      if (noseX > leftX && noseX > rightX) direction = "right";
+      else if (noseX < leftX && noseX < rightX) direction = "left";
+
+      // Clockwise spin: forward → right → left → forward
+      if (spinState === 0 && direction === "right") {
+        spinState = 1;
+        spinDirection = "cw";
+      } else if (spinState === 1 && direction === "left" && spinDirection === "cw") {
+        spinState = 2;
+      } else if (spinState === 2 && direction === "forward" && spinDirection === "cw") {
+        alert("Spin Detected (Clockwise)!");
+        resetSpin();
+      }
+
+      // Counter-clockwise spin: forward → left → right → forward
+      else if (spinState === 0 && direction === "left") {
+        spinState = 1;
+        spinDirection = "ccw";
+      } else if (spinState === 1 && direction === "right" && spinDirection === "ccw") {
+        spinState = 2;
+      } else if (spinState === 2 && direction === "forward" && spinDirection === "ccw") {
+        alert("Spin Detected (Counter-Clockwise)!");
+        resetSpin();
+      }
+    }
+
+    function resetSpin() {
+      spinState = 0;
+      spinDirection = null;
+    }
+  </script>
+</body>
+</html>
