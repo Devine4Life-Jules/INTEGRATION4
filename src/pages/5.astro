@@ -1,0 +1,40 @@
+---
+import { ClientRouter } from "astro:transitions";
+import BaseHead from "../components/BaseHead.astro";
+import ContinuationProgress from "../components/ContinuationProgress.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ClientRouter />
+  </head>
+  <body>
+    <h1>
+      Create a new chapter by <span>playing board games in our salon</span>
+    </h1>
+    <p>you can bring a friend!</p>
+    <div>
+      <!-- !TODO image -->
+      <form>
+        <label>
+          Your name
+          <input name="name" />
+        </label>
+        <label>
+          Friend's name
+          <input name="friendsName" />
+        </label>
+        <button>🔗 copy invitation</button>
+      </form>
+    </div>
+    <ContinuationProgress level={1} />
+    <p>
+      The story gets better when it’s shared.Bring a friend and shape it
+      together.
+    </p>
+    <a href="./6">Skip &gt;</a>
+  </body>
+</html>

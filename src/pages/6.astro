@@ -1,0 +1,38 @@
+---
+import { ClientRouter } from "astro:transitions";
+import BaseHead from "../components/BaseHead.astro";
+import ContinuationProgress from "../components/ContinuationProgress.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ClientRouter />
+  </head>
+  <body>
+    <h1>
+      Create a new chapter by <span>playing board games in our salon</span>
+    </h1>
+    <p>you can bring a friend!</p>
+    <div>
+      <!-- !TODO image -->
+      <div>
+        <h2>2. Go to Abby's salon</h2>
+        <p>You can drop by whenever you want, between 10:00 and 22:00</p>
+        <ul>
+          <li>Begijnhofpark 8500 Kortrijk</li>
+          <li>+32 (0)56 27 74 60</li>
+          <li>abby@kortrijk.be</li>
+        </ul>
+      </div>
+    </div>
+    <ContinuationProgress level={2} />
+    <p>
+      The story gets better when it’s shared.Bring a friend and shape it
+      together.
+    </p>
+    <a href="./7">Skip &gt;</a>
+  </body>
+</html>
