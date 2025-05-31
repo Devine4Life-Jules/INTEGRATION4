@@ -1,0 +1,23 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import ContinuationProgress from "../components/ContinuationProgress.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <h1>See you there!</h1>
+    <p>you can drop by whenever you want, between 10:00 and 22:00</p>
+    <a href="./story">📚 Check out chapters</a>
+    <!-- !TODO image -->
+    <h2>After having fun in Abby share your story</h2>
+    <p>
+      You will have an opportunity to upload a picture from the activity and be
+      part of Abby’s story
+    </p>
+  </body>
+</html>
