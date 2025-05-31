@@ -1,3 +1,5 @@
+// https://grok.com/share/bGVnYWN5_64c8fa41-65df-4d95-8527-3d21fb55c88b + ChatGPT from Jules !TODO describe in PR
+
 import { navigate } from "astro:transitions/client";
 
 let video;
