@@ -1,15 +1,26 @@
 // https://grok.com/share/bGVnYWN5_64c8fa41-65df-4d95-8527-3d21fb55c88b + ChatGPT from Jules !TODO describe in PR
-
+// https://grok.com/chat/3a6e5c93-60de-433f-ba55-ddc7341d867d
 import { navigate } from "astro:transitions/client";
 
 let video;
 let bodyPose;
 let canvas;
-let ctx;
+// let ctx;
 let spinState = 0;
 let spinDirection = null; // "cw" or "ccw"
 
-const init = () => {
+window.addEventListener("resize", (e) => {
+  const width = e.target.innerWidth;
+
+  // mobile
+  if (width < 700) {
+    handleMobile();
+  } else {
+    handleDesktop();
+  }
+});
+
+const handleDesktop = () => {
   video = document.querySelector("video");
   canvas = document.querySelector("canvas");
   ctx = canvas.getContext("2d");
@@ -33,8 +44,6 @@ const init = () => {
     });
   });
 };
-
-init();
 
 function checkSpinState(pose) {
   let nose = pose.nose;
@@ -101,4 +110,34 @@ function checkSpinState(pose) {
 function resetSpin() {
   spinState = 0;
   spinDirection = null;
+}
+
+// mobile
+function handleMobile() {
+  // Check if API is supported
+  if (window.DeviceOrientationEvent) {
+    // For iOS 13+ permission
+
+    if (typeof DeviceOrientationEvent.requestPermission === "function") {
+      DeviceOrientationEvent.requestPermission()
+        .then((permissionState) => {
+          if (permissionState === "granted") {
+            document.body.textContent = "jest";
+            window.addEventListener("deviceorientation", handleOrientation);
+          }
+        })
+        .catch(console.error);
+    } else {
+      // Non-iOS or older browsers
+      window.addEventListener("deviceorientation", handleOrientation);
+    }
+  } else {
+    console.log("DeviceOrientation API not supported");
+  }
+}
+
+function handleOrientation(event) {
+  const { alpha, beta, gamma } = event;
+  document.body.textContent = `Alpha: ${alpha}, Beta: ${beta}, Gamma: ${gamma}`;
+  // Use values to detect rotation/tilt
 }
