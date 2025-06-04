@@ -1,0 +1,48 @@
+@baseUrl = http://localhost:8080
+@imagePath = /Users/oliwierzgorniak/Pictures/igi.png
+
+### Get CSRF Token
+GET {{baseUrl}}/rest/session/token HTTP/1.1
+Accept: text/plain
+
+### Upload File
+POST {{baseUrl}}/entity/file?_format=hal_json HTTP/1.1
+Content-Type: application/octet-stream
+Accept: application/hal+json
+X-CSRF-Token: {{response}}
+Content-Disposition: file; filename="igi.png"
+
+< {{imagePath}}
+
+###
+
+POST http://localhost:8080/jsonapi/node/story/field_picture HTTP/1.1
+Content-Type: application/octet-stream
+Accept: application/vnd.api+json
+Content-Disposition: file; filename="igi.png"
+
+< {{imagePath}}
+
+###
+POST http://localhost:8080/jsonapi/node/story HTTP/1.1
+Content-Type: application/vnd.api+json
+Accept: application/vnd.api+json
+
+{
+  "data": {
+    "type": "node--story",
+    "attributes": {
+      "title": "8",
+      "field_username": "oliwier",
+      "field_description": "Playing cards"
+    },
+    "relationships": {
+      "field_picture": {
+        "data": {
+          "type": "file--file",
+          "id": "13b93af5-7384-4e2d-8769-83ba0310f08a"
+        }
+      }
+    }
+  }
+}
