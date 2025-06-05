@@ -52,7 +52,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
       headers: {
         Accept: "application/vnd.api+json",
         "Content-Type": "application/octet-stream",
-        "Content-Disposition": 'file; filename="ja.jpg"',
+        "Content-Disposition": `file; filename="${picture.name}"`,
       },
       body: picture,
     });
