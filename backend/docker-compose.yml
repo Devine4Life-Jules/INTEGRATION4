@@ -1,0 +1,62 @@
+# AI generated !TODO describe
+version: "3.8"
+
+services:
+  drupal:
+    image: drupal:10
+    container_name: drupal_app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./my-config/services.yml:/opt/drupal/web/sites/default/services.yml
+      - ./my-config/services.yml:/opt/drupal/web/sites/services.yml
+      - ./my-config/services.yml:/opt/drupal/web/sites/development.services.yml
+      - drupal_modules:/var/www/html/modules
+      - drupal_profiles:/var/www/html/profiles
+      - drupal_themes:/var/www/html/themes
+      - drupal_sites:/var/www/html/sites
+    environment:
+      - DRUPAL_PROFILE=standard
+    depends_on:
+      - db
+    networks:
+      - drupal_network
+
+  db:
+    image: mariadb:latest
+    container_name: drupal_db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=drupal
+      - MYSQL_USER=drupal
+      - MYSQL_PASSWORD=drupal
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - drupal_network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: drupal_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=db
+      - MYSQL_ROOT_PASSWORD=rootpassword
+    depends_on:
+      - db
+    networks:
+      - drupal_network
+
+volumes:
+  drupal_modules:
+  drupal_profiles:
+  drupal_themes:
+  drupal_sites:
+  db_data:
+
+networks:
+  drupal_network:
+    driver: bridge
