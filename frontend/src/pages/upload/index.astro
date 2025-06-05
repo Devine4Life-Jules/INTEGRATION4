@@ -9,18 +9,21 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <form>
-      <input type="file" accept="image/*" />
+    <form id="form">
+      <input
+        id="picture-input"
+        name="picture"
+        type="file"
+        accept="image/jpeg, image/png, image/gif, image/heic, image/webo, image/avif"
+      />
       <label
         >Your name or nickname
-        <input placeholder="John" />
+        <input name="username" placeholder="John" />
       </label>
       <label
         >Short message
-        <textarea
-          placeholder="Short message"
-          name="description"
-          id="description"></textarea>
+        <textarea placeholder="Short message" name="message" id="message"
+        ></textarea>
       </label>
       <label
         ><input type="checkbox" name="consent" />I agree that ABBY can publish
@@ -30,3 +33,66 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
     </form>
   </body>
 </html>
+
+<script>
+  import { API_URL } from "../../consts";
+
+  const $form = document.querySelector("#form") as HTMLFormElement;
+  $form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const $fileInput = $form.querySelector(
+      "#picture-input"
+    ) as HTMLInputElement;
+
+    if (!$fileInput.files || $fileInput.files.length === 0) return;
+
+    const picture = $fileInput.files[0];
+    const res = await fetch(`${API_URL}/jsonapi/node/story/field_picture`, {
+      method: "POST",
+      headers: {
+        Accept: "application/vnd.api+json",
+        "Content-Type": "application/octet-stream",
+        "Content-Disposition": 'file; filename="ja.jpg"',
+      },
+      body: picture,
+    });
+    const resJson = await res.json();
+    const pictureId = resJson?.data.id as string | undefined;
+
+    if (!pictureId) {
+      // !TODO handle error with UI
+      console.error("pictureId is not defined!");
+      return;
+    }
+
+    const data = new FormData($form);
+    const usernname = data.get("username");
+    const description = data.get("message");
+
+    await fetch(`${API_URL}/jsonapi/node/story`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/vnd.api+json",
+        Accept: "application/vnd.api+json",
+      },
+      body: JSON.stringify({
+        data: {
+          type: "node--story",
+          attributes: {
+            title: Date.now(),
+            field_username: usernname,
+            field_description: description,
+          },
+          relationships: {
+            field_picture: {
+              data: {
+                type: "file--file",
+                id: pictureId,
+              },
+            },
+          },
+        },
+      }),
+    });
+  });
+</script>

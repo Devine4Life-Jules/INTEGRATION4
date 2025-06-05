@@ -3,3 +3,4 @@
 
 export const SITE_TITLE = "Abby Key";
 export const SITE_DESCRIPTION = "Welcome to my website!";
+export const API_URL = "http://localhost:8080";

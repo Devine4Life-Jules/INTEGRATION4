@@ -1,3 +1,4 @@
+# AI generated !TODO describe
 version: "3.8"
 
 services:
@@ -7,6 +8,9 @@ services:
     ports:
       - "8080:80"
     volumes:
+      - ./my-config/services.yml:/opt/drupal/web/sites/default/services.yml
+      - ./my-config/services.yml:/opt/drupal/web/sites/services.yml
+      - ./my-config/services.yml:/opt/drupal/web/sites/development.services.yml
       - drupal_modules:/var/www/html/modules
       - drupal_profiles:/var/www/html/profiles
       - drupal_themes:/var/www/html/themes
