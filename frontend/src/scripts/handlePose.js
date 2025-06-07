@@ -28,7 +28,6 @@ const handleBodyPose = (checker) => {
 
 const handleHandPose = (checker) => {
   handleVideo();
-  console.log(video);
   // Initialize ml5.bodyPose with MoveNet model
   const handPose = ml5.handPose({}, () => {
     console.log("BodyPose model loaded!");

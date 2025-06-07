@@ -14,7 +14,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   </head>
   <body>
     <h1>You create the new chapter</h1>
-    <video width="600" height="600"></video>
+    <video width="600" height="600" class="hidden"></video>
     <canvas width="600" height="600" class="hidden"></canvas>
     <!-- !TODO image -->
     <button>📕 Let's do it</button>
@@ -23,7 +23,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 <script>
   import { handleHandPose } from "../scripts/handlePose";
-  import checkLike from "../scripts/3/checkLike";
+  import checkLike from "../scripts/checkLike";
+  import { navigate } from "astro:transitions/client";
 
-  handleHandPose(checkLike);
+  handleHandPose((pose: any) =>
+    checkLike(pose, () => {
+      navigate("/4");
+    })
+  );
 </script>
