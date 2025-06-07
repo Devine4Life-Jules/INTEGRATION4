@@ -14,9 +14,16 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   </head>
   <body>
     <h1>You create the new chapter</h1>
+    <video width="600" height="600"></video>
+    <canvas width="600" height="600" class="hidden"></canvas>
     <!-- !TODO image -->
     <button>📕 Let's do it</button>
   </body>
 </html>
 
-<script></script>
+<script>
+  import { handleHandPose } from "../scripts/handlePose";
+  import checkLike from "../scripts/3/checkLike";
+
+  handleHandPose(checkLike);
+</script>
