@@ -1,0 +1,50 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { ClientRouter } from "astro:transitions";
+import { RESET_TIME } from "../../consts";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ClientRouter />
+    <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
+    ></script>
+  </head>
+  <body>
+    <h1>Do you want to continue?</h1>
+    <ul>
+      <li>👍 yes</li>
+      <li>👎 restart</li>
+    </ul>
+    <p>Automatic restart in {RESET_TIME / 1000} seconds</p>
+    <video width="600" height="600" class="hidden"></video>
+    <canvas width="600" height="600" class="hidden"></canvas>
+  </body>
+</html>
+
+<script>
+  import { navigate } from "astro:transitions/client";
+  import checkDislike from "../../scripts/invitation-machine/checkDislike";
+  import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
+  import checkLike from "../../scripts/invitation-machine/checkLike";
+  import { RESET_TIME } from "../../consts";
+
+  handleHandPose((pose: any) => {
+    // !TODO make it smarter
+    if (new URL(location.href).pathname === "/invitation-machine/no-action") {
+      checkLike(pose, () => {
+        navigate("/invitation-machine/4");
+      });
+      checkDislike(pose, () => {
+        navigate("/invitation-machine/1");
+      });
+    }
+  });
+
+  setTimeout(() => {
+    navigate("/invitation-machine/1");
+  }, RESET_TIME);
+</script>

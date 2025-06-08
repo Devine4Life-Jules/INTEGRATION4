@@ -9,10 +9,26 @@ import { ClientRouter } from "astro:transitions";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
+    <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
+    ></script>
   </head>
   <body>
     <h1>You create the new chapter</h1>
     <p>Thumbs up to continue 👍</p>
+    <video width="600" height="600" class="hidden"></video>
+    <canvas width="600" height="600" class="hidden"></canvas>
     <!-- !TODO visualization of a user story -->
   </body>
 </html>
+
+<script>
+  import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
+  import checkLike from "../../scripts/invitation-machine/checkLike";
+  import { navigate } from "astro:transitions/client";
+
+  handleHandPose((pose: any) =>
+    checkLike(pose, () => {
+      navigate("/4");
+    })
+  );
+</script>

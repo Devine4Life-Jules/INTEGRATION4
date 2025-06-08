@@ -9,6 +9,8 @@ import { ClientRouter } from "astro:transitions";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
+    <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
+    ></script>
   </head>
   <body>
     <h1>Story unlocked</h1>
@@ -16,3 +18,9 @@ import { ClientRouter } from "astro:transitions";
     <p>Previous chapters</p>
   </body>
 </html>
+
+<script>
+  import handleReset from "../../scripts/handleReset";
+
+  handleReset();
+</script>

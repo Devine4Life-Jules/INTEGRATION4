@@ -9,6 +9,8 @@ import { ClientRouter } from "astro:transitions";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
+    <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
+    ></script>
   </head>
   <body>
     <h1>
@@ -16,7 +18,18 @@ import { ClientRouter } from "astro:transitions";
       <span>playing board games in our salon</span>
     </h1>
     <p>You can bring a friend!</p>
+    <video width="600" height="600" class=""></video>
+    <canvas width="600" height="600" class="hidden"></canvas>
     <!-- !TODO qr code for /invitation-machine/continuation -->
     <p>Thumbs down to get a new activity 👎</p>
   </body>
 </html>
+
+<script>
+  import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
+  import checkDislike from "../../scripts/invitation-machine/checkDislike";
+  import handleReset from "../../scripts/handleReset";
+
+  handleHandPose(checkDislike);
+  handleReset();
+</script>

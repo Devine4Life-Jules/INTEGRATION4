@@ -9,10 +9,22 @@ import { ClientRouter } from "astro:transitions";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
+    <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
+    ></script>
   </head>
   <body>
     <h1>You are the key to our story</h1>
     <p>Spin to unlock</p>
+    <!-- !TODO test if these sizes works on different devices -->
+    <video width="600" height="600" class="hidden"></video>
+    <canvas width="600" height="600" class="hidden"></canvas>
     <!-- !TODO encouraging image -->
   </body>
 </html>
+
+<script>
+  import checkSpinState from "../../scripts/invitation-machine/1/checkSpinState";
+  import { handleBodyPose } from "../../scripts/invitation-machine/handlePose";
+
+  handleBodyPose(checkSpinState);
+</script>
