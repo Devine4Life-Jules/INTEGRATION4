@@ -1,7 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import BaseHead from "../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
+import keyholeImg from "../../content/keyhole.svg";
 ---
 
 <!doctype html>
@@ -11,13 +13,19 @@ import { ClientRouter } from "astro:transitions";
     <ClientRouter />
     <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
     ></script>
+    <style>
+      #canvas {
+        transform: scaleX(-1);
+      }
+    </style>
   </head>
   <body>
     <h1>You are the key to our story</h1>
     <p>Spin to unlock</p>
     <!-- !TODO test if these sizes works on different devices -->
-    <video width="600" height="600" class="hidden"></video>
-    <canvas width="600" height="600" class="hidden"></canvas>
+    <video width="733" height="1111" id="video" class="hidden"></video>
+    <canvas width="733" height="1111" id="canvas"></canvas>
+    <img src={keyholeImg.src} class="keyholeSvg hidden" />
     <!-- !TODO encouraging image -->
   </body>
 </html>
@@ -27,4 +35,29 @@ import { ClientRouter } from "astro:transitions";
   import { handleBodyPose } from "../../scripts/invitation-machine/handlePose";
 
   handleBodyPose(checkSpinState);
+
+  const $video = document.querySelector("#video") as HTMLVideoElement;
+  const $canvas = document.querySelector("#canvas") as HTMLCanvasElement;
+  const $keyholeSvg = document.querySelector(".keyholeSvg") as HTMLImageElement;
+  const ctx = $canvas.getContext("2d");
+
+  const getXImgOffset = () => {
+    const videoCanvasRatio = $canvas.height / $video.height;
+    const newVideoWidth = $video.width * videoCanvasRatio;
+    const diffrence = newVideoWidth - $canvas.width;
+
+    return {
+      xOffset: diffrence / 2,
+      imageWidth: $video.width * videoCanvasRatio,
+    };
+  };
+
+  const draw = () => {
+    const { xOffset, imageWidth } = getXImgOffset();
+
+    ctx?.drawImage($video, -xOffset, 0, imageWidth, 1111);
+    ctx?.drawImage($keyholeSvg, 0, 0, 733, 1111);
+    requestAnimationFrame(draw);
+  };
+  draw();
 </script>

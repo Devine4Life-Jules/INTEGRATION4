@@ -4,8 +4,12 @@ const handleVideo = () => {
   video = document.querySelector("video");
 
   navigator.mediaDevices
-    .getUserMedia({ video: true })
+    .getUserMedia({ video: { width: { ideal: 1280 }, height: { ideal: 720 } } })
     .then((stream) => {
+      const videoTrack = stream.getVideoTracks()[0];
+      const { width, height } = videoTrack.getSettings();
+      video.width = width;
+      video.height = height;
       video.srcObject = stream;
       video.play();
     })
@@ -40,4 +44,4 @@ const handleHandPose = (checker) => {
   });
 };
 
-export { handleBodyPose, handleHandPose };
+export { handleBodyPose, handleHandPose, handleVideo };
