@@ -26,20 +26,5 @@ import { ClientRouter } from "astro:transitions";
   import checkSpinState from "../../scripts/invitation-machine/1/checkSpinState";
   import { handleBodyPose } from "../../scripts/invitation-machine/handlePose";
 
-  const init = () => {
-    const width = window.innerWidth;
-
-    // mobile
-    if (width < 700) {
-      // handleMobile();
-    } else {
-      handleBodyPose(checkSpinState);
-    }
-  };
-
-  window.addEventListener("resize", () => {
-    init();
-  });
-
-  init();
+  handleBodyPose(checkSpinState);
 </script>
