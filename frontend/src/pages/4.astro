@@ -9,25 +9,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
-    <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
-    ></script>
   </head>
   <body>
     <h1>
       Create a new chapter by <span>playing board games in our salon</span>
     </h1>
     <p>you can bring a friend!</p>
-    <video width="600" height="600" class=""></video>
-    <canvas width="600" height="600" class="hidden"></canvas>
     <!-- !TODO image -->
     <button>👍 Accept</button>
     <button>↪️ Other activity</button>
   </body>
 </html>
-
-<script>
-  import { handleHandPose } from "../scripts/handlePose";
-  import checkDislike from "../scripts/4/checkDislike";
-
-  handleHandPose(checkDislike);
-</script>

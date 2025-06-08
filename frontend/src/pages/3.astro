@@ -8,27 +8,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
-    ></script>
     <ClientRouter />
   </head>
   <body>
     <h1>You create the new chapter</h1>
-    <video width="600" height="600" class="hidden"></video>
-    <canvas width="600" height="600" class="hidden"></canvas>
     <!-- !TODO image -->
     <button>📕 Let's do it</button>
   </body>
 </html>
-
-<script>
-  import { handleHandPose } from "../scripts/handlePose";
-  import checkLike from "../scripts/checkLike";
-  import { navigate } from "astro:transitions/client";
-
-  handleHandPose((pose: any) =>
-    checkLike(pose, () => {
-      navigate("/4");
-    })
-  );
-</script>

@@ -1,4 +1,4 @@
-const checkDislike = (hand) => {
+const checkDislike = (hand, action) => {
   // The algorithm is not 100% reliable, but for the sake of the installation it is functional
 
   // Check if thumb is extended upward (y-coordinate of thumb tip is lower than thumb IP)
@@ -30,8 +30,7 @@ const checkDislike = (hand) => {
     isPinkyFolded &&
     isThumbBeneathWrist
   ) {
-    console.log("changeActivity");
-    // !TODO handle change activity
+    action();
   }
 };
 

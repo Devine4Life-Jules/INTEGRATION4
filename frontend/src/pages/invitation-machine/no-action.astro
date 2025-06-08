@@ -13,22 +13,32 @@ import { ClientRouter } from "astro:transitions";
     ></script>
   </head>
   <body>
-    <h1>You create the new chapter</h1>
-    <p>Thumbs up to continue 👍</p>
+    <h1>Do you want to continue?</h1>
+    <ul>
+      <li>👍 yes</li>
+      <li>👎 restart</li>
+    </ul>
+    <p>Automatic restart in 30 seconds</p>
     <video width="600" height="600" class="hidden"></video>
     <canvas width="600" height="600" class="hidden"></canvas>
-    <!-- !TODO visualization of a user story -->
   </body>
 </html>
 
 <script>
+  import { navigate } from "astro:transitions/client";
+  import checkDislike from "../../scripts/invitation-machine/checkDislike";
   import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
   import checkLike from "../../scripts/invitation-machine/checkLike";
-  import { navigate } from "astro:transitions/client";
 
-  handleHandPose((pose: any) =>
-    checkLike(pose, () => {
-      navigate("/4");
-    })
-  );
+  handleHandPose((pose: any) => {
+    // !TODO make it smarter
+    if (new URL(location.href).pathname === "/invitation-machine/no-action") {
+      checkLike(pose, () => {
+        navigate("/invitation-machine/4");
+      });
+      checkDislike(pose, () => {
+        navigate("/invitation-machine/1");
+      });
+    }
+  });
 </script>
