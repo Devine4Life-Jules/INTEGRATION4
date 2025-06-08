@@ -28,14 +28,8 @@ import { ClientRouter } from "astro:transitions";
 <script>
   import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
   import checkDislike from "../../scripts/invitation-machine/checkDislike";
-  import { navigate } from "astro:transitions/client";
+  import handleReset from "../../scripts/handleReset";
 
-  // handleHandPose(checkDislike);
-
-  setTimeout(() => {
-    navigate("/invitation-machine/no-action", {
-      history: "push",
-      state: { previous: new URL(location.href).pathname },
-    });
-  }, 1000);
+  handleHandPose(checkDislike);
+  handleReset();
 </script>

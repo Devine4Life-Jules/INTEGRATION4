@@ -2,6 +2,7 @@
 import BaseHead from "../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
+import { RESET_TIME } from "../../consts";
 ---
 
 <!doctype html>
@@ -18,7 +19,7 @@ import { ClientRouter } from "astro:transitions";
       <li>👍 yes</li>
       <li>👎 restart</li>
     </ul>
-    <p>Automatic restart in 30 seconds</p>
+    <p>Automatic restart in {RESET_TIME / 1000} seconds</p>
     <video width="600" height="600" class="hidden"></video>
     <canvas width="600" height="600" class="hidden"></canvas>
   </body>
@@ -29,6 +30,7 @@ import { ClientRouter } from "astro:transitions";
   import checkDislike from "../../scripts/invitation-machine/checkDislike";
   import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
   import checkLike from "../../scripts/invitation-machine/checkLike";
+  import { RESET_TIME } from "../../consts";
 
   handleHandPose((pose: any) => {
     // !TODO make it smarter
@@ -41,4 +43,8 @@ import { ClientRouter } from "astro:transitions";
       });
     }
   });
+
+  setTimeout(() => {
+    navigate("/invitation-machine/1");
+  }, RESET_TIME);
 </script>
