@@ -15,11 +15,12 @@ import { ClientRouter } from "astro:transitions";
   <body>
     <h1>
       Create a new chapter by <br />
-      <span>playing board games in our salon</span>
+      <span id="activity">playing board games in our salon</span>
     </h1>
     <p>You can bring a friend!</p>
-    <video width="600" height="600" class=""></video>
+    <video width="600" height="600" class="hidden"></video>
     <canvas width="600" height="600" class="hidden"></canvas>
+    <canvas id="qr"></canvas>
     <!-- !TODO qr code for /invitation-machine/continuation -->
     <p>Thumbs down to get a new activity 👎</p>
   </body>
@@ -29,7 +30,9 @@ import { ClientRouter } from "astro:transitions";
   import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
   import checkDislike from "../../scripts/invitation-machine/checkDislike";
   import handleReset from "../../scripts/handleReset";
+  import changeActivity from "../../scripts/invitation-machine/4/changeActivity";
 
-  handleHandPose(checkDislike);
+  changeActivity();
+  handleHandPose((pose: any) => checkDislike(pose, changeActivity));
   handleReset();
 </script>
