@@ -14,6 +14,7 @@ const changeActivity = () => {
 
   lastChange = Date.now();
   currentIndex++;
+  if (currentIndex >= activities.length) currentIndex = 0;
   const $qr = document.querySelector("#qr");
   QRCode.toCanvas(
     $qr,
@@ -21,6 +22,8 @@ const changeActivity = () => {
       activities[currentIndex]
     )}`
   );
+  const $activity = document.querySelector("#activity") as HTMLSpanElement;
+  $activity.textContent = activities[currentIndex];
 };
 
 export default changeActivity;

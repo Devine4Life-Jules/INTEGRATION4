@@ -1,4 +1,7 @@
+import { setLastDetection } from "./handlePose";
+
 const checkLike = (hand, action) => {
+  if (hand.confidence < 0.5) return;
   // The algorithm is not 100% reliable, but for the sake of the installation it is functional
 
   // Check if thumb is extended upward (y-coordinate of thumb tip is lower than thumb IP)
@@ -30,6 +33,7 @@ const checkLike = (hand, action) => {
     isPinkyFolded &&
     isThumbAboveWrist
   ) {
+    setLastDetection(Date.now());
     action();
   }
 };
