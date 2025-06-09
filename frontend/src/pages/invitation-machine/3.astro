@@ -26,9 +26,10 @@ import { ClientRouter } from "astro:transitions";
   import checkLike from "../../scripts/invitation-machine/checkLike";
   import { navigate } from "astro:transitions/client";
 
-  handleHandPose((pose: any) =>
+  handleHandPose((pose: any) => {
+    if (new URL(location.href).pathname !== "/invitation-machine/3") return;
     checkLike(pose, () => {
       navigate("/4");
-    })
-  );
+    });
+  });
 </script>

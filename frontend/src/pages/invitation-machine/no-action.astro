@@ -34,14 +34,15 @@ import { RESET_TIME } from "../../consts";
 
   handleHandPose((pose: any) => {
     // !TODO make it smarter
-    if (new URL(location.href).pathname === "/invitation-machine/no-action") {
-      checkLike(pose, () => {
-        navigate("/invitation-machine/4");
-      });
-      checkDislike(pose, () => {
-        navigate("/invitation-machine/1");
-      });
-    }
+    if (new URL(location.href).pathname !== "/invitation-machine/no-action")
+      return;
+
+    checkLike(pose, () => {
+      navigate("/invitation-machine/4");
+    });
+    checkDislike(pose, () => {
+      navigate("/invitation-machine/1");
+    });
   });
 
   setTimeout(() => {

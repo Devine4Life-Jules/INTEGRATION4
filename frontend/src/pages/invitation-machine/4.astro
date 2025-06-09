@@ -33,6 +33,11 @@ import { ClientRouter } from "astro:transitions";
   import changeActivity from "../../scripts/invitation-machine/4/changeActivity";
 
   changeActivity();
-  handleHandPose((pose: any) => checkDislike(pose, changeActivity));
+  handleHandPose((pose: any) =>
+    checkDislike(pose, () => {
+      if (new URL(location.href).pathname !== "/invitation-machine/4") return;
+      changeActivity();
+    })
+  );
   handleReset();
 </script>

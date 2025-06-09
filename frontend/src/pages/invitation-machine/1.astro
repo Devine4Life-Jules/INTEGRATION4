@@ -34,7 +34,10 @@ import keyholeImg from "../../content/keyhole.svg";
   import checkSpinState from "../../scripts/invitation-machine/1/checkSpinState";
   import { handleBodyPose } from "../../scripts/invitation-machine/handlePose";
 
-  handleBodyPose(checkSpinState);
+  handleBodyPose((pose: any) => {
+    if (new URL(location.href).pathname !== "/invitation-machine/1") return;
+    checkSpinState(pose);
+  });
 
   const $video = document.querySelector("#video") as HTMLVideoElement;
   const $canvas = document.querySelector("#canvas") as HTMLCanvasElement;
