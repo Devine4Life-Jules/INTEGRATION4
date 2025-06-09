@@ -20,7 +20,7 @@ import { ClientRouter } from "astro:transitions";
 </html>
 
 <script>
-  import handleReset from "../../scripts/handleReset";
+  import { navigate } from "astro:transitions/client";
 
-  handleReset();
+  setTimeout(() => navigate("/invitation-machine/3"), 3000);
 </script>

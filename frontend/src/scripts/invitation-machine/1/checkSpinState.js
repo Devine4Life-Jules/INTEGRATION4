@@ -61,7 +61,7 @@ const checkSpinState = (pose) => {
     console.log("Spin Detected (Counter-Clockwise)!");
     resetSpin();
 
-    navigate("/2");
+    navigate("/invitation-machine/2");
   }
 };
 

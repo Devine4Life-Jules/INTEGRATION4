@@ -31,20 +31,39 @@ import { RESET_TIME } from "../../consts";
   import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
   import checkLike from "../../scripts/invitation-machine/checkLike";
   import { RESET_TIME } from "../../consts";
+  import handleReset from "../../scripts/handleReset";
+
+  const resetTimeoutId = setTimeout(() => {
+    navigate("/invitation-machine/1");
+  }, RESET_TIME);
 
   handleHandPose((pose: any) => {
     // !TODO make it smarter
-    if (new URL(location.href).pathname === "/invitation-machine/no-action") {
-      checkLike(pose, () => {
-        navigate("/invitation-machine/4");
-      });
-      checkDislike(pose, () => {
-        navigate("/invitation-machine/1");
-      });
-    }
-  });
+    if (new URL(location.href).pathname !== "/invitation-machine/no-action")
+      return;
 
-  setTimeout(() => {
-    navigate("/invitation-machine/1");
-  }, RESET_TIME);
+    checkLike(pose, () => {
+      // const $video = document.querySelector("video") as HTMLVideoElement;
+      // const $canvas = document.createElement("canvas");
+      // $canvas.width = $video.width;
+      // $canvas.height = $video.height;
+      // const ctx = $canvas.getContext("2d");
+      // ctx?.drawImage($video, 0, 0);
+      // const $canvas = document.querySelector("canvas") as HTMLCanvasElement;
+      // const $a = document.createElement("a");
+      // $a.href = $canvas.toDataURL();
+      // $a.download = "download.png";
+      // $a.click();
+
+      console.log(pose);
+      clearTimeout(resetTimeoutId);
+      handleReset();
+      navigate("/invitation-machine/4");
+    });
+    // checkDislike(pose, () => {
+    //   console.log("dislike");
+    //   clearTimeout(resetTimeoutId);
+    //   navigate("/invitation-machine/1");
+    // });
+  });
 </script>
