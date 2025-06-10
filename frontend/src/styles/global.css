@@ -12,6 +12,15 @@
 
 }
 
+@font-face {
+  font-family: GT-walsheim;
+  src: url("../assets/fonts/GT-Walsheim/GT-Walsheim-Regular-Trial.woff2") format(woff2);
+}
+
+body {
+  font-family: GT-walsheim;
+}
+
 
 .sr-only {
   border: 0;
