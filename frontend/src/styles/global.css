@@ -5,8 +5,15 @@
  */
 
 :root {
-  --accent: #2337ff;
-  --accent-dark: #000d8a;
+  --yellow: #FFBF50;
+  --blue:#5F90FF;
+  --red:#691F13;
+  --green:#05A368;
+  --orange:#FE5F00;
+  --purple:#BB7CD2;
+  --black:#111111;
+  --white:#FFFDF9;
+  
   --black: 15, 18, 25;
   --gray: 96, 115, 159;
   --gray-light: 229, 233, 240;
