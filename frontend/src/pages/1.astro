@@ -4,17 +4,60 @@ import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 ---
 
-<!doctype html>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .key {
+    width: 100px;
+    height: 30px;
+    background: black;
+  }
+</style>
+
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
-    <style></style></head
-  >
-
+  </head>
   <body>
     <h1>You are the key to our story</h1>
-    <p>spin to unlock</p>
+    <div id="key" class="key"></div>
+    <p>Turn the key to unlock</p>
     <!-- !TODO if on phone or table there should be a gif suggesting how to rotate the device -->
   </body>
 </html>
+
+<script>
+  import { navigate } from "astro:transitions/client";
+
+  const $key = document.querySelector("#key") as HTMLDivElement;
+
+  let intervalId: ReturnType<typeof setInterval>;
+  let keyRotaion = 0;
+
+  const handleMouseDown = () => {
+    intervalId = setInterval(() => {
+      keyRotaion++;
+      $key.style.transform = `rotate(${keyRotaion}deg)`;
+
+      if (keyRotaion >= 90) {
+        clearInterval(intervalId);
+        $key.removeEventListener("mousedown", handleMouseDown);
+        $key.removeEventListener("touchstart", handleMouseDown);
+        window.removeEventListener("mouseup", handleMouseUp);
+        window.removeEventListener("touchend", handleMouseUp);
+        navigate("/2");
+      }
+    }, 10);
+  };
+  const handleMouseUp = () => clearInterval(intervalId);
+  $key.addEventListener("mousedown", handleMouseDown);
+  window.addEventListener("mouseup", handleMouseUp);
+  $key.addEventListener("touchstart", handleMouseDown);
+  window.addEventListener("touchend", handleMouseUp);
+</script>
