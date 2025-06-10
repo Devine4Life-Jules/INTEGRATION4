@@ -53,7 +53,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       }
     }, 10);
   };
-
   const handleMouseUp = () => clearInterval(intervalId);
   $key.addEventListener("mousedown", handleMouseDown);
+  window.addEventListener("mouseup", handleMouseUp);
 </script>
