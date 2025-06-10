@@ -48,7 +48,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
       if (keyRotaion >= 90) {
         clearInterval(intervalId);
         $key.removeEventListener("mousedown", handleMouseDown);
+        $key.removeEventListener("touchstart", handleMouseDown);
         window.removeEventListener("mouseup", handleMouseUp);
+        window.removeEventListener("touchend", handleMouseUp);
         navigate("/2");
       }
     }, 10);
@@ -56,4 +58,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   const handleMouseUp = () => clearInterval(intervalId);
   $key.addEventListener("mousedown", handleMouseDown);
   window.addEventListener("mouseup", handleMouseUp);
+  $key.addEventListener("touchstart", handleMouseDown);
+  window.addEventListener("touchend", handleMouseUp);
 </script>
