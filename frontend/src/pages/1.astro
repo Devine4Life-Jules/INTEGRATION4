@@ -33,6 +33,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 </html>
 
 <script>
+  import { navigate } from "astro:transitions/client";
+
   const $key = document.querySelector("#key") as HTMLDivElement;
 
   let intervalId: ReturnType<typeof setInterval>;
@@ -47,6 +49,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         clearInterval(intervalId);
         $key.removeEventListener("mousedown", handleMouseDown);
         window.removeEventListener("mouseup", handleMouseUp);
+        navigate("/2");
       }
     }, 10);
   };
