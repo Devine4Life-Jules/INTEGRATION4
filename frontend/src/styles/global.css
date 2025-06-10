@@ -19,7 +19,21 @@
 
 body {
   font-family: GT-walsheim;
+  background-color: var(--yellow);
 }
+
+
+canvas {
+  margin: 5% auto;
+  display: block;
+  width: 50%;
+}
+
+.firstTitle {
+  text-align: center;
+
+}
+
 
 
 .sr-only {
