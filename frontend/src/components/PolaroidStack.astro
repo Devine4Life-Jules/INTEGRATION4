@@ -7,24 +7,63 @@ import Polaroid from "./Polaroid.astro"
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
         place-items: center;
-        width: 50rem;
-        height: 50rem;
-        background-color: red;
+        margin: 4rem auto;
     }
 
 
 
+    .polaroidStack > * {
+        grid-column: 1;
+        grid-row: 1;
+        position: relative;
+    }
+
     .polaroidStack > :nth-child(1) {
         z-index: 1;
+        transform: rotate(0deg);
         }
-        .polaroidStack > :nth-child(2) {
-        z-index: 2;
-        }
+    .polaroidStack > :nth-child(2) {
+    z-index: 2;
+    transform: rotate(-10deg);
+    }
+    .polaroidStack > :nth-child(3) {
+    z-index: 3;
+    transform: rotate(-7deg);
+    }
+    .polaroidStack > :nth-child(4) {
+    z-index: 4;
+    transform: rotate(7deg);
+    }
+    .polaroidStack > :nth-child(5) {
+    z-index: 4;
+    transform: rotate(-15deg);
+    }
+    .polaroidStack > :nth-child(6) {
+        
+    }
+    
 
 </style>
 
 
 <div class="polaroidStack">
-    <Polaroid></Polaroid>
-    <Polaroid></Polaroid>
+    <div>
+        <Polaroid></Polaroid>d
+    </div>
+    <div>
+        <Polaroid></Polaroid>
+    </div>
+    <div>
+        <Polaroid></Polaroid>
+    </div>
+     <div>
+        <Polaroid></Polaroid>
+    </div>
+    <div>
+        <Polaroid></Polaroid>
+    </div>
+    <div>
+        <Polaroid></Polaroid>
+    </div>
+
 </div>
