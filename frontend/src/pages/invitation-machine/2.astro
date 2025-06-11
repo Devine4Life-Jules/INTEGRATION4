@@ -15,7 +15,7 @@ import InstallationFooter from "../../components/InstallationFooter.astro";
     ></script>
   </head>
   <body class="installationBody">
-    <h1 class="firstTitle">Story unlocked</h1>
+    <h1 class="firstTitle">Story <span class="blueBg">unlocked</span></h1>
     <PolaroidStack></PolaroidStack>
     <InstallationFooter></InstallationFooter>
     <!-- !TODO stories visualization -->
@@ -25,5 +25,5 @@ import InstallationFooter from "../../components/InstallationFooter.astro";
 <script>
   import { navigate } from "astro:transitions/client";
 
-  // setTimeout(() => navigate("/invitation-machine/3"), 3000);
+  setTimeout(() => navigate("/invitation-machine/3"), 4000);
 </script>
