@@ -16,8 +16,8 @@ import InstallationFooter from "../../components/installationFooter.astro";
   <body class="installationBody">
     <h1 class="firstTitle">It's <span class="greenBg">your turn</span> to shape the <span class="blueBg">new chapter</span></h1>
     <p>Thumbs up to continue 👍</p>
-    <video width="600" height="600" class="hidden"></video>
-    <canvas width="600" height="600"></canvas>
+    <video width="600" height="600" class="hidden" id="video"></video>
+    <canvas width="600" height="600" id="canvas"></canvas>
     <!-- !TODO visualization of a user story -->
      <InstallationFooter text="you are the key"></InstallationFooter>
 
@@ -35,4 +35,31 @@ import InstallationFooter from "../../components/installationFooter.astro";
       navigate("/invitation-machine/4");
     });
   });
+
+  const $video = document.querySelector("#video") as HTMLVideoElement;
+  const $canvas = document.querySelector("#canvas") as HTMLCanvasElement;
+  const ctx = $canvas.getContext("2d");
+
+    const getXImgOffset = () => {
+    const videoCanvasRatio = $canvas.height / $video.height;
+    const newVideoWidth = $video.width * videoCanvasRatio;
+    const diffrence = newVideoWidth - $canvas.width;
+
+    return {
+      xOffset: diffrence / 2,
+      imageWidth: $video.width * videoCanvasRatio,
+    };
+  };
+
+    const draw = () => {
+    const { xOffset, imageWidth } = getXImgOffset();
+
+    ctx?.drawImage($video, -xOffset, 0, imageWidth, 1111);
+    
+    requestAnimationFrame(draw);
+  };
+  draw();
+
+
+
 </script>
