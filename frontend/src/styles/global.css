@@ -58,10 +58,7 @@ canvas {
 }
 
 
-.installationFooter {
-  background-color: var(--white);
-  
-}
+
 
 .highlightText {
   padding: .3rem .5rem;
@@ -84,6 +81,14 @@ canvas {
 
 .page1Wrapper {
   margin-top: 6rem;
+}
+
+.installationBody {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  
+  
 }
 
 
