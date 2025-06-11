@@ -2,6 +2,7 @@
 import BaseHead from "../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
+import InstallationFooter from "../../components/installationFooter.astro";
 ---
 
 <!doctype html>
@@ -12,12 +13,14 @@ import { ClientRouter } from "astro:transitions";
     <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
     ></script>
   </head>
-  <body>
+  <body class="installationBody">
     <h1 class="firstTitle">It's <span class="greenBg">your turn</span> to shape the <span class="blueBg">new chapter</span></h1>
     <p>Thumbs up to continue 👍</p>
     <video width="600" height="600" class="hidden"></video>
-    <canvas width="600" height="600" class="hidden"></canvas>
+    <canvas width="600" height="600"></canvas>
     <!-- !TODO visualization of a user story -->
+     <InstallationFooter text="you are the key"></InstallationFooter>
+
   </body>
 </html>
 
