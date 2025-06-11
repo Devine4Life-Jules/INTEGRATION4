@@ -4,6 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
 import { ClientRouter } from "astro:transitions";
 import markerSvg from "../../../assets/icons/location.svg";
 import abbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
+import Tape from "../../../components/Tape.astro";
 ---
 
 <style>
@@ -13,38 +14,6 @@ import abbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
     display: grid;
     grid-template-rows: auto 3fr auto 1fr;
     min-height: 100vh;
-  }
-
-  .tape {
-    white-space: nowrap;
-    background-color: var(--green);
-    max-width: 100vw;
-    padding: 0.3em;
-    text-transform: uppercase;
-    overflow: hidden;
-  }
-  
-  .tape__inner {
-    display: flex;
-    gap: 0.9em;
-    justify-content: center;
-    width: max-content;
-    animation: infinite 50s linear tapeMoving;
-  }
-
-  @keyframes  tapeMoving {
-    0% {
-      transform: translateX(calc(-100% + 100vw));
-    }
-    100% {
-      transform: translateX(0%);
-    }
-  }
-
-  .tape__rect {
-    aspect-ratio: 4/5;
-    height: 1.45rem;
-    background-color: var(--yellow);
   }
 
   .container {
@@ -122,45 +91,36 @@ import abbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
     <ClientRouter />
   </head>
   <body>
-    <div class="tape">
-      <div class="tape__inner">
-
-        {
-          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(() => (
-            <span class="tape__text">you are the key</span>
-            <div class="tape__rect"></div>
-          )
-        ) 
-      }
-      </div>
-    </div>
+    <Tape text="you are the key" />
     <div class="container">
       <img class="container__logo" src={abbySvg.src} alt="Abby logo" />
       <h1 class="container__title">
         <span class="container__title__start">Hey,</span><br />
-        <span>ready to begin your journey<span class="container__title__question-mark"
-          >?</span
-        >
+        <span
+          >ready to begin your journey<span
+            class="container__title__question-mark">?</span
+          >
+        </span>
+        <div class="container__location">
+          <img
+            class="container__location__icon"
+            src={markerSvg.src}
+            alt="location icon"
+          />
+          <span class="container__location__text">Abby, Kortrijk</span>
+        </div>
       </h1>
-      <div class="container__location">
-        <img
-          class="container__location__icon"
-          src={markerSvg.src}
-          alt="location icon"
-        />
-        <span class="container__location__text">Abby, Kortrijk</span>
+      <p class="paragraph">
+        You’re not just a visitor,<br />
+        <span class="bold">you’re starting a chapter in ABBY.</span><br />
+        This is just a short guide,<br />
+        your story starts after.
+      </p>
+      <div class="buttons">
+        <!-- !TODO change links -->
+        <a class="buttons__button buttons__button--back" href="./2">Back</a>
+        <a class="buttons__button" href="./2">Show me how</a>
       </div>
-    </div>
-    <p class="paragraph">
-      You’re not just a visitor,<br />
-      <span class="bold">you’re starting a chapter in ABBY.</span><br />
-      This is just a short guide,<br />
-      your story starts after.
-    </p>
-    <div class="buttons">
-      <!-- !TODO change links -->
-      <a class="buttons__button buttons__button--back" href="./2">Back</a>
-      <a class="buttons__button" href="./2">Show me how</a>
     </div>
   </body>
 </html>
