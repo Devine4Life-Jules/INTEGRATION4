@@ -2,7 +2,7 @@
 import BaseHead from "../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
-import Polaroid from "../../components/Polaroid.astro";
+import PolaroidStack from "../../components/PolaroidStack.astro";
 import InstallationFooter from "../../components/InstallationFooter.astro";
 ---
 
@@ -16,7 +16,7 @@ import InstallationFooter from "../../components/InstallationFooter.astro";
   </head>
   <body class="installationBody">
     <h1 class="firstTitle">Story unlocked</h1>
-    <Polaroid></Polaroid>
+    <PolaroidStack></PolaroidStack>
     <InstallationFooter></InstallationFooter>
     <!-- !TODO stories visualization -->
   </body>
