@@ -1,12 +1,12 @@
 ---
 import logo from '../assets/images/logoBlack.svg'
+import Tape from '../components/Tape.astro'
 ---
 
 <style>
  footer {
     margin-top: auto;
     background-color: var(--white);
-    padding: 1.5rem ; 
  }
 
  .logo {
@@ -17,6 +17,7 @@ import logo from '../assets/images/logoBlack.svg'
 </style>
 
 <footer>
+    <Tape text={Astro.props.text}></Tape>
     <figure class="logo">
         <img src={logo.src} alt="">
     </figure>
