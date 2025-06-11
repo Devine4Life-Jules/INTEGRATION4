@@ -1,27 +1,54 @@
-
 :root {
-  --yellow: #FFBF50;
-  --blue:#5F90FF;
-  --red:#691F13;
-  --green:#05A368;
-  --orange:#FE5F00;
-  --purple:#BB7CD2;
-  --black:#111111;
-  --white:#FFFDF9;
-
-
+  --yellow: #ffbf50;
+  --blue: #5f90ff;
+  --red: #691f13;
+  --green: #05a368;
+  --orange: #fe5f00;
+  --purple: #bb7cd2;
+  --black: #111111;
+  --white: #fffdf9;
 }
 
 @font-face {
-  font-family: GT-walsheim;
-  src: url("../assets/fonts/GT-Walsheim/GT-Walsheim-Regular-Trial.woff2") format(woff2);
+  font-family: "GT-Wal";
+  src: url("../assets/fonts/GT-Wal/GTWal-Bold-Trial.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT-Wal";
+  src: url("../assets/fonts/GT-Wal/GTWal-Medium-Trial.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT-Wal";
+  src: url("../assets/fonts/GT-Wal/GTWal-Regular-Trial.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT-Wal";
+  src: url("../assets/fonts/GT-Wal/GTWal-Light-Trial.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT-Wal";
+  src: url("../assets/fonts/GT-Wal/GTWal-LightOblique-Trial.woff2")
+    format("woff2");
+  font-weight: 300;
+  font-style: oblique;
 }
 
 body {
-  font-family: GT-walsheim;
+  font-family: GT-Wal, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--yellow);
 }
-
 
 canvas {
   margin: 5% auto;
@@ -31,10 +58,7 @@ canvas {
 
 .firstTitle {
   text-align: center;
-
 }
-
-
 
 .sr-only {
   border: 0;
