@@ -1,17 +1,23 @@
 ---
+import logo from '../assets/images/logoBlack.svg'
 ---
 
 <style>
  footer {
     margin-top: auto;
     background-color: var(--white);
-    padding: 1.5rem ;
-    
+    padding: 1.5rem ; 
+ }
+
+ .logo {
+    width: 7rem;
  }
   
 
 </style>
 
 <footer>
-    abby
+    <figure class="logo">
+        <img src={logo.src} alt="">
+    </figure>
 </footer>

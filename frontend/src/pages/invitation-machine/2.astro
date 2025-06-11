@@ -2,7 +2,7 @@
 import BaseHead from "../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
-import Polaroid from "../../components/Polaroid.astro";
+import PolaroidStack from "../../components/PolaroidStack.astro";
 import InstallationFooter from "../../components/InstallationFooter.astro";
 ---
 
@@ -15,8 +15,8 @@ import InstallationFooter from "../../components/InstallationFooter.astro";
     ></script>
   </head>
   <body class="installationBody">
-    <h1 class="firstTitle">Story unlocked</h1>
-    <Polaroid></Polaroid>
+    <h1 class="firstTitle">Story <span class="blueBg">unlocked</span></h1>
+    <PolaroidStack></PolaroidStack>
     <InstallationFooter></InstallationFooter>
     <!-- !TODO stories visualization -->
   </body>
@@ -25,5 +25,5 @@ import InstallationFooter from "../../components/InstallationFooter.astro";
 <script>
   import { navigate } from "astro:transitions/client";
 
-  // setTimeout(() => navigate("/invitation-machine/3"), 3000);
+  setTimeout(() => navigate("/invitation-machine/3"), 4000);
 </script>
