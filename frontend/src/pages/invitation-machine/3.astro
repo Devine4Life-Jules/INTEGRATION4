@@ -5,6 +5,28 @@ import { ClientRouter } from "astro:transitions";
 import InstallationFooter from "../../components/installationFooter.astro";
 ---
 
+<style>
+
+  #canvas {
+      display: block;
+  width: 40vw;
+  height: 30vh;
+    
+  }
+  .videoBox{
+    
+    background-color: var(--white);
+    margin: 3rem auto;
+    padding: 2rem;
+    width: 50vw;
+  }
+
+  .videoDescripton {
+    text-align: center;
+  
+  }
+</style>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,9 +37,13 @@ import InstallationFooter from "../../components/installationFooter.astro";
   </head>
   <body class="installationBody">
     <h1 class="firstTitle">It's <span class="greenBg">your turn</span> to shape the <span class="blueBg">new chapter</span></h1>
-    <p>Thumbs up to continue 👍</p>
-    <video width="600" height="600" class="hidden" id="video"></video>
-    <canvas width="600" height="600" id="canvas"></canvas>
+    <video width="1000" height="1200" class="hidden" id="video"></video>
+    <div class="videoBox">
+      <canvas width="1000" height="1200" id="canvas"></canvas>
+      <div class="videoDescripton">
+        <p>Thumbs up to continue 👍</p>
+      </div>
+    </div>
     <!-- !TODO visualization of a user story -->
      <InstallationFooter text="you are the key"></InstallationFooter>
 
@@ -32,7 +58,7 @@ import InstallationFooter from "../../components/installationFooter.astro";
   handleHandPose((pose: any) => {
     if (new URL(location.href).pathname !== "/invitation-machine/3") return;
     checkLike(pose, () => {
-      navigate("/invitation-machine/4");
+      // navigate("/invitation-machine/4");
     });
   });
 
