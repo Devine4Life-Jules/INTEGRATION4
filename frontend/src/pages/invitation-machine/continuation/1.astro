@@ -10,35 +10,63 @@ import abbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
   body {
     background: var(--white);
     font-size: 1.25rem;
+    display: grid;
+    grid-template-rows: 3fr auto 1fr;
+    min-height: 100vh;
   }
 
-  .title {
+  .container {
+    background-color: var(--blue);
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    padding: var(--screen-padding);
+  }
+
+  .container__logo {
+    justify-self: end;
+    width: 6.688rem;
+  }
+
+  .container__title {
     font-weight: 700;
+    line-height: 1.2;
+    margin-block-end: 1em;
+    margin-top: 1em;
   }
 
-  .title__start {
+  .container__title__start {
     font-weight: 300;
   }
 
-  .title__question-mark {
+  .container__title__question-mark {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  .location {
+  .container__location {
     background-color: var(--yellow);
     display: flex;
+    align-items: center;
     font-size: 1.625rem;
     width: max-content;
     padding: 0.35rem 0.8rem 0.35rem 0.4rem;
+    align-self: end;
+    height: max-content;
+  }
+
+  .container__location__icon {
+    height: 1.5rem;
   }
 
   .paragraph {
     text-align: center;
+    margin: var(--screen-padding);
   }
 
   .buttons {
     display: flex;
     justify-content: space-between;
+    margin: var(--screen-padding);
+    align-self: flex-end;
   }
 
   .buttons__button {
@@ -62,15 +90,22 @@ import abbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
     <ClientRouter />
   </head>
   <body>
-    <div></div>
-    <img src={abbySvg.src} alt="Abby logo" />
-    <h1 class="title">
-      <span class="title__start">Hey,</span><br />
-      ready to begin your journey<span class="title__question-mark">?</span>
-    </h1>
-    <div class="location">
-      <img src={markerSvg.src} alt="location icon" />
-      <span class="location__text"> Abby, Kortrijk</span>
+    <div class="container">
+      <img class="container__logo" src={abbySvg.src} alt="Abby logo" />
+      <h1 class="container__title">
+        <span class="container__title__start">Hey,</span><br />
+        ready to begin your journey<span class="container__title__question-mark"
+          >?</span
+        >
+      </h1>
+      <div class="container__location">
+        <img
+          class="container__location__icon"
+          src={markerSvg.src}
+          alt="location icon"
+        />
+        <span class="container__location__text">Abby, Kortrijk</span>
+      </div>
     </div>
     <p class="paragraph">
       You’re not just a visitor,<br />
