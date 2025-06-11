@@ -9,6 +9,7 @@
   --white: #fffdf9;
 }
 
+
 @font-face {
   font-family: "GT-Wal";
   src: url("../assets/fonts/GT-Wal/GTWal-Bold-Trial.woff2") format("woff2");
@@ -56,9 +57,29 @@ canvas {
   width: 50%;
 }
 
+.highlightText {
+  padding: .3rem .5rem;
+}
+
+.blueBg {
+  background-color: var(--blue);
+}
+
+.greenBg {
+  background-color: var(--green);
+}
+
 .firstTitle {
   text-align: center;
+  font-size: 4rem;
+  font-weight: 500;
 }
+
+
+.page1Wrapper {
+  margin-top: 6rem;
+}
+
 
 .sr-only {
   border: 0;
