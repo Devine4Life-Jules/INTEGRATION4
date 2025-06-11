@@ -47,23 +47,43 @@ import Polaroid from "./Polaroid.astro"
 
 
 <div class="polaroidStack">
-    <div>
-        <Polaroid></Polaroid>d
-    </div>
-    <div>
+    <div class="polaroidWrapper">
         <Polaroid></Polaroid>
     </div>
-    <div>
+    <div class="polaroidWrapper">
         <Polaroid></Polaroid>
     </div>
-     <div>
+    <div class="polaroidWrapper">
         <Polaroid></Polaroid>
     </div>
-    <div>
+     <div class="polaroidWrapper">
         <Polaroid></Polaroid>
     </div>
-    <div>
+    <div class="polaroidWrapper">
+        <Polaroid></Polaroid>
+    </div>
+    <div class="polaroidWrapper">
         <Polaroid></Polaroid>
     </div>
 
 </div>
+
+
+<script>
+  import { gsap } from "gsap";
+
+    console.log("GSAP loaded?", typeof gsap === "function" || typeof gsap === "object");
+  console.log("GSAP version:", gsap.version);
+
+  const wrappers = document.querySelectorAll('.polaroid-wrapper');
+
+  const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+  gsap.from(".polaroidWrapper", {
+    scale: 0,
+    
+    duration: 0.6,
+    stagger: 0.5, // show one after the other
+    ease: "power2.out",
+  });
+</script>
