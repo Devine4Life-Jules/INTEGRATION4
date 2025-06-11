@@ -2,6 +2,8 @@
 import BaseHead from "../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
+import Polaroid from "../../components/Polaroid.astro";
+import InstallationFooter from "../../components/InstallationFooter.astro";
 ---
 
 <!doctype html>
@@ -12,15 +14,16 @@ import { ClientRouter } from "astro:transitions";
     <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
     ></script>
   </head>
-  <body>
-    <h1>Story unlocked</h1>
+  <body class="installationBody">
+    <h1 class="firstTitle">Story unlocked</h1>
+    <Polaroid></Polaroid>
+    <InstallationFooter></InstallationFooter>
     <!-- !TODO stories visualization -->
-    <p>Previous chapters</p>
   </body>
 </html>
 
 <script>
   import { navigate } from "astro:transitions/client";
 
-  setTimeout(() => navigate("/invitation-machine/3"), 3000);
+  // setTimeout(() => navigate("/invitation-machine/3"), 3000);
 </script>

@@ -1,5 +1,6 @@
 ---
 import BaseHead from "../../components/BaseHead.astro";
+import InstallationFooter from "../../components/installationFooter.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
 import keyholeImg from "../../assets/illustrations/keyhole.svg";
@@ -18,14 +19,19 @@ import keyholeImg from "../../assets/illustrations/keyhole.svg";
       }
     </style>
   </head>
-  <body>
-    <h1 class="firstTitle">You are the key to our story</h1>
-    <p>Spin to unlock</p>
-    <!-- !TODO test if these sizes works on different devices -->
-    <video width="733" height="1111" id="video" class="hidden"></video>
-    <canvas width="733" height="1111" id="canvas"></canvas>
-    <img src={keyholeImg.src} class="keyholeSvg hidden" />
-    <!-- !TODO encouraging image -->
+  <body class="installationBody">
+    <div class="page1Wrapper">
+      <h1 class="firstTitle"><span class="blueBg highlightText">You</span> are the key</h1>
+      <!-- !TODO test if these sizes works on different devices -->
+      <video width="733" height="1111" id="video" class="hidden"></video>
+      <canvas width="733" height="1111" id="canvas"></canvas>
+      <p class="firstTitle">to <span class="greenBg highlightText">our story</span></p>
+      <p>Spin to unlock</p>
+
+      <img src={keyholeImg.src} class="keyholeSvg hidden" />
+      <!-- !TODO encouraging image -->
+    </div>
+    <InstallationFooter></InstallationFooter>
   </body>
 </html>
 
