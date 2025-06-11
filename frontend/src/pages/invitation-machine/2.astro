@@ -24,6 +24,13 @@ import InstallationFooter from "../../components/InstallationFooter.astro";
 
 <script>
   import { navigate } from "astro:transitions/client";
+  import gsap from "gsap";
+
+         gsap.from("h1", {
+        opacity: 0,
+        x: -300,
+      })
+  
 
   // setTimeout(() => navigate("/invitation-machine/3"), 4000);
 </script>

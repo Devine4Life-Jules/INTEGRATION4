@@ -1,6 +1,6 @@
 ---
 import BaseHead from "../../components/BaseHead.astro";
-import InstallationFooter from "../../components/installationFooter.astro";
+import InstallationFooter from "../../components/InstallationFooter.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
 import keyholeImg from "../../assets/illustrations/keyhole.svg";
@@ -25,7 +25,7 @@ import keyholeImg from "../../assets/illustrations/keyhole.svg";
       <!-- !TODO test if these sizes works on different devices -->
       <video width="733" height="1111" id="video" class="hidden"></video>
       <canvas width="733" height="1111" id="canvas"></canvas>
-      <p class="firstTitle">to <span class="greenBg highlightText">our story</span></p>
+      <p class="firstTitle bottomTitle">to <span class="greenBg highlightText">our story</span></p>
 
       <img src={keyholeImg.src} class="keyholeSvg hidden" />
       <!-- !TODO encouraging image -->
@@ -37,6 +37,38 @@ import keyholeImg from "../../assets/illustrations/keyhole.svg";
 <script>
   import checkSpinState from "../../scripts/invitation-machine/1/checkSpinState";
   import { handleBodyPose } from "../../scripts/invitation-machine/handlePose";
+
+    import { gsap } from "gsap";
+
+    console.log("GSAP loaded?", typeof gsap === "function" || typeof gsap === "object");
+    console.log("GSAP version:", gsap.version);
+
+      const tlDuration = .6;
+
+      const tl = gsap.timeline();
+
+      tl
+      
+       .from("canvas", {
+        opacity: 0,
+        scale: 0,
+        duration: tlDuration
+      })
+      .from("h1", {
+        opacity: 0,
+        x: -300,
+        duration: tlDuration
+      })
+      .from(".bottomTitle", {
+        opacity: 0,
+        x: 300,
+        duration: tlDuration
+      });
+     
+
+
+
+
 
   handleBodyPose((pose: any) => {
     if (new URL(location.href).pathname !== "/invitation-machine/1") return;
