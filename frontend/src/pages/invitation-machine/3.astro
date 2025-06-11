@@ -3,14 +3,15 @@ import BaseHead from "../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
 import InstallationFooter from "../../components/installationFooter.astro";
+import thumbs from "../../assets/illustrations/thumbsUp.svg"
 ---
 
 <style>
 
   #canvas {
       display: block;
-  width: 40vw;
-  height: 30vh;
+  width: 50vw;
+  height: 25vh;
     
   }
   .videoBox{
@@ -22,8 +23,21 @@ import InstallationFooter from "../../components/installationFooter.astro";
   }
 
   .videoDescripton {
+    display: flex;
+    justify-content: center;
     text-align: center;
+
   
+  }
+
+  .videoDescripton p {
+    margin: 3rem;
+    font-size: 1.9rem;
+  }
+
+  .videoDescripton > :nth-child(3){
+      transform: scaleX(-1);
+
   }
 </style>
 
@@ -41,7 +55,7 @@ import InstallationFooter from "../../components/installationFooter.astro";
     <div class="videoBox">
       <canvas width="1000" height="1200" id="canvas"></canvas>
       <div class="videoDescripton">
-        <p>Thumbs up to continue 👍</p>
+        <img src={thumbs.src} alt=""><p>Thumbs up to continue </p><img src={thumbs.src} alt="">
       </div>
     </div>
     <!-- !TODO visualization of a user story -->
@@ -58,7 +72,7 @@ import InstallationFooter from "../../components/installationFooter.astro";
   handleHandPose((pose: any) => {
     if (new URL(location.href).pathname !== "/invitation-machine/3") return;
     checkLike(pose, () => {
-      // navigate("/invitation-machine/4");
+      navigate("/invitation-machine/4");
     });
   });
 
