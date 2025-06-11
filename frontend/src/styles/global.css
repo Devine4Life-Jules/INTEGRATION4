@@ -57,6 +57,12 @@ canvas {
   width: 50%;
 }
 
+
+.installationFooter {
+  background-color: var(--white);
+  
+}
+
 .highlightText {
   padding: .3rem .5rem;
 }
