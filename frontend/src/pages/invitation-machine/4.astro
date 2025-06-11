@@ -3,7 +3,31 @@ import BaseHead from "../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
 import InstallationFooter from "../../components/InstallationFooter.astro";
+import pin from "../../assets/illustrations/location.svg"
 ---
+
+<style>
+.headerIntro {
+  color: white;
+  font-size: 2rem;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+.locationLabel{
+  background-color: var(--blue);
+  display: flex;
+  width: 18rem;
+}
+
+.locationLabel figure {
+  width: 5%;
+}
+
+</style>
 
 <!doctype html>
 <html lang="en">
@@ -15,9 +39,17 @@ import InstallationFooter from "../../components/InstallationFooter.astro";
   </head>
   <body class="installationBody">
     <h1>
-      Create a new chapter by <br />
-      <span id="activity">playing board games in our salon</span>
+      <span class="headerIntro">we've picked a fun activity for you</span> <br />
+      <span id="activity">playing board games</span>
     </h1>
+    <div class="locationLabel">
+      <figure>
+        <img src={pin.src} alt="location pin">
+      </figure>
+      <div>
+        <p>Abby, Salon</p>
+      </div>
+    </div>
     <p>You can bring a friend!</p>
     <video width="600" height="600" class="hidden"></video>
     <canvas width="600" height="600" class="hidden"></canvas>
