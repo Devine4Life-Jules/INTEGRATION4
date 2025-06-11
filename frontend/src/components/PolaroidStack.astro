@@ -1,9 +1,30 @@
 ---
 import Polaroid from "./Polaroid.astro"
 ---
+<style>
+    .polaroidStack {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        place-items: center;
+        width: 50rem;
+        height: 50rem;
+        background-color: red;
+    }
 
 
-<div>
+
+    .polaroidStack > :nth-child(1) {
+        z-index: 1;
+        }
+        .polaroidStack > :nth-child(2) {
+        z-index: 2;
+        }
+
+</style>
+
+
+<div class="polaroidStack">
     <Polaroid></Polaroid>
     <Polaroid></Polaroid>
 </div>
