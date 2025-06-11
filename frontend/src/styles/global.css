@@ -9,7 +9,6 @@
   --white: #fffdf9;
 }
 
-
 @font-face {
   font-family: "GT-Wal";
   src: url("../assets/fonts/GT-Wal/GTWal-Bold-Trial.woff2") format("woff2");
@@ -78,7 +77,6 @@ canvas {
   font-weight: 500;
 }
 
-
 .page1Wrapper {
   margin-top: 6rem;
 }
@@ -87,10 +85,8 @@ canvas {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  
-  
+   
 }
-
 
 .sr-only {
   border: 0;
@@ -112,4 +108,8 @@ canvas {
 
 .hidden {
   display: none;
+}
+
+.bold {
+  font-weight: 700;
 }

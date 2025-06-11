@@ -2,35 +2,86 @@
 import BaseHead from "../../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
 import { ClientRouter } from "astro:transitions";
-import ContinuationProgress from "../../../components/ContinuationProgress.astro";
+import markerSvg from "../../../assets/icons/location.svg";
+import abbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
 ---
 
-<!doctype html>
+<style>
+  body {
+    background: var(--white);
+    font-size: 1.25rem;
+  }
+
+  .title {
+    font-weight: 700;
+  }
+
+  .title__start {
+    font-weight: 300;
+  }
+
+  .title__question-mark {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .location {
+    background-color: var(--yellow);
+    display: flex;
+    font-size: 1.625rem;
+    width: max-content;
+    padding: 0.35rem 0.8rem 0.35rem 0.4rem;
+  }
+
+  .paragraph {
+    text-align: center;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .buttons__button {
+    background-color: var(--green);
+    color: var(--black);
+    text-decoration: none;
+    padding: 1rem;
+    font-weight: 500;
+    height: min-content;
+  }
+
+  .buttons__button--back {
+    border: 0.1875rem solid var(--green);
+    background: none;
+  }
+</style>
+
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    <h1>We invite you to<br /><span>play board games in our salon</span></h1>
-    <form>
-      <label>
-        Your name
-        <input name="name" />
-      </label>
-      <label>
-        Friend's name
-        <input name="friendsName" />
-      </label>
-      <button>🔗 copy invitation</button>
-    </form>
-    <ContinuationProgress level={1} />
-    <p>
-      The story gets better when it's shared. Bring a friend and shape it
-      together.
+    <div></div>
+    <img src={abbySvg.src} alt="Abby logo" />
+    <h1 class="title">
+      <span class="title__start">Hey,</span><br />
+      ready to begin your journey<span class="title__question-mark">?</span>
+    </h1>
+    <div class="location">
+      <img src={markerSvg.src} alt="location icon" />
+      <span class="location__text"> Abby, Kortrijk</span>
+    </div>
+    <p class="paragraph">
+      You’re not just a visitor,<br />
+      <span class="bold">you’re starting a chapter in ABBY.</span><br />
+      This is just a short guide,<br />
+      your story starts after.
     </p>
-    <div>
-      <a href="./2">Skip &gt;</a>
+    <div class="buttons">
+      <!-- !TODO change links -->
+      <a class="buttons__button buttons__button--back" href="./2">Back</a>
+      <a class="buttons__button" href="./2">Skip</a>
     </div>
   </body>
 </html>
