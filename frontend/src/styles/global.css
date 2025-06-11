@@ -1,27 +1,24 @@
-
 :root {
-  --yellow: #FFBF50;
-  --blue:#5F90FF;
-  --red:#691F13;
-  --green:#05A368;
-  --orange:#FE5F00;
-  --purple:#BB7CD2;
-  --black:#111111;
-  --white:#FFFDF9;
-
-
+  --yellow: #ffbf50;
+  --blue: #5f90ff;
+  --red: #691f13;
+  --green: #05a368;
+  --orange: #fe5f00;
+  --purple: #bb7cd2;
+  --black: #111111;
+  --white: #fffdf9;
 }
 
 @font-face {
   font-family: GT-walsheim;
-  src: url("../assets/fonts/GT-Walsheim/GT-Walsheim-Regular-Trial.woff2") format(woff2);
+  src: url("../assets/fonts/GT-Walsheim/GT-Walsheim-Regular-Trial.woff2")
+    format(woff2);
 }
 
 body {
   font-family: GT-walsheim;
   background-color: var(--yellow);
 }
-
 
 canvas {
   margin: 5% auto;
@@ -31,10 +28,7 @@ canvas {
 
 .firstTitle {
   text-align: center;
-
 }
-
-
 
 .sr-only {
   border: 0;
@@ -56,4 +50,8 @@ canvas {
 
 .hidden {
   display: none;
+}
+
+.bold {
+  font-weight: 700;
 }
