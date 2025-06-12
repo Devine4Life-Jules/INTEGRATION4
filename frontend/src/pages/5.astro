@@ -1,40 +1,126 @@
 ---
+import BaseHead from "../../../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
 import { ClientRouter } from "astro:transitions";
-import BaseHead from "../components/BaseHead.astro";
-import ContinuationProgress from "../components/ContinuationProgress.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import markerSvg from "../../../assets/icons/location.svg";
+import abbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
+import Tape from "../../../components/Tape.astro";
 ---
 
-<!doctype html>
+<style>
+  body {
+    background: var(--white);
+    font-size: 1.25rem;
+    display: grid;
+    grid-template-rows: auto 3fr auto 1fr;
+    min-height: 100vh;
+  }
+
+  .container {
+    background-color: var(--blue);
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    padding: var(--screen-padding);
+  }
+
+  .container__logo {
+    justify-self: end;
+    width: 6.688rem;
+  }
+
+  .container__title {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-block-end: 1em;
+    margin-top: 1em;
+  }
+
+  .container__title__start {
+    font-weight: 300;
+  }
+
+  .container__title__question-mark {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .container__location {
+    background-color: var(--yellow);
+    display: flex;
+    align-items: center;
+    font-size: 1.625rem;
+    width: max-content;
+    padding: 0.35rem 0.8rem 0.35rem 0.4rem;
+    align-self: end;
+    height: max-content;
+  }
+
+  .container__location__icon {
+    height: 1.5rem;
+  }
+
+  .paragraph {
+    text-align: center;
+    margin: var(--screen-padding);
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: var(--screen-padding);
+    align-self: flex-end;
+  }
+
+  .buttons__button {
+    background-color: var(--green);
+    color: var(--black);
+    text-decoration: none;
+    padding: 1rem;
+    font-weight: 500;
+    height: min-content;
+  }
+
+  .buttons__button--back {
+    border: 0.1875rem solid var(--green);
+    background: none;
+  }
+</style>
+
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    <h1>
-      Create a new chapter by <span>playing board games in our salon</span>
-    </h1>
-    <p>you can bring a friend!</p>
-    <div>
-      <!-- !TODO image -->
-      <form>
-        <label>
-          Your name
-          <input name="name" />
-        </label>
-        <label>
-          Friend's name
-          <input name="friendsName" />
-        </label>
-        <button>🔗 copy invitation</button>
-      </form>
+    <Tape text="you are the key" />
+    <div class="container">
+      <img class="container__logo" src={abbySvg.src} alt="Abby logo" />
+      <h1 class="container__title">
+        <span class="container__title__start">Hey,</span><br />
+        <span
+          >ready to begin your journey<span
+            class="container__title__question-mark">?</span
+          >
+        </span>
+        <div class="container__location">
+          <img
+            class="container__location__icon"
+            src={markerSvg.src}
+            alt="location icon"
+          />
+          <span class="container__location__text">Abby, Kortrijk</span>
+        </div>
+      </h1>
+      <p class="paragraph">
+        You’re not just a visitor,<br />
+        <span class="bold">you’re starting a chapter in ABBY.</span><br />
+        This is just a short guide,<br />
+        your story starts after.
+      </p>
+      <div class="buttons">
+        <!-- !TODO change links -->
+        <a class="buttons__button buttons__button--back" href="./2">Back</a>
+        <a class="buttons__button" href="./2">Show me how</a>
+      </div>
     </div>
-    <ContinuationProgress level={1} />
-    <p>
-      The story gets better when it’s shared.Bring a friend and shape it
-      together.
-    </p>
-    <a href="./6">Skip &gt;</a>
   </body>
 </html>
