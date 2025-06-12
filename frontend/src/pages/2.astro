@@ -2,6 +2,8 @@
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import PolaroidStack from "../components/PolaroidStack.astro";
+import Polaroid from "../components/Polaroid.astro";
 ---
 
 <!doctype html>
@@ -13,6 +15,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   <body>
     <h1>Story unlocked</h1>
     <!-- !TODO visualization of stories -->
+     <PolaroidStack></PolaroidStack>
     <p>previous chapters</p>
   </body>
 </html>
