@@ -2,6 +2,8 @@
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Tape from "../components/Tape.astro";
+import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
 ---
 
 <style>
@@ -25,10 +27,22 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <ClientRouter />
   </head>
   <body>
-    <h1 class="firstTitle">You are the key to our story</h1>
-    <div id="key" class="key"></div>
-    <p>click and hold to unlock</p>
-    <!-- !TODO if on phone or table there should be a gif suggesting how to rotate the device -->
+    <Tape />
+    <h1 class="firstTitle"><span>You are</span> the key to our story</h1>
+    <div>
+      <div id="key" class="key"></div>
+      <p>Click and hold to unlock</p>
+    </div>
+    <div>
+      <h2>Dare to try?</h2>
+      <p>
+        Find out what will happen after unlocking our story, you are the key -
+        we need you.
+      </p>
+    </div>
+    <footer>
+      <img src={AbbySvg.src} alt="Abby logo" />
+    </footer>
   </body>
 </html>
 
