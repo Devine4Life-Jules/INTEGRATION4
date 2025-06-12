@@ -17,6 +17,7 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
     <style>
       #canvas {
         transform: scaleX(-1);
+        margin-bottom: 0;
       }
 
       .bottomTitle {
@@ -30,6 +31,17 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
         margin-left: 1rem;
       }
 
+      .spinToUnlock {
+        background-color: var(--green);
+        text-align: center;
+        width: 42vw;
+        margin: 0 auto;
+        text-transform: uppercase;
+        font-size: 3rem;
+        padding-top: 1.3rem;
+        padding-bottom: 1.3rem ;
+
+      }
       
 
     </style>
@@ -44,11 +56,12 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
       <!-- !TODO test if these sizes works on different devices -->
       <video width="733" height="1111" id="video" class="hidden"></video>
       <canvas class="keyholeCanvas" width="733" height="1111" id="canvas"></canvas>
+      <div class="spinToUnlock">spin to unlock</div>
 
       <img src={keyholeImg.src} class="keyholeSvg hidden" />
       <!-- !TODO encouraging image -->
     </div>
-    <InstallationFooter text="spin to unlock"></InstallationFooter>
+    <InstallationFooter text="You are the key"></InstallationFooter>
   </body>
 </html>
 

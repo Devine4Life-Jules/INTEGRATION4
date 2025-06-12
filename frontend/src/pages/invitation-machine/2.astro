@@ -12,7 +12,11 @@ import smileyOrange from "../../assets/illustrations/smileyOrange.svg"
     align-items: flex-end;
   }
 
-  .headerBold
+  .smileyOrange {
+    margin-left: 1.5rem;
+  }
+
+  
 </style>
 
 <!doctype html>
@@ -25,7 +29,7 @@ import smileyOrange from "../../assets/illustrations/smileyOrange.svg"
   </head>
   <body class="installationBody">
     <h1 class="firstTitle">
-      <div class="headerBold">Good Job<figure><img src={smileyOrange.src} alt="orange smiley"></figure></div>
+      <div class="headerBold">Good Job<figure class="smileyOrange"><img src={smileyOrange.src} alt="orange smiley"></figure></div>
       <span class="bottomTitle"></span>Story unlocked</span>
     </h1>
     <PolaroidStack></PolaroidStack>
