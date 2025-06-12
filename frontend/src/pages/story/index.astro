@@ -1,15 +1,64 @@
 ---
+import ClientRouter from "astro/components/ClientRouter.astro";
 import BaseHead from "../../components/BaseHead.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { SITE_TITLE, SITE_DESCRIPTION, API_URL } from "../../consts";
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ClientRouter />
   </head>
   <body>
     <h1>Wall of our keys</h1>
+    <div class="stories"></div>
+
     <!-- !TODO visualization of stories -->
     <a href="/">📚 Create your chapter</a>
   </body>
 </html>
+
+<script>
+  import { API_URL } from "../../consts";
+
+  const res = await fetch(
+    `${API_URL}/jsonapi/node/story?include=field_picture`
+  );
+  const data = await res.json();
+  const parsedData = data.data.map((story: any, i: number) => {
+    const photo = data.included[i];
+    return {
+      id: story.id,
+      username: story.attributes.field_username,
+      photoUrl: photo.attributes.uri.url,
+    };
+  });
+
+  type Story = {
+    id: string;
+    username: string | null;
+    photoUrl: string;
+  };
+  const $stories = document.querySelector(".stories") as HTMLDivElement;
+  parsedData.forEach((story: Story) => {
+    const storyHTML = `
+    <a class="stories__story" href="/story/detail?id=${story.id}">
+      <figure>
+        <img
+          class="stories__story__img"
+          src="${API_URL + story.photoUrl}"
+          alt="activity photo"
+        />
+      ${
+        story.username
+          ? `<figcaption class="stories__story__username">
+          ${story.username}
+        </figcaption>`
+          : ""
+      }
+      </figure>
+    </a>
+    `;
+    $stories.innerHTML += storyHTML;
+  });
+</script>
