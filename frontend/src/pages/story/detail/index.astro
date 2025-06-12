@@ -1,0 +1,78 @@
+---
+import ClientRouter from "astro/components/ClientRouter.astro";
+import BaseHead from "../../../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
+import AbbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ClientRouter />
+  </head>
+  <body>
+    <div>
+      <h1 class="title"></h1>
+      <h2>
+        <span class="subtitle__first-text">Chapter</span><span
+          class="subtitle__second-text"
+        >
+        </span>
+      </h2>
+      <p class="description"></p>
+    </div>
+    <div>
+      <img src={AbbySvg.src} alt="Abby logo" />
+      <img class="picture" alt="Abby activity" />
+    </div>
+    <div class="buttons">
+      <a href="../">Back</a>
+      <a href="/upload">Share your chapter</a>
+    </div>
+  </body>
+</html>
+
+<script>
+  import { API_URL } from "../../../consts";
+
+  const storyId = new URL(location.href).searchParams.get("id");
+
+  const res = await fetch(
+    `${API_URL}/jsonapi/node/story/${storyId}?include=field_picture`
+  );
+  const data = await res.json();
+
+  type Story = {
+    date: string;
+    username: string | null;
+    description: string | null;
+    photoUrl: string;
+  };
+  const story: Story = {
+    date: data.data.attributes.created,
+    username: data.data.attributes.field_username,
+    description: data.data.attributes.field__description,
+    photoUrl: data.included[0].attributes.uri.url,
+  };
+
+  const $title = document.querySelector(".title") as HTMLHeadingElement;
+  $title.textContent = story.username ? story.username : "Anonymous visitor";
+
+  const getNiceLookinDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
+  };
+
+  const $subtitleSecondText = document.querySelector(
+    ".subtitle__second-text"
+  ) as HTMLSpanElement;
+  $subtitleSecondText.textContent = getNiceLookinDate(story.date);
+
+  const $description = document.querySelector(
+    ".description"
+  ) as HTMLParagraphElement;
+  $description.textContent = story.description;
+
+  const $picture = document.querySelector(".picture") as HTMLImageElement;
+  $picture.src = API_URL + story.photoUrl;
+</script>
