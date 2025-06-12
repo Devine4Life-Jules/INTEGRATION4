@@ -1,15 +1,34 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import BaseHead from "../../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
+import AbbySmilePng from "../../../assets/icons/abby-smile.png";
+import AbbyLogoSvg from "../../../assets/illustrations/abby-kortrijk.svg";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ClientRouter />
   </head>
   <body>
-    <h1>Now you are part of the story</h1>
-    <p>tap and hold keyhole to reveal</p>
+    <h1>
+      Nice one <img src={AbbySmilePng.src} alt="Abby smile icon" /><br />
+      Your moment is now part of the story
+    </h1>
+    <img src={AbbyLogoSvg.src} alt="Abby logo" />
+    <!-- !TODO polaroid stack -->
+    <div>
+      <h2>Want to keep going?</h2>
+      <p>
+        There's <span class="bold">always room for another chapter</span> - something
+        new to try, feel or create.
+      </p>
+    </div>
+    <div>
+      <a href="/4?another">Start another chapter</a>
+      <a href="/story">See our shared story</a>
+    </div>
   </body>
 </html>

@@ -1,10 +1,9 @@
 ---
-import BaseHead from "../../../components/BaseHead.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { ClientRouter } from "astro:transitions";
 import markerSvg from "../../../assets/icons/location.svg";
 import abbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
-import Tape from "../../../components/Tape.astro";
 ---
 
 <style>
@@ -91,7 +90,6 @@ import Tape from "../../../components/Tape.astro";
     <ClientRouter />
   </head>
   <body>
-    <Tape text="you are the key" />
     <div class="container">
       <img class="container__logo" src={abbySvg.src} alt="Abby logo" />
       <h1 class="container__title">

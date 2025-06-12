@@ -1,6 +1,7 @@
 ---
 import BaseHead from "../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
 ---
 
 <!doctype html>
@@ -9,28 +10,41 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <form id="form">
-      <input
-        id="picture-input"
-        name="picture"
-        type="file"
-        accept="image/jpeg, image/png, image/gif, image/heic, image/webo, image/avif"
-      />
-      <label
-        >Your name or nickname
-        <input name="username" placeholder="John" />
-      </label>
-      <label
-        >Short message
-        <textarea placeholder="Short message" name="message" id="message"
-        ></textarea>
-      </label>
-      <label
-        ><input type="checkbox" name="consent" />I agree that ABBY can publish
-        these pictures</label
-      >
-      <button>📸 upload pictures</button>
-    </form>
+    <!-- !TODO <img src="" alt=""> -->
+    <div>
+      <img src={AbbySvg.src} alt="Abby logo" />
+      <h1>
+        <span class="title__highlight">Upload</span> your chapter's picture
+      </h1>
+      <p><span class="bold">Share</span> the memories you made at ABBY</p>
+      <form id="form">
+        <input
+          id="picture-input"
+          name="picture"
+          type="file"
+          accept="image/jpeg, image/png, image/gif, image/heic, image/webo, image/avif"
+        />
+        <label
+          >Your Name or Nickname
+          <input name="username" placeholder="Lucia" />
+        </label>
+        <label
+          >Short Message
+          <textarea
+            placeholder="My experience was..."
+            name="message"
+            id="message"></textarea>
+        </label>
+        <label
+          ><input type="checkbox" name="consent" />I agree that ABBY can display
+          these pictures</label
+        >
+      </form>
+    </div>
+    <div>
+      <a>Back</a>
+      <button>Upload</button>
+    </div>
   </body>
 </html>
 

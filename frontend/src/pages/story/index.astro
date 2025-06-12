@@ -1,7 +1,8 @@
 ---
 import ClientRouter from "astro/components/ClientRouter.astro";
 import BaseHead from "../../components/BaseHead.astro";
-import { SITE_TITLE, SITE_DESCRIPTION, API_URL } from "../../consts";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
 ---
 
 <html lang="en">
@@ -10,11 +11,16 @@ import { SITE_TITLE, SITE_DESCRIPTION, API_URL } from "../../consts";
     <ClientRouter />
   </head>
   <body>
-    <h1>Wall of our keys</h1>
+    <img src={AbbySvg.src} alt="Abby logo" />
+    <h1>Our story</h1>
+    <p>
+      Every image holds a moment — <span class="bold">tap to explore</span> the story
+      behind it and see how others have added to our story
+    </p>
+    <input type="text" placeholder="Search bar" id="search" />
     <div class="stories"></div>
-
     <!-- !TODO visualization of stories -->
-    <a href="/">📚 Create your chapter</a>
+    <a class="back-button" href="/10">Back</a>
   </body>
 </html>
 

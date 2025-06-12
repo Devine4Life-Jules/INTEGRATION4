@@ -2,8 +2,9 @@
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import PolaroidStack from "../components/PolaroidStack.astro";
-import Polaroid from "../components/Polaroid.astro";
+import AbbySmilePng from "../assets/icons/abby-smile-balck.png";
+import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
+import Tape from "../components/Tape.astro";
 ---
 
 <!doctype html>
@@ -13,9 +14,14 @@ import Polaroid from "../components/Polaroid.astro";
     <ClientRouter />
   </head>
   <body>
-    <h1>Story unlocked</h1>
-    <!-- !TODO visualization of stories -->
-     <PolaroidStack></PolaroidStack>
-    <p>previous chapters</p>
+    <Tape text="you are the key" />
+    <h1>
+      Good job <img src={AbbySmilePng.src} alt="Abby smile" />
+      <span>Story Unlocked</span>
+    </h1>
+    <!-- !TODO polaroid stack -->
+    <footer>
+      <img src={AbbyLogoSvg.src} alt="Abby logo" />
+    </footer>
   </body>
 </html>
