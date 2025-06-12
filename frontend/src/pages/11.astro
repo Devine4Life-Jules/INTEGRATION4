@@ -1,10 +1,8 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
-import ContinuationProgress from "../components/ContinuationProgress.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-
-//invite explanation -> toute to storyu
+import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 ---
 
 <!doctype html>
@@ -14,27 +12,26 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <ClientRouter />
   </head>
   <body>
-    <h1>
-      Create a new chapter by <span>playing board games in our salon</span>
-    </h1>
-    <p>you can bring a friend!</p>
-    <div>
-      <!-- !TODO image -->
-      <div>
-        <h2>2. Go to Abby's salon</h2>
-        <p>You can drop by whenever you want, between 10:00 and 22:00</p>
-        <ul>
-          <li>Begijnhofpark 8500 Kortrijk</li>
-          <li>+32 (0)56 27 74 60</li>
-          <li>abby@kortrijk.be</li>
-        </ul>
-      </div>
-    </div>
-    <ContinuationProgress level={2} />
+    <img src={AbbyLogoSvg.src} alt="Abby logo" />
+    <h1>Start a chapter together</h1>
     <p>
-      The story gets better when it’s shared.Bring a friend and shape it
-      together.
+      <span class="bold">Some things are just better with a friend.</span> Invite
+      someone to begin a Chapter with you — create, reflect, or explore side by side.
     </p>
-    <a href="./7">Skip &gt;</a>
+    <form>
+      <label>
+        Your Name
+        <input type="text" placeholder="Lucia" />
+      </label>
+      <label>
+        Friends Name
+        <input type="text" placeholder="Anna" />
+      </label>
+    </form>
+    <div class="buttons">
+      <!-- !TODO might have to handle different route here -->
+      <a href="/">Our Shared Story</a>
+      <button>Copy invitation link</button>
+    </div>
   </body>
 </html>

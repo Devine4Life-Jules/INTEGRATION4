@@ -2,7 +2,6 @@
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { ClientRouter } from "astro:transitions";
-import markerSvg from "../assets/icons/location.svg";
 import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
 ---
 
@@ -90,35 +89,22 @@ import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
     <ClientRouter />
   </head>
   <body>
-    <div class="container">
-      <img class="container__logo" src={abbySvg.src} alt="Abby logo" />
-      <h1 class="container__title">
-        <span class="container__title__start">Hey,</span><br />
-        <span
-          >ready to begin your journey<span
-            class="container__title__question-mark">?</span
-          >
-        </span>
-        <div class="container__location">
-          <img
-            class="container__location__icon"
-            src={markerSvg.src}
-            alt="location icon"
-          />
-          <span class="container__location__text">Abby, Kortrijk</span>
-        </div>
-      </h1>
-      <p class="paragraph">
-        You’re not just a visitor,<br />
-        <span class="bold">you’re starting a chapter in ABBY.</span><br />
-        This is just a short guide,<br />
-        your story starts after.
-      </p>
-      <div class="buttons">
-        <!-- !TODO change links -->
-        <a class="buttons__button buttons__button--back" href="./2">Back</a>
-        <a class="buttons__button" href="./2">Show me how</a>
-      </div>
+    <img class="container__logo" src={abbySvg.src} alt="Abby logo" />
+    <h1 class="container__title">
+      Hey,
+      <span>ready to begin</span> your journey<span
+        class="container__title__question-mark">?</span
+      >
+    </h1>
+    <p class="paragraph">
+      You’re not just a visitor,
+      <span class="bold">you’re starting a chapter in ABBY.</span>
+      This is just a short guide, your story starts after.
+    </p>
+    <div class="buttons">
+      <!-- !TODO hide back link -->
+      <a class="buttons__button buttons__button--back" href="./4">Back</a>
+      <a class="buttons__button" href="./2">Show me how it works</a>
     </div>
   </body>
 </html>

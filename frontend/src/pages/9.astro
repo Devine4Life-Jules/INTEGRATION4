@@ -3,8 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import ContinuationProgress from "../components/ContinuationProgress.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-
-//upload explanation
+import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 ---
 
 <!doctype html>
@@ -14,27 +13,22 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <ClientRouter />
   </head>
   <body>
-    <h1>
-      Create a new chapter by <span>playing board games in our salon</span>
-    </h1>
-    <p>you can bring a friend!</p>
+    <img src={AbbyLogoSvg.src} alt="Abby logo" />
+    <h1>Because stories are better together</h1>
     <div>
-      <!-- !TODO image -->
-      <div>
-        <h2>2. Go to Abby's salon</h2>
-        <p>You can drop by whenever you want, between 10:00 and 22:00</p>
-        <ul>
-          <li>Begijnhofpark 8500 Kortrijk</li>
-          <li>+32 (0)56 27 74 60</li>
-          <li>abby@kortrijk.be</li>
-        </ul>
-      </div>
+      <!-- !TODO <Image /> -->
+      <span>Share the moment</span>
     </div>
-    <ContinuationProgress level={2} />
+    <ContinuationProgress />
     <p>
-      The story gets better when it’s shared.Bring a friend and shape it
-      together.
+      Come
+      <span class="bold">alone</span> or <span class="bold">bring a friend</span
+      > it’s totally up to you. If you want to share the moment, feel free to invite
+      them to join your chapter.
     </p>
-    <a href="./7">Skip &gt;</a>
+    <div class="buttons">
+      <a href="./8">Back</a>
+      <a href="./10">Next</a>
+    </div>
   </body>
 </html>
