@@ -14,7 +14,6 @@ import thumbsDown from "../../assets/illustrations/thumbsDown.svg"
 }
 
 .headerIntro {
-  color: white;
   font-size: 2rem;
 }
 
@@ -26,12 +25,43 @@ h1 {
 .locationLabel{
   background-color: var(--blue);
   display: flex;
-  width: 10rem;
+  display: inline-flex;
   align-items: center;
   margin-right: auto;
+  margin-top: -2rem;
+  margin-left: -2rem;
+  padding: .3rem;
+  padding-right: 1rem;
+  font-weight: 500;
+  font-size: 2.5rem;
+  
+
+
+
 }
 
 
+.accent {
+  display: block;
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+.other {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+#activity {
+  font-weight: 800;
+  font-size: 6rem;
+}
+
+h1 {
+  max-width: 60vw;
+  line-height: 1;
+  margin: 2rem auto 4rem; 
+}
 
 .thumbsDownLabel {
   background-color: var(--purple);
@@ -40,16 +70,23 @@ h1 {
   width: 15rem;
   align-self: flex-end;
   margin-left: auto;
-  margin-top: 0;
+  margin-bottom: -2rem;
+  margin-right: -2rem;
+  padding: .3rem;
+
 
 }
 
 .qrWrapper {
-  border: 1px solid red;
   width: 50vw;
-  height: 50vh;
   margin: 0 auto;
+  background-color: white;
+  margin-top: 5rem;
   
+}
+
+h1 {
+  text-align: center;
 }
 
 </style>
@@ -76,21 +113,22 @@ h1 {
           <p>Abby, Salon</p>
         </div>
       </div>
+      <div class="scan">scan qr code to <span class="accent">Accept Activity</span></div>
       <video width="600" height="600" class="hidden"></video>
       <canvas width="600" height="600" class="hidden"></canvas>
       <canvas id="qr"></canvas>
       <!-- !TODO qr code for /invitation-machine/continuation -->
-      <div class="thumbsDownLabel">
+            <div class="thumbsDownLabel">
         <figure>
           <img src={thumbsDown.src} alt="thumbsdown">
         </figure>
         <div class="thumbsDownDescription">
-          <div>Thumbs down for</div>
-          <div>new activity</div>
+          <div>Show Thumbs down for</div>
+          <div class="other">Other Activity</div>
         </div>
       </div>
+      
     </div>
-    You can enjoy it solo, or bring a friend along 
     <InstallationFooter text="you are the key"></InstallationFooter>
   </body>
 </html>

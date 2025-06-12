@@ -101,6 +101,9 @@ canvas {
   display: block;
 }
 
+.scan  {
+  text-align: center;
+}
 
 
 .sr-only {
