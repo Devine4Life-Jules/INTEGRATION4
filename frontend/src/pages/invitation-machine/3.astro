@@ -40,8 +40,7 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
     font-size: 1.9rem;
   }
 
-  .videoDescripton > :nth-child(3){
-      transform: scaleX(-1);
+
 
   }
 
@@ -65,7 +64,9 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
     <div class="videoBox">
       <canvas width="1000" height="1200" id="canvas"></canvas>
       <div class="videoDescripton">
-        <img src={thumbs.src} alt=""><p>Thumbs up to continue </p><img src={thumbs.src} alt="">
+        <img src={thumbs.src} alt=""><div>
+          <p>show thumbs</p><p> up to continue </p>
+        </div><img src={thumbs.src} alt="">
       </div>
     </div>
     <!-- !TODO visualization of a user story -->
