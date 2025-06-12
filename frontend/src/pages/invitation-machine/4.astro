@@ -28,6 +28,10 @@ h1 {
   width: 10rem;
   align-items: center;
   margin-right: auto;
+  margin-top: -2rem;
+  margin-left: -2rem;
+
+
 }
 
 
@@ -39,14 +43,17 @@ h1 {
   width: 15rem;
   align-self: flex-end;
   margin-left: auto;
-  margin-top: 0;
+  margin-bottom: -2rem;
+  margin-right: -2rem;
+
 
 }
 
 .qrWrapper {
   width: 50vw;
-  height: 50vh;
   margin: 0 auto;
+  background-color: white;
+  margin-top: 5rem;
   
 }
 
@@ -82,7 +89,7 @@ h1 {
       <canvas width="600" height="600" class="hidden"></canvas>
       <canvas id="qr"></canvas>
       <!-- !TODO qr code for /invitation-machine/continuation -->
-      <div class="thumbsDownLabel">
+            <div class="thumbsDownLabel">
         <figure>
           <img src={thumbsDown.src} alt="thumbsdown">
         </figure>
@@ -91,8 +98,8 @@ h1 {
           <div>new activity</div>
         </div>
       </div>
+      
     </div>
-    You can enjoy it solo, or bring a friend along 
     <InstallationFooter text="you are the key"></InstallationFooter>
   </body>
 </html>
