@@ -4,6 +4,7 @@ import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbySmilePng from "../assets/icons/abby-smile-balck.png";
 import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
+import Tape from "../components/Tape.astro";
 ---
 
 <!doctype html>
@@ -13,6 +14,7 @@ import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
     <ClientRouter />
   </head>
   <body>
+    <Tape />
     <h1>
       Good job <img src={AbbySmilePng.src} alt="Abby smile" />
       <span>Story Unlocked</span>
