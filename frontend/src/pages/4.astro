@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
 ---
 
 <!doctype html>
@@ -11,12 +12,20 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <ClientRouter />
   </head>
   <body>
-    <h1>
-      Create a new chapter by <span>playing board games in our salon</span>
-    </h1>
-    <p>you can bring a friend!</p>
     <!-- !TODO image -->
-    <button>👍 Accept</button>
-    <button>↪️ Other activity</button>
+
+    <h1>
+      <span>We've picked a fun activity for you!</span>
+      <span>Play board games</span>
+      in living room
+    </h1>
+    <p>You can enjoy it solo — or bring a friend along to join your chapter</p>
+    <footer>
+      <img src={AbbyLogoSvg.src} alt="Abby logo" />
+      <div>
+        <a href="/5">Accept</a>
+        <button>Another Activity</button>
+      </div>
+    </footer>
   </body>
 </html>
