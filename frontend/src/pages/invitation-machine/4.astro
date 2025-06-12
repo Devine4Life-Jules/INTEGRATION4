@@ -25,13 +25,29 @@ h1 {
 .locationLabel{
   background-color: var(--blue);
   display: flex;
-  width: 10rem;
+  width: 14rem;
   align-items: center;
   margin-right: auto;
   margin-top: -2rem;
   margin-left: -2rem;
+  padding: .3rem;
+  font-weight: 800;
+  font-size: 1.5rem;
 
 
+
+}
+
+
+.accent {
+  display: block;
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+.other {
+  font-weight: 800;
+  font-size: 1.5rem;
 }
 
 
@@ -45,6 +61,7 @@ h1 {
   margin-left: auto;
   margin-bottom: -2rem;
   margin-right: -2rem;
+  padding: .3rem;
 
 
 }
@@ -85,6 +102,7 @@ h1 {
           <p>Abby, Salon</p>
         </div>
       </div>
+      <div class="scan">scan qr code to <span class="accent">Accept Activity</span></div>
       <video width="600" height="600" class="hidden"></video>
       <canvas width="600" height="600" class="hidden"></canvas>
       <canvas id="qr"></canvas>
@@ -94,8 +112,8 @@ h1 {
           <img src={thumbsDown.src} alt="thumbsdown">
         </figure>
         <div class="thumbsDownDescription">
-          <div>Thumbs down for</div>
-          <div>new activity</div>
+          <div>Show Thumbs down for</div>
+          <div class="other">Other Activity</div>
         </div>
       </div>
       
