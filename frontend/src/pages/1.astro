@@ -12,13 +12,40 @@ import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: var(--white);
+
   }
+
 
   .key {
     width: 100px;
     height: 30px;
-    background: black;
+    background: var(--yellow);
+    margin: 0 auto;
   }
+
+  @media screen and (min-width: 100px){
+    h1 {
+      font-size: 2rem;
+      background-color: var(--blue);
+    }
+
+    .lock {
+      background-color: var(--blue);
+      width: 100vw;
+    }
+    
+  }
+
+    @media screen and (min-width: 500px){
+    h1 {
+      font-size: 5rem;
+      margin: 0;
+    }
+    
+  }
+
+
 </style>
 
 <html lang="en">
@@ -28,10 +55,9 @@ import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
   </head>
   <body>
     <Tape text="you are the key" />
-    <h1 class="firstTitle"><span>You are</span> the key to our story</h1>
-    <div>
+    <h1 class=""><span>You are</span> the key to our story</h1>
+    <div class="lock">
       <div id="key" class="key"></div>
-      <p>Click and hold to unlock</p>
     </div>
     <div>
       <h2>Dare to try?</h2>
