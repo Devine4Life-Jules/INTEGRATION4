@@ -3,8 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import ContinuationProgress from "../components/ContinuationProgress.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-
-//map explanation
+import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 ---
 
 <!doctype html>
@@ -14,27 +13,22 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <ClientRouter />
   </head>
   <body>
-    <h1>
-      Create a new chapter by <span>playing board games in our salon</span>
-    </h1>
-    <p>you can bring a friend!</p>
-    <div>
-      <!-- !TODO image -->
-      <div>
-        <h2>2. Go to Abby's salon</h2>
-        <p>You can drop by whenever you want, between 10:00 and 22:00</p>
-        <ul>
-          <li>Begijnhofpark 8500 Kortrijk</li>
-          <li>+32 (0)56 27 74 60</li>
-          <li>abby@kortrijk.be</li>
-        </ul>
-      </div>
+    <img src={AbbyLogoSvg.src} alt="Abby logo" />
+    <h1>Know you know how it works!</h1>
+    <p>We can’t wait to see what you’ll bring into Abby.</p>
+    <p class="bold">Come by whenever you want</p>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2520.0948520386924!2d3.2670543133349703!3d50.829406971548806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c33bdfbfa9a1f5%3A0xd60955fa51b1a1b9!2sAbby%20Kortrijk!5e0!3m2!1sen!2sbe!4v1749760662309!5m2!1sen!2sbe"
+      width="600"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="buttons">
+      <a href="./11">Invite a friend</a>
+      <a href="/story">Our Shared Story</a>
+      <a href="./7">Back</a>
     </div>
-    <ContinuationProgress level={2} />
-    <p>
-      The story gets better when it’s shared.Bring a friend and shape it
-      together.
-    </p>
-    <a href="./7">Skip &gt;</a>
   </body>
 </html>
