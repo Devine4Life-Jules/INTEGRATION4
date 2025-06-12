@@ -42,6 +42,17 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
         padding-bottom: 1.3rem ;
 
       }
+
+      .fade {
+          animation: fadeLoop 3s infinite ease-in-out;
+
+      }
+
+      @keyframes fadeLoop {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
       
 
     </style>
@@ -56,7 +67,7 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
       <!-- !TODO test if these sizes works on different devices -->
       <video width="733" height="1111" id="video" class="hidden"></video>
       <canvas class="keyholeCanvas" width="733" height="1111" id="canvas"></canvas>
-      <div class="spinToUnlock">spin to unlock</div>
+      <div class="spinToUnlock"><span class="fade">spin to unlock</span></div>
 
       <img src={keyholeImg.src} class="keyholeSvg hidden" />
       <!-- !TODO encouraging image -->
@@ -93,6 +104,11 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
       .from(".bottomTitle", {
         opacity: 0,
         x: 300,
+        duration: tlDuration
+      })
+      .from(".spinToUnlock", {
+        opacity:0,
+        y:15,
         duration: tlDuration
       });
      
