@@ -17,15 +17,24 @@ import keyholeImg from "../../assets/illustrations/keyhole.svg";
       #canvas {
         transform: scaleX(-1);
       }
+
+
+
+
+
+
     </style>
   </head>
   <body class="installationBody">
     <div class="page1Wrapper">
-      <h1 class="firstTitle"><span class="blueBg highlightText">You</span> are the key</h1>
+      <h1 class="firstTitle"><span class="headerBold highlightText">You are the key</span> 
+      <span class="bottomTitle">to <span>our story</span>
+      </h1>
+      
+
       <!-- !TODO test if these sizes works on different devices -->
       <video width="733" height="1111" id="video" class="hidden"></video>
-      <canvas width="733" height="1111" id="canvas"></canvas>
-      <p class="firstTitle bottomTitle">to <span class="greenBg highlightText">our story</span></p>
+      <canvas class="keyholeCanvas" width="733" height="1111" id="canvas"></canvas>
 
       <img src={keyholeImg.src} class="keyholeSvg hidden" />
       <!-- !TODO encouraging image -->

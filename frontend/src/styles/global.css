@@ -71,9 +71,20 @@ canvas {
 }
 
 .firstTitle {
-  text-align: center;
-  font-size: 4rem;
+  text-align: flex-start;
+  font-size: 4.9rem;
   font-weight: 500;
+  margin: 0 auto;
+  width: 60%;
+  line-height: 1;
+}
+
+.headerBold {
+  font-weight: 800;
+}
+
+.bottomTitle {
+  font-weight: 400;
 }
 
 .page1Wrapper {
@@ -84,6 +95,10 @@ canvas {
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
+
+.bottomTitle {
+  display: block;
 }
 
 
