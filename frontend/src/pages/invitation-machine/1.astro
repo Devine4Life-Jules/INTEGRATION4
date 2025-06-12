@@ -4,6 +4,7 @@ import InstallationFooter from "../../components/InstallationFooter.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
 import keyholeImg from "../../assets/illustrations/keyhole.svg";
+import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
 ---
 
 <!doctype html>
@@ -18,17 +19,25 @@ import keyholeImg from "../../assets/illustrations/keyhole.svg";
         transform: scaleX(-1);
       }
 
+      .bottomTitle {
+        display: flex;
+        align-items: flex-start;
+      }
 
+      .smileyBlue {
+        margin-top: 1rem;
+        width: 12vw;
+        margin-left: 1rem;
+      }
 
-
-
+      
 
     </style>
   </head>
   <body class="installationBody">
     <div class="page1Wrapper">
       <h1 class="firstTitle"><span class="headerBold highlightText">You are the key</span> 
-      <span class="bottomTitle">to <span>our story</span>
+      <div class="bottomTitle">to our story<figure class="smileyBlue"><img src={smileyBlue.src} alt="blue smiley"></figure></div>
       </h1>
       
 
