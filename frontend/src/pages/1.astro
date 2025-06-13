@@ -9,7 +9,6 @@ import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
 
 <style>
   body {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -22,7 +21,7 @@ import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
     width: 12vh;
     height: 5vh;
     background: var(--yellow);
-    margin: 16vh auto;
+    // margin: 16vh auto;
   }
 
   @media screen and (min-width: 100px){
@@ -30,9 +29,12 @@ import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
       font-size: 2rem;
       background-color: var(--blue);
       padding-top: 2rem;
-      padding-left:1rem
+      padding-left:1rem;
     }
 
+    footer {
+      display: block;
+    }
 
 
     .lock {
@@ -42,8 +44,18 @@ import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
       background-repeat: no-repeat;
       background-position: center 10vh;
       background-size: 30%;
+      display: flex;
+      flex-direction: column; 
+      align-items: center;    
+      justify-content: center; 
+      position: relative;
 
       
+    }
+
+    .key {
+      justify-content: flex-start;
+      margin-top: 15vh;
     }
 
     .holdInstruction{
@@ -61,6 +73,9 @@ import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
       font-weight: 400;
     }
 
+    footer {
+    padding: 1.3rem;
+    }
 
     
   }
@@ -96,7 +111,9 @@ import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
       </p>
     </div>
     <footer>
-      <img src={AbbySvg.src} alt="Abby logo" />
+      <div class="footerLogo">
+        <img src={AbbySvg.src} alt="Abby logo" />
+      </div>
       
     </footer>
   </body>
