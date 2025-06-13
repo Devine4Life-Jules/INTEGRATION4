@@ -40,7 +40,7 @@ const checkSpinState = (pose) => {
     console.log("Spin Detected (Clockwise)!");
     resetSpin();
 
-    navigate("/2");
+    navigate("/invitation-machine/2");
   }
 
   // Counter-clockwise spin: forward → left → right → forward

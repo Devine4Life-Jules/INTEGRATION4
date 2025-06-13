@@ -16,11 +16,10 @@ const changeActivity = () => {
   currentIndex++;
   if (currentIndex >= activities.length) currentIndex = 0;
   const $qr = document.querySelector("#qr");
+  const host = new URL(location.href).host;
   QRCode.toCanvas(
     $qr,
-    `${location.href}/continuation?activity=${encodeURI(
-      activities[currentIndex]
-    )}`
+    `https://${host}/5?activity=${encodeURI(activities[currentIndex])}`
   );
   const $activity = document.querySelector("#activity") as HTMLSpanElement;
   $activity.textContent = activities[currentIndex];
