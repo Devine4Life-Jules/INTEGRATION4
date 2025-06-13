@@ -81,6 +81,7 @@ canvas {
 
 .headerBold {
   font-weight: 800;
+  display: inline-block;
 }
 
 .bottomTitle {
@@ -90,6 +91,10 @@ canvas {
 .page1Wrapper {
   margin-top: 6rem;
 }
+
+    .titleLight {
+      font-weight: 400;
+    }
 
 .installationBody {
   display: flex;

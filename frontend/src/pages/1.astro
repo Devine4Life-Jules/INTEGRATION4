@@ -4,6 +4,7 @@ import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Tape from "../components/Tape.astro";
 import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
+import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
 ---
 
 <style>
@@ -18,22 +19,49 @@ import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
 
 
   .key {
-    width: 100px;
-    height: 30px;
+    width: 12vh;
+    height: 5vh;
     background: var(--yellow);
-    margin: 0 auto;
+    margin: 16vh auto;
   }
 
   @media screen and (min-width: 100px){
     h1 {
       font-size: 2rem;
       background-color: var(--blue);
+      padding-top: 2rem;
+      padding-left:1rem
     }
+
+
 
     .lock {
       background-color: var(--blue);
       width: 100vw;
+      min-height: 55vh;
+      background-repeat: no-repeat;
+      background-position: center 10vh;
+      background-size: 30%;
+
+      
     }
+
+    .holdInstruction{
+      margin-top: 25vh;
+      text-align: center;
+      padding-bottom: 3rem;
+      background-color: var(--blue);
+    }
+
+    .description {
+      padding: 1.5rem;
+    }
+
+    .titleLight {
+      font-weight: 400;
+    }
+
+
     
   }
 
@@ -55,11 +83,12 @@ import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
   </head>
   <body>
     <Tape text="you are the key" />
-    <h1 class=""><span>You are</span> the key to our story</h1>
-    <div class="lock">
+    <h1 class=""><span class="headerBold">You are the key </span><span class="titleLight">to our story</span> </h1>
+    <div class="lock" style={`background-image: url(${keyHoleBlack.src})`}>
       <div id="key" class="key"></div>
+      <p class="holdInstruction">click and hold to unlock</p>
     </div>
-    <div>
+    <div class="description">
       <h2>Dare to try?</h2>
       <p>
         Find out what will happen after unlocking our story, you are the key -
@@ -68,6 +97,7 @@ import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
     </div>
     <footer>
       <img src={AbbySvg.src} alt="Abby logo" />
+      
     </footer>
   </body>
 </html>
