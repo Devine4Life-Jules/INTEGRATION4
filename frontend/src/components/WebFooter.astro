@@ -20,11 +20,15 @@ const desktopColor = colorMap[desktopBgColor] ?? "var(--white)";
 
     footer {
         padding: 1.3rem;
+        display: flex;
+        flex-direction: row-reverse;
+        display: flex;
+        justify-content: space-between;
+
     }
 
     @media screen and (min-width: 100px){
     footer {
-      display: block;
       background-color: var(--bg-mobile);
 
     }
@@ -53,6 +57,7 @@ const desktopColor = colorMap[desktopBgColor] ?? "var(--white)";
     </style>
 
 <footer style={`--bg-mobile: ${mobileColor}; --bg-desktop: ${desktopColor};`}>
+<slot name="buttons" />
   <div class="footerLogo">
     <img src={AbbySvg.src} alt="Abby logo" />
   </div>

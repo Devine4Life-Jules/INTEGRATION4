@@ -3,7 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Tape from "../components/Tape.astro";
-import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
+import WebFooter from "../components/WebFooter.astro";
 ---
 
 <!doctype html>
@@ -20,9 +20,10 @@ import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
       <p>Are you down for some fun?</p>
       <p>Accept if you're in!</p>
     </div>
-    <footer>
-      <img src={AbbyLogoSvg.src} alt="Abby logo" />
-      <a href="/4">Next</a>
-    </footer>
+    <WebFooter>
+  <div slot="buttons" class="footerButtons">
+    <a href="/4" class="footerBtn">Next</a>
+  </div>
+    </WebFooter>
   </body>
 </html>

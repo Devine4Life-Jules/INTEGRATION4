@@ -136,3 +136,17 @@ canvas {
 .bold {
   font-weight: 700;
 }
+
+.footerBtn {
+  background-color: var(--green);
+  text-decoration: none;
+  color:var(--black);
+  font-size: 1.3rem;
+  padding: .5rem;
+  
+}
+
+.footerButtons {
+  background-color: blue;
+  max-width: 20vw;
+}
