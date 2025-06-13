@@ -6,6 +6,7 @@ import AbbySmilePng from "../assets/icons/abby-smile-black.png";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 import Tape from "../components/Tape.astro";
 import PolaroidStack from "../components/PolaroidStack.astro";
+import WebFooter from "../components/WebFooter.astro";
 
 ---
 
@@ -13,6 +14,29 @@ import PolaroidStack from "../components/PolaroidStack.astro";
   body {
     background-color: var(--blue);
   }
+
+  .titleWrapper {
+    display: flex;
+    align-items: flex-end;
+
+  }
+
+  @media screen and (min-width:100px) {
+
+    .smiley {
+      width: 15vw;
+      margin-left: 1rem;
+    }
+
+  }
+
+    @media screen and (min-width:500px) {
+
+
+    
+  }
+
+
 </style>
 
 <!doctype html>
@@ -24,12 +48,12 @@ import PolaroidStack from "../components/PolaroidStack.astro";
   <body>
     <Tape text="you are the key" />
     <h1>
-      Good job <img src={AbbySmilePng.src} alt="Abby smile" />
+      <div class="titleWrapper"><div class="headerBold">Good job </div><div class="smiley"><img src={AbbySmilePng.src} alt="Abby smile" /></div></div>
       <span>Story Unlocked</span>
     </h1>
-    <PolaroidStack
-    <footer>
-      <img src={AbbyLogoSvg.src} alt="Abby logo" />
-    </footer>
+    <PolaroidStack></PolaroidStack>
+    <WebFooter></WebFooter>
+    
+
   </body>
 </html>

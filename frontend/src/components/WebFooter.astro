@@ -1,0 +1,47 @@
+---
+import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
+
+---
+
+
+
+    <style>
+
+    footer {
+        padding: 1.3rem;
+    }
+
+    @media screen and (min-width: 100px){
+    footer {
+      display: block;
+      background-color: var(--white);
+    }
+
+    }
+
+    
+       
+
+    @media screen and (min-width: 500px){
+
+
+    footer {
+      grid-row: 4;
+      grid-column: 1 / 3;
+      height: 100%;
+      background-color: var(--yellow);
+
+    }
+
+}
+
+
+
+    </style>
+
+    <footer>
+      <div class="footerLogo">
+        <img src={AbbySvg.src} alt="Abby logo" />
+      </div>
+      
+    </footer>

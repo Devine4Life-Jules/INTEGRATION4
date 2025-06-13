@@ -5,6 +5,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Tape from "../components/Tape.astro";
 import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
 import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
+import WebFooter from "../components/WebFooter.astro";
 ---
 
 <style>
@@ -32,9 +33,6 @@ import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
       padding-left:1rem;
     }
 
-    footer {
-      display: block;
-    }
 
 
     .lock {
@@ -73,9 +71,7 @@ import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
       font-weight: 400;
     }
 
-    footer {
-    padding: 1.3rem;
-    }
+
 
     
   }
@@ -116,12 +112,6 @@ import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
 
     }
 
-    footer {
-      grid-row: 4;
-      grid-column: 1 / 3;
-      height: 100%;
-      background-color: var(--yellow);
-    }
 
     .tapeWrapper {
       grid-row: 1;
@@ -165,12 +155,8 @@ import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
         we need you.
       </p>
     </div>
-    <footer>
-      <div class="footerLogo">
-        <img src={AbbySvg.src} alt="Abby logo" />
-      </div>
-      
-    </footer>
+    <WebFooter></WebFooter>
+
   </body>
 </html>
 
