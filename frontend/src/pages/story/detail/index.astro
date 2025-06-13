@@ -10,6 +10,7 @@ import AbbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
     display: grid;
     grid-template-rows: repeat(3, auto) 1fr;
     min-height: 100vh;
+    background: var(--white);
   }
 
   .picture {
@@ -55,10 +56,54 @@ import AbbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
   }
 
   .buttons {
-    margin: var(--screen-padding);
+    padding: var(--screen-padding);
     display: flex;
     justify-content: space-between;
     align-self: end;
+  }
+
+  @media (orientation: landscape) {
+    body {
+      grid-template-columns: repeat(2, auto);
+      grid-template-rows: min-content min-content 1fr auto;
+    }
+
+    .picture {
+      grid-column: 2/3;
+      grid-row: 1/4;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .subtitle {
+      position: static;
+      grid-row: 1/2;
+      display: inline;
+      margin: var(--screen-padding);
+    }
+
+    .subtitle__first-text {
+      font-size: 2.5rem;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .subtitle__second-text {
+      border-left: 0.08em solid var(--blue);
+      font-size: 1.875rem;
+      padding-left: 0.37em;
+      font-weight: 300;
+    }
+
+    .title {
+      font-size: 5rem;
+      margin-top: 0.2em;
+    }
+
+    .buttons {
+      grid-column: 1/3;
+      background-color: var(--yellow);
+    }
   }
 </style>
 
