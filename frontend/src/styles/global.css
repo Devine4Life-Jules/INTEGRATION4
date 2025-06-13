@@ -108,10 +108,9 @@ canvas {
 
 }
 
-.scan  {
+.scan {
   text-align: center;
 }
-
 
 .sr-only {
   border: 0;
@@ -132,7 +131,7 @@ canvas {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .bold {
@@ -152,3 +151,20 @@ canvas {
   background-color: blue;
   max-width: 20vw;
 }
+
+/* compomnents */
+.button {
+  background-color: var(--green);
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: 0.8em;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.button--back {
+  background: none;
+  border: 0.2em solid var(--green);
+  padding: calc(0.8em - 0.2em) 0.8em;
+}
+

@@ -43,7 +43,7 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
     </div>
     <div>
       <a>Back</a>
-      <button>Upload</button>
+      <button class="submit">Upload</button>
     </div>
   </body>
 </html>
@@ -52,7 +52,8 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
   import { API_URL } from "../../consts";
 
   const $form = document.querySelector("#form") as HTMLFormElement;
-  $form?.addEventListener("submit", async (e) => {
+  const $submit = document.querySelector(".submit") as HTMLButtonElement;
+  $submit.addEventListener("click", async (e) => {
     e.preventDefault();
     const $fileInput = $form.querySelector(
       "#picture-input"
