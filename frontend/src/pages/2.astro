@@ -5,7 +5,94 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbySmilePng from "../assets/icons/abby-smile-black.png";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 import Tape from "../components/Tape.astro";
+import PolaroidStack from "../components/PolaroidStack.astro";
+import WebFooter from "../components/WebFooter.astro";
+
 ---
+
+<style>
+  body {
+    background-color: var(--blue);
+  }
+
+  .titleWrapper {
+    display: flex;
+    align-items: flex-end;
+
+  }
+
+  @media screen and (min-width:100px) {
+
+    h1 {
+      margin: 0 auto;
+      width: 60vw;
+    }
+
+    body {
+     
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100vh;
+    }
+
+    .pageWrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    
+
+
+    .smiley {
+      width: 15vw;
+      margin-left: 1rem;
+    }
+
+  }
+
+    @media screen and (min-width:500px) {
+
+      body {
+        display: block;
+      }
+
+      h1 {
+        font-size: 5rem;
+        margin-top: 5rem;
+        margin-left: 6rem;
+        line-height: 1;
+      }
+
+      .headerBold {
+        
+        padding-bottom: 0;
+      }
+
+      body {
+        height: 100vh;
+      }
+
+      .smiley {
+        width: 7vw;
+      }
+
+      .pageWrapper {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: auto;
+        align-items: block-end;
+        padding-bottom: 8rem;
+        margin-left: 17rem;
+      }
+    
+      }
+
+    
+  }
+
+
+</style>
 
 <!doctype html>
 <html lang="en">
@@ -15,13 +102,15 @@ import Tape from "../components/Tape.astro";
   </head>
   <body>
     <Tape text="you are the key" />
-    <h1>
-      Good job <img src={AbbySmilePng.src} alt="Abby smile" />
-      <span>Story Unlocked</span>
-    </h1>
-    <!-- !TODO polaroid stack -->
-    <footer>
-      <img src={AbbyLogoSvg.src} alt="Abby logo" />
-    </footer>
+    <div class="pageWrapper">
+      <h1>
+        <div class="titleWrapper"><div class="headerBold">Good job </div><div class="smiley"><img src={AbbySmilePng.src} alt="Abby smile" /></div></div>
+        <span class="bottomTitle">Story Unlocked</span>
+      </h1>
+      <PolaroidStack></PolaroidStack>
+    </div>
+    <WebFooter mobileBgColor="yellow" desktopBgColor="white" />
+    
+
   </body>
 </html>

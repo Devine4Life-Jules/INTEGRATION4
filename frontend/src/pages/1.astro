@@ -4,11 +4,12 @@ import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Tape from "../components/Tape.astro";
 import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
+import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
+import WebFooter from "../components/WebFooter.astro";
 ---
 
 <style>
   body {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -18,30 +19,115 @@ import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
 
 
   .key {
-    width: 100px;
-    height: 30px;
+    width: 12vh;
+    height: 5vh;
     background: var(--yellow);
-    margin: 0 auto;
+    // margin: 16vh auto;
   }
 
   @media screen and (min-width: 100px){
     h1 {
       font-size: 2rem;
       background-color: var(--blue);
+      padding-top: 2rem;
+      padding-left:1rem;
     }
+
+
 
     .lock {
       background-color: var(--blue);
       width: 100vw;
+      min-height: 55vh;
+      background-repeat: no-repeat;
+      background-position: center 10vh;
+      background-size: 30%;
+      display: flex;
+      flex-direction: column; 
+      align-items: center;    
+      justify-content: center; 
+      position: relative;
+
+      
     }
+
+    .key {
+      justify-content: flex-start;
+      margin-top: 15vh;
+    }
+
+    .holdInstruction{
+      margin-top: 25vh;
+      text-align: center;
+      padding-bottom: 3rem;
+      background-color: var(--blue);
+    }
+
+    .description {
+      padding: 1.5rem;
+    }
+
+    .titleLight {
+      font-weight: 400;
+    }
+
+
+
     
   }
 
     @media screen and (min-width: 500px){
+
+
+
+      body {
+        display: grid;
+        grid-template-rows: 5vh 42vh 42vh auto;
+        grid-template-columns: 50vw 50vw;
+        justify-content: space-around;
+        width: 100%;
+        gap: 0;
+        height: 100vh;
+      }
+
     h1 {
-      font-size: 5rem;
+      font-size: 3rem;
+      background-color: var(--white);
       margin: 0;
+      grid-row: 2;
+      background-color: none;
     }
+
+    .description {
+      grid-row: 3;
+      grid-column: 1;
+    }
+
+    .lock {
+      grid-row: 2 / 4; ;
+      z-index: 300000;
+      width: 100%;
+      min-width: none;
+      height: 100%;
+
+    }
+
+
+    .tapeWrapper {
+      grid-row: 1;
+      grid-column-start: span 2;
+      z-index: 1;
+      padding: 0;
+      margin: 0;
+      background-color: var(--green);
+      height: 100%;
+      padding-top:.5rem;
+      
+      
+      
+    }
+
+
     
   }
 
@@ -54,21 +140,23 @@ import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
     <ClientRouter />
   </head>
   <body>
-    <Tape text="you are the key" />
-    <h1 class=""><span>You are</span> the key to our story</h1>
-    <div class="lock">
-      <div id="key" class="key"></div>
+    <div class="tapeWrapper">
+      <Tape text="you are the key" />
     </div>
-    <div>
+    <h1 class=""><span class="headerBold">You are the key </span><span class="titleLight">to our story</span> </h1>
+    <div class="lock" style={`background-image: url(${keyHoleBlack.src})`}>
+      <div id="key" class="key"></div>
+      <p class="holdInstruction">click and hold to unlock</p>
+    </div>
+    <div class="description">
       <h2>Dare to try?</h2>
       <p>
         Find out what will happen after unlocking our story, you are the key -
         we need you.
       </p>
     </div>
-    <footer>
-      <img src={AbbySvg.src} alt="Abby logo" />
-    </footer>
+    <WebFooter mobileBgColor="white" desktopBgColor="yellow"></WebFooter>
+
   </body>
 </html>
 

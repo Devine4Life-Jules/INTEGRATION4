@@ -81,15 +81,21 @@ canvas {
 
 .headerBold {
   font-weight: 800;
+  display: inline-block;
 }
 
 .bottomTitle {
   font-weight: 400;
+  font-display: block;
 }
 
 .page1Wrapper {
   margin-top: 6rem;
 }
+
+    .titleLight {
+      font-weight: 400;
+    }
 
 .installationBody {
   display: flex;
@@ -98,7 +104,8 @@ canvas {
 }
 
 .bottomTitle {
-  display: block;
+  display: inline-flex;
+
 }
 
 .scan {
@@ -131,6 +138,20 @@ canvas {
   font-weight: 700;
 }
 
+.footerBtn {
+  background-color: var(--green);
+  text-decoration: none;
+  color:var(--black);
+  font-size: 1.3rem;
+  padding: .5rem;
+  
+}
+
+.footerButtons {
+  background-color: blue;
+  max-width: 20vw;
+}
+
 /* compomnents */
 .button {
   background-color: var(--green);
@@ -146,3 +167,4 @@ canvas {
   border: 0.2em solid var(--green);
   padding: calc(0.8em - 0.2em) 0.8em;
 }
+

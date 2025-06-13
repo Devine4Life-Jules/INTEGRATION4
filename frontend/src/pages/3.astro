@@ -3,8 +3,56 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Tape from "../components/Tape.astro";
-import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
+import WebFooter from "../components/WebFooter.astro";
+
+import newChapter from "../assets/images/newChapter.png"
 ---
+<style>
+
+    
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100vh;
+  }
+
+  @media screen and (min-width:100px) {
+
+
+
+
+    .areYouReady {
+      background-color: var(--white);
+      flex-grow: 1;
+      padding: 1rem;
+      padding-bottom: 5rem;
+
+    }
+
+
+
+    main {
+      justify-content: flex-end;
+      justify-self: block-end;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      padding-left: 1rem;
+      font-size: 3rem;
+      
+    }
+
+
+    .tapeWrapper, h1 {
+     margin-bottom: auto;
+    }
+    
+  }
+  
+</style>
 
 <!doctype html>
 <html lang="en">
@@ -13,16 +61,24 @@ import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
     <ClientRouter />
   </head>
   <body>
-    <Tape text="you are the key" />
-    <h1><span>You shape</span> the new chapter</h1>
-    <!-- !TODO image -->
-    <div>
-      <p>Are you down for some fun?</p>
-      <p>Accept if you're in!</p>
+    <div class="tapeWrapper">
+      <Tape text="you are the key" />
     </div>
-    <footer>
-      <img src={AbbyLogoSvg.src} alt="Abby logo" />
-      <a href="/4">Next</a>
-    </footer>
+    <h1><span class="headerBold">You shape</span>  <span class="blueBg bottomTitle">the new chapter</span></h1>
+    <!-- !TODO image -->
+    <main>
+      <div class="newChapterPic">
+        <img src={newChapter.src} alt="">
+      </div>
+      <div class="areYouReady">
+        <p>Are you down for some fun?</p>
+        <p>click "next" if you're in!</p>
+      </div>
+    </main>
+    <WebFooter>
+  <div slot="buttons" class="footerButtons">
+    <a href="/4" class="footerBtn">Next</a>
+  </div>
+    </WebFooter>
   </body>
 </html>
