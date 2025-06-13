@@ -5,6 +5,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbySmilePng from "../assets/icons/abby-smile-black.png";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 import Tape from "../components/Tape.astro";
+import PolaroidStack from "../components/PolaroidStack.astro";
+
 ---
 
 <!doctype html>
@@ -19,7 +21,7 @@ import Tape from "../components/Tape.astro";
       Good job <img src={AbbySmilePng.src} alt="Abby smile" />
       <span>Story Unlocked</span>
     </h1>
-    <!-- !TODO polaroid stack -->
+    <PolaroidStack
     <footer>
       <img src={AbbyLogoSvg.src} alt="Abby logo" />
     </footer>
