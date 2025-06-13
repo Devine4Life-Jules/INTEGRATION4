@@ -16,5 +16,8 @@
     "astro": "^5.8.0",
     "gsap": "^3.13.0",
     "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.0.0"
   }
 }
