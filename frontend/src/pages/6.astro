@@ -1,10 +1,10 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
-import ContinuationProgress from "../components/ContinuationProgress.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 import LocationSvg from "../assets/icons/location.svg";
+import ProgressBar from "../components/ProgressBar.astro";
 ---
 
 <!doctype html>
@@ -21,14 +21,10 @@ import LocationSvg from "../assets/icons/location.svg";
       <span>ABBY</span>
     </div>
     <!-- !TODO <Image /> -->
-    <ContinuationProgress />
     <p>
       <span class="bold">Whenever you’re ready,</span> just drop by the Salon in
       the museum. That’s where your story will come to life.
     </p>
-    <div class="buttons">
-      <a href="./5">Back</a>
-      <a href="./7">Next</a>
-    </div>
+    <ProgressBar currentStep={4} ></ProgressBar>
   </body>
 </html>

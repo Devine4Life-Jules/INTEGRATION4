@@ -1,0 +1,55 @@
+---
+const { currentStep = 1 } = Astro.props;
+const totalSteps = 4;
+---
+
+<style>
+  .wrapper {
+    display: flex;
+    border: 1px solid black;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .progress {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+  }
+
+  .square {
+    border: 2px solid var(--blue);
+    width: 15px;
+    height: 15px;
+    position: relative;
+  }
+
+    .square.filled {
+    background-color: var(--blue);
+  }
+
+  .square:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: .6rem; /* length of line */
+    height: 2px;
+    background-color: var(--blue);
+    transform: translateY(-50%);
+  }
+
+</style>
+<div class="wrapper">
+    <button class="button--back">back</button>
+    <div class="progress">
+    {
+      Array.from({ length: totalSteps }).map((_, i) => (
+        <div class={`square ${i < currentStep ? 'filled' : ''}`}></div>
+      ))
+    }
+    </div>
+    <button class="button">next</button>
+</div>
+
