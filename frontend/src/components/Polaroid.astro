@@ -1,55 +1,48 @@
 ---
-import dummyPic from "../assets/images/dummyPic1.png"
-import keyBlue from "../assets/illustrations/keyBlue.svg"
-
-
-
+import dummyPic from "../assets/images/dummyPic1.png";
+import keyBlue from "../assets/illustrations/keyBlue.svg";
 ---
 
 <style>
-    .polaroid {
-        background-color: white;
-        max-width: 50vw;
-        padding-top: 2rem;
-        padding-bottom: 5rem;
-        grid-column: 1;
-        grid-row: 1;
-        position: relative;
-    }
+  .polaroid {
+    background-color: white;
+    max-width: 50vw;
+    padding-top: 2rem;
+    /* padding-bottom: 5rem; */
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+  }
 
-    figure img  {
-        width: 100%;
-    }
+  figure img {
+    width: 100%;
+  }
 
-    figure {
-        margin: 0 auto;
-        width: 90%;
-        
-    }
+  figure {
+    margin: 0 auto;
+    width: 90%;
+  }
 
-    .polaroidBottom {
-        display: flex;
-        justify-content: flex-between;
-        align-items: center;
-        padding: 1rem;
+  .polaroidBottom {
+    display: flex;
+    justify-content: flex-between;
+    align-items: center;
+    padding: 1rem;
+  }
 
-    }
-
-    .key {
-        margin: 0;
-        width: 7vw;
-        margin-right: auto;
-    }
-
-    
+  .key {
+    margin: 0;
+    width: 7vw;
+    margin-right: auto;
+  }
 </style>
 
 <div class="polaroid">
-    <figure>
-        <img src={dummyPic.src} alt="people of abby">
-    </figure>
-    <div class="polaroidBottom">
-        <figure class="key"><img src={keyBlue.src} alt="bluekey"></figure>
-        <p>names</p>
-    </div>
+  <figure>
+    <img src={dummyPic.src} alt="people of abby" />
+  </figure>
+  <div class="polaroidBottom">
+    <figure class="key"><img src={keyBlue.src} alt="bluekey" /></figure>
+    <p>names</p>
+  </div>
 </div>
