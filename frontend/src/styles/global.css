@@ -52,6 +52,10 @@ body {
   background-color: var(--yellow);
 }
 
+h2 {
+  font-weight: 500;
+}
+
 canvas {
   margin: 5% auto;
   display: block;

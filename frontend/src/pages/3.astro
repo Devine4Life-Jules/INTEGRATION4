@@ -22,10 +22,10 @@ import newChapter from "../assets/images/newChapter.png"
 
 
 
-    .areYouReady {
+    .areYouDown {
       background-color: var(--white);
       flex-grow: 1;
-      padding: 1rem;
+      padding: 1rem 1rem 2rem 1rem;
       padding-bottom: 5rem;
 
     }
@@ -40,16 +40,65 @@ import newChapter from "../assets/images/newChapter.png"
     }
 
     h1 {
-      padding-left: 1rem;
-      font-size: 3rem;
+      padding: 1rem;
+      font-size: 2.5rem;
       
     }
+
+    
 
 
     .tapeWrapper, h1 {
      margin-bottom: auto;
     }
     
+
+      @media screen and (min-width:500px){
+        body {
+          display: grid;
+          grid-template-rows:auto auto auto 5rem;
+          grid-template-columns: 1fr 1fr;
+        }
+        h1 {
+          grid-column: 1;
+          font-size: 4rem;
+        }
+
+
+        .areYouDown {
+          grid-column: 1 ;
+          grid-row: 3;
+          display: block;
+          background-color: var(--yellow);
+        }
+
+        .newChapterPic {
+          grid-row: 2 / 4;
+          overflow: hidden; /* Optional, prevents spillover */
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+         
+        }
+
+
+        .newChapterPic img {
+          max-height: 100%;
+          max-width: 100%;
+          height: auto;
+          width: auto;
+          object-fit: contain; 
+          display: block;
+}
+
+        .tapeWrapper {
+          grid-column: 1 / 3;
+        }
+
+
+      }
+
+
   }
   
 </style>
@@ -66,15 +115,15 @@ import newChapter from "../assets/images/newChapter.png"
     </div>
     <h1><span class="headerBold">You shape</span>  <span class="blueBg bottomTitle">the new chapter</span></h1>
     <!-- !TODO image -->
-    <main>
+    
       <div class="newChapterPic">
         <img src={newChapter.src} alt="">
       </div>
-      <div class="areYouReady">
-        <p>Are you down for some fun?</p>
+      <div class="areYouDown">
+        <h2>Are you down for some fun?</h2>
         <p>click "next" if you're in!</p>
       </div>
-    </main>
+    
     <WebFooter>
   <div slot="buttons" class="footerButtons">
     <a href="/4" class="footerBtn">Next</a>
