@@ -2,12 +2,25 @@
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
+import WebFooter from "../components/WebFooter.astro";
+import  boardGames from "../assets/images/boardGames.png"
 ---
 
 <style>
   body {
-    background-color: var(--blue);
+    background-color: var(--yellow);
+  }
+
+  @media screen and (min-width:100px) {
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      justify-content: flex-end;
+    }
+    p {
+      margin-bottom: auto;
+    }
   }
 </style>
 
@@ -19,19 +32,23 @@ import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
   </head>
   <body>
     <!-- !TODO image -->
-
-    <h1>
       <span>We've picked a fun activity for you!</span>
+    <h1>
+      
       <span>Play board games</span>
       in living room
     </h1>
     <p>You can enjoy it solo — or bring a friend along to join your chapter</p>
-    <footer>
-      <img src={AbbyLogoSvg.src} alt="Abby logo" />
-      <div>
-        <a href="/5">Accept</a>
-        <button>Another Activity</button>
+    <figure>
+      <img src={boardGames.src} alt="">
+    </figure>
+    <WebFooter>
+      <div slot="buttons" class="footerButtons">
+       
+        <a href="/4" class="footerBtn--secondary">Another Activity</a>
+        <a href="/5" class="footerBtn">Accept</a>
       </div>
-    </footer>
+
+    </WebFooter>
   </body>
 </html>
