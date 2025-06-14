@@ -53,6 +53,10 @@ body {
   background-color: var(--white);
 }
 
+h2 {
+  font-weight: 500;
+}
+
 canvas {
   margin: 5% auto;
   display: block;
@@ -145,15 +149,25 @@ canvas {
   color:var(--black);
   font-size: 1.3rem;
   padding: .5rem;
+  margin: .5rem;
   
 }
 
-.footerButtons {
-  background-color: blue;
-  max-width: 20vw;
+
+.footerBtn--secondary {
+  border: 2px solid var(--green);
+  background-color: none;
+  text-decoration: none;
+  color:var(--black);
+  font-size: 1.3rem;
+  padding: .5rem;
+  margin: .5rem;
+
 }
 
-/* compomnents */
+
+
+
 .button {
   background-color: var(--green);
   font-size: 1.25rem;
@@ -170,5 +184,22 @@ canvas {
   background: none;
   border: 0.2em solid var(--green);
   padding: calc(0.8em - 0.2em) 0.8em;
+}
+
+
+@media screen and (min-width: 100px) {
+  .footerButtons {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+}
+
+@media screen and (min-width: 500px) {
+  .footerButtons {
+    flex-direction: row;
+  }
+  
 }
 

@@ -2,13 +2,85 @@
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
+import WebFooter from "../components/WebFooter.astro";
+import  boardGames from "../assets/images/boardGames.png"
 ---
 
 <style>
   body {
-    background-color: var(--blue);
+    background-color: var(--yellow);
   }
+
+  @media screen and (min-width:100px) {
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+
+    header {
+      margin-bottom: auto;
+      padding: 1rem;
+
+    }
+    
+  }
+
+  @media screen and (min-width:500px) {
+        body {
+          display: grid;
+          grid-template-rows: auto auto auto 7rem;
+          grid-template-columns: 2fr 3fr;
+          height: 100vh;
+        }
+
+        h1 {
+          font-size: 4rem;
+          line-height: 1.3 ;
+          margin-bottom: auto;
+        }
+
+        .wePicked {
+          font-size: 1.7rem;
+        }
+
+        header {
+          height: 100%;
+          grid-column:2;
+          grid-row: 1 / 4;
+          display: flex;
+          flex-direction: column;
+          
+
+          
+
+        }
+
+ 
+
+
+        figure {
+          grid-column:1 ;
+          grid-row: 1 / 4;
+          align-self: end;
+          height: 100%;
+        
+        }
+
+          figure img {
+            object-fit: fill;
+            height: 100%;
+          }
+
+        header {
+          grid-column: 2;
+        }
+
+       
+        
+  }
+
 </style>
 
 <!doctype html>
@@ -18,20 +90,27 @@ import AbbyLogoSvg from "../assets/icons/abby-kortrijk.svg";
     <ClientRouter />
   </head>
   <body>
-    <!-- !TODO image -->
+    
 
-    <h1>
-      <span>We've picked a fun activity for you!</span>
-      <span>Play board games</span>
-      in living room
-    </h1>
-    <p>You can enjoy it solo — or bring a friend along to join your chapter</p>
-    <footer>
-      <img src={AbbyLogoSvg.src} alt="Abby logo" />
-      <div>
-        <a href="/5">Accept</a>
-        <button>Another Activity</button>
+      <header>
+        <span class="wePicked">We've picked a fun activity for you!</span>
+            <h1>
+        
+        <span class="blueBg">Play board games</span>
+        in living room
+            </h1>
+            <p>You can enjoy it solo — or bring a friend along to join your chapter</p>
+      </header>
+    <figure>
+      <img src={boardGames.src} alt="">
+    </figure>
+    <WebFooter>
+      <div slot="buttons" class="footerButtons">
+       
+        <a href="/4" class="footerBtn--secondary">Another Activity</a>
+        <a href="/5" class="footerBtn">Accept</a>
       </div>
-    </footer>
+
+    </WebFooter>
   </body>
 </html>

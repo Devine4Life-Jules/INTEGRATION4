@@ -54,7 +54,10 @@ import WebFooter from "../components/WebFooter.astro";
     @media screen and (min-width:500px) {
 
       body {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+
       }
 
       h1 {
@@ -83,7 +86,7 @@ import WebFooter from "../components/WebFooter.astro";
         margin-bottom: auto;
         align-items: block-end;
         padding-bottom: 8rem;
-        margin-left: 17rem;
+        padding-left: 17rem;
       }
     
       }
@@ -101,7 +104,10 @@ import WebFooter from "../components/WebFooter.astro";
     <ClientRouter />
   </head>
   <body>
+    
+    <div class="tapeWrapper">
     <Tape text="you are the key" />
+    </div>
     <div class="pageWrapper">
       <h1>
         <div class="titleWrapper"><div class="headerBold">Good job </div><div class="smiley"><img src={AbbySmilePng.src} alt="Abby smile" /></div></div>
@@ -109,7 +115,7 @@ import WebFooter from "../components/WebFooter.astro";
       </h1>
       <PolaroidStack></PolaroidStack>
     </div>
-    <WebFooter mobileBgColor="yellow" desktopBgColor="white" />
+    <WebFooter mobileBgColor="yellow" desktopBgColor="white" /></WebFooter>
     
 
   </body>

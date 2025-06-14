@@ -7,11 +7,21 @@ import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
 
 <style>
   body {
-    background: var(--white);
+    background: var(--yellow);
     font-size: 1.25rem;
     display: grid;
     grid-template-rows: auto 3fr auto 1fr;
     min-height: 100vh;
+  }
+
+  h1 {
+    line-height: 1;
+    margin: var(--screen-padding);
+
+  }
+
+  .blueBg {
+    padding: .2rem;
   }
 
   .container {
@@ -24,6 +34,8 @@ import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
   .container__logo {
     justify-self: end;
     width: 6.688rem;
+    margin: var(--screen-padding);
+
   }
 
   .container__title {
@@ -57,7 +69,7 @@ import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
   }
 
   .paragraph {
-    text-align: center;
+    text-align: left;
     margin: var(--screen-padding);
   }
 
@@ -81,6 +93,30 @@ import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
     border: 0.1875rem solid var(--green);
     background: none;
   }
+
+  @media screen and (min-width:100px) {
+    .container__logo {
+    justify-self: start;
+    width: 6.688rem;
+  }
+    
+  }
+
+  @media screen and (min-width:500px) {
+    h1 {
+      font-size: 4rem;
+      max-width: 50vw;
+      margin-top: 4rem;
+      margin-left: 12rem;
+    }
+
+    .paragraph {
+      max-width: 50vw;
+      margin-left: 12rem;
+      margin-top: 0;
+    }
+  }
+
 </style>
 
 <html lang="en">
@@ -92,7 +128,7 @@ import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
     <img class="container__logo" src={abbySvg.src} alt="Abby logo" />
     <h1 class="container__title">
       Hey,
-      <span>ready to begin</span> your journey<span
+      <span class="blueBg">ready to begin</span> your journey<span
         class="container__title__question-mark">?</span
       >
     </h1>
@@ -104,7 +140,7 @@ import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
     <div class="buttons">
       <!-- !TODO hide back link -->
       <a class="buttons__button buttons__button--back" href="./4">Back</a>
-      <a class="buttons__button" href="./2">Show me how it works</a>
+      <a class="buttons__button" href="./6">Show me how it works</a>
     </div>
   </body>
 </html>
