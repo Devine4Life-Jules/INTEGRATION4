@@ -5,8 +5,8 @@ const totalSteps = 4;
 
 <style>
   .wrapper {
-    display: flex;
-    border: 1px solid black;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
@@ -16,6 +16,7 @@ const totalSteps = 4;
     display: flex;
     gap: 0.4rem;
     align-items: center;
+    justify-content: center;
   }
 
   .square {
@@ -42,7 +43,7 @@ const totalSteps = 4;
 
 </style>
 <div class="wrapper">
-    <button class="button--back">back</button>
+    <a class="button--back" href={Astro.props.backLink}>back</a>
     <div class="progress">
     {
       Array.from({ length: totalSteps }).map((_, i) => (
@@ -50,6 +51,6 @@ const totalSteps = 4;
       ))
     }
     </div>
-    <button class="button">next</button>
+    <a class="button"  href={Astro.props.nextLink}>next</a>
 </div>
 
