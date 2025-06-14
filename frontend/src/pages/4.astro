@@ -4,6 +4,7 @@ import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import WebFooter from "../components/WebFooter.astro";
 import  boardGames from "../assets/images/boardGames.png"
+import Tape from "../components/Tape.astro";
 ---
 
 <style>
@@ -18,10 +19,47 @@ import  boardGames from "../assets/images/boardGames.png"
       height: 100vh;
       justify-content: flex-end;
     }
-    p {
+
+
+    header {
       margin-bottom: auto;
+      padding: 1rem;
+
     }
+    
   }
+
+  @media screen and (min-width:500px) {
+        body {
+          display: grid;
+          grid-template-rows: auto auto auto 7rem;
+          grid-template-columns: 2fr 3fr;
+          height: 100vh;
+        }
+
+        figure {
+          grid-column:1 ;
+          grid-row: 1;
+          grid-row: 1 / 4;
+          align-self: end;
+          background-color: blue;
+          height: 100%;
+        
+        }
+
+          figure img {
+            object-fit: fill;
+            height: 100%;
+          }
+
+        header {
+          grid-column: 2;
+        }
+
+       
+        
+  }
+
 </style>
 
 <!doctype html>
@@ -31,14 +69,17 @@ import  boardGames from "../assets/images/boardGames.png"
     <ClientRouter />
   </head>
   <body>
-    <!-- !TODO image -->
-      <span>We've picked a fun activity for you!</span>
-    <h1>
-      
-      <span>Play board games</span>
-      in living room
-    </h1>
-    <p>You can enjoy it solo — or bring a friend along to join your chapter</p>
+    
+
+      <header>
+        <span class="wePicked">We've picked a fun activity for you!</span>
+            <h1>
+        
+        <span class="blueBg">Play board games</span>
+        in living room
+            </h1>
+            <p>You can enjoy it solo — or bring a friend along to join your chapter</p>
+      </header>
     <figure>
       <img src={boardGames.src} alt="">
     </figure>

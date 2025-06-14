@@ -148,7 +148,7 @@ canvas {
   color:var(--black);
   font-size: 1.3rem;
   padding: .5rem;
-  margin: 1rem;
+  margin: .5rem;
   
 }
 
@@ -160,7 +160,7 @@ canvas {
   color:var(--black);
   font-size: 1.3rem;
   padding: .5rem;
-  margin: 1rem;
+  margin: .5rem;
 
 }
 
@@ -187,6 +187,7 @@ canvas {
   .footerButtons {
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
   
 }
