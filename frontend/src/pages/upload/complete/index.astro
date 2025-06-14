@@ -59,6 +59,38 @@ import Polaroid from "../../../components/Polaroid.astro";
     gap: 0.5em;
     background-color: var(--white);
   }
+
+  @media (orientation: landscape) {
+    body {
+      grid-template-columns: auto auto;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .logo {
+      display: initial;
+      grid-column: 2/3;
+      grid-row: 1/2;
+      justify-self: end;
+      z-index: 10;
+    }
+
+    .polaroids {
+      grid-column: 2/3;
+      grid-row: 1/3;
+      align-self: end;
+    }
+
+    .text-container {
+      background-color: var(--blue);
+      align-self: end;
+    }
+
+    .buttons {
+      grid-column: 1/3;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+  }
 </style>
 
 <html lang="en">
@@ -78,7 +110,7 @@ import Polaroid from "../../../components/Polaroid.astro";
       >
     </h1>
     <img class="logo" src={AbbyLogoSvg.src} alt="Abby logo" />
-    <div>
+    <div class="polaroids">
       <!-- !TODO fill with images from the database -->
       <Polaroid />
     </div>
