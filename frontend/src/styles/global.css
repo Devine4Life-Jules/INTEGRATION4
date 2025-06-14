@@ -141,6 +141,8 @@ canvas {
   color: var(--black);
   text-decoration: none;
   border: none;
+  display: block;
+  text-align: center;
 }
 
 .button--back {
