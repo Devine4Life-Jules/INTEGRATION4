@@ -8,7 +8,8 @@
   --black: #111111;
   --white: #fffdf9;
 
-  --screen-padding: 1.5rem;
+  --screen-padding: 3vw;
+  --input-border-size: 0.15rem;
 }
 
 @font-face {
@@ -49,7 +50,7 @@
 
 body {
   font-family: GT-Wal, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--yellow);
+  background-color: var(--white);
 }
 
 canvas {
@@ -160,6 +161,9 @@ canvas {
   padding: 0.8em;
   color: var(--black);
   text-decoration: none;
+  border: none;
+  display: block;
+  text-align: center;
 }
 
 .button--back {

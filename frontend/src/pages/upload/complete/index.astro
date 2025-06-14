@@ -2,33 +2,128 @@
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
-import AbbySmilePng from "../../../assets/icons/abby-smile.png";
+import AbbySmilePng from "../../../assets/icons/abby-smile-yellow.png";
 import AbbyLogoSvg from "../../../assets/illustrations/abby-kortrijk.svg";
+import Polaroid from "../../../components/Polaroid.astro";
 ---
 
-<!doctype html>
+<style>
+  body {
+    display: grid;
+    background-color: var(--blue);
+    height: 100vh;
+  }
+
+  body > * {
+    padding: var(--screen-padding);
+  }
+
+  .title {
+    font-size: 3.125rem;
+    line-height: 0.8;
+  }
+
+  .title__img {
+    display: inline;
+    width: 3.5rem;
+  }
+
+  .title__smaller-text {
+    font-size: 1.875rem;
+    font-weight: 400;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .text-container {
+    background-color: var(--white);
+    padding-bottom: 1.5em;
+  }
+
+  .text-container__title {
+    font-weight: 500;
+    font-size: 1.875rem;
+    margin-bottom: 0.25em;
+  }
+
+  .text-container__p {
+    font-size: 1.313rem;
+    line-height: 1.3;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    background-color: var(--white);
+  }
+
+  @media (orientation: landscape) {
+    body {
+      grid-template-columns: auto auto;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .logo {
+      display: initial;
+      grid-column: 2/3;
+      grid-row: 1/2;
+      justify-self: end;
+      z-index: 10;
+    }
+
+    .polaroids {
+      grid-column: 2/3;
+      grid-row: 1/3;
+      align-self: end;
+    }
+
+    .text-container {
+      background-color: var(--blue);
+      align-self: end;
+    }
+
+    .buttons {
+      grid-column: 1/3;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+  }
+</style>
+
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    <h1>
-      Nice one <img src={AbbySmilePng.src} alt="Abby smile icon" /><br />
-      Your moment is now part of the story
+    <h1 class="title">
+      Nice one <img
+        class="title__img"
+        src={AbbySmilePng.src}
+        alt="Abby smile icon"
+      /><br />
+      <span class="title__smaller-text"
+        >Your moment is now part of the story</span
+      >
     </h1>
-    <img src={AbbyLogoSvg.src} alt="Abby logo" />
-    <!-- !TODO polaroid stack -->
-    <div>
-      <h2>Want to keep going?</h2>
-      <p>
+    <img class="logo" src={AbbyLogoSvg.src} alt="Abby logo" />
+    <div class="polaroids">
+      <!-- !TODO fill with images from the database -->
+      <Polaroid />
+    </div>
+    <div class="text-container">
+      <h2 class="text-container__title">Want to keep going?</h2>
+      <p class="text-container__p">
         There's <span class="bold">always room for another chapter</span> - something
         new to try, feel or create.
       </p>
     </div>
-    <div>
-      <a href="/4?another">Start another chapter</a>
-      <a href="/story">See our shared story</a>
+    <div class="buttons">
+      <a class="button" href="/story">See our shared story</a>
+      <a class="button button--back" href="/4?another">Start another chapter</a>
     </div>
   </body>
 </html>
