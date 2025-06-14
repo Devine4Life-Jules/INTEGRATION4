@@ -9,6 +9,7 @@
   --white: #fffdf9;
 
   --screen-padding: 3vw;
+  --input-border-size: 0.15rem;
 }
 
 @font-face {
