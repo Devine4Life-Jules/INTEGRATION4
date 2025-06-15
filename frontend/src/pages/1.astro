@@ -173,36 +173,41 @@ import WebFooter from "../components/WebFooter.astro";
 
 <script>
   import { navigate } from "astro:transitions/client";
-  import { gsap } from "gsap";
+  import { gsap, Power1 } from "gsap";
 
   const mm = gsap.matchMedia();
 
   const tl = gsap.timeline();
   tl
-  
+      const tlDuration = .4
   
 
   mm.add("(min-width: 500px)", () => {
     const tl = gsap.timeline();
 
-    tl.from(".lock", {
+    tl
+    
+    .from("footer",{
+    y:300,
+    duration: tlDuration,
+  })
+
+    .from(".lock", {
       x: 600,
-      duration: 2
-    })
-    .from(".headerBold", {
       opacity: 0,
-      duration: 1
+      duration: tlDuration,
+      ease: Power1.easeOut,
     })
-    .from(".titleLight", {
+    .from("h1, .description", {
       opacity: 0,
-      duration: 1
+      x:-300,
+      duration: tlDuration
     })
-    .from(".description", {
-      opacity: 0,
-      duration: 1
-    });
+
+
   });
 
+  
 
   mm.add("(min-width: 100px) and (max-width: 499px)", () => {
     const tl = gsap.timeline();
