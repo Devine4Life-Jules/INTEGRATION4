@@ -3,18 +3,24 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
+import FriendsJpg from "../assets/images/friends.jpg";
+import Image from "astro/components/Image.astro";
 ---
 
 <style>
   body {
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr max-content;
     height: 100vh;
   }
 
   body > * {
     grid-column: 1/3;
+  }
+
+  .picture {
+    display: none;
   }
 
   .top-container {
@@ -40,6 +46,8 @@ import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
     display: flex;
     flex-direction: column;
     margin: var(--screen-padding);
+    gap: 1em;
+    max-width: 20rem;
   }
 
   .form__label {
@@ -58,7 +66,7 @@ import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
   .back-button__background {
     grid-column: 1/2;
     width: max-content;
-    margin: var(--screen-padding);
+    padding: var(--screen-padding);
   }
 
   .copy-button {
@@ -66,6 +74,68 @@ import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
     width: max-content;
     justify-self: end;
     margin: var(--screen-padding);
+  }
+
+  @media (orientation: landscape) {
+    body {
+      grid-template-rows: auto auto 1fr auto;
+    }
+
+    .picture {
+      display: initial;
+      grid-column: 1/2;
+      grid-row: 1/4;
+      object-fit: cover;
+      height: 100%;
+    }
+
+    .logo {
+      display: none;
+    }
+
+    .top-container {
+      grid-column: 2/3;
+      background: none;
+      padding-bottom: 2em;
+    }
+
+    .title {
+      font-size: 4.375rem;
+      margin-bottom: 0.3em;
+    }
+
+    .title__highlight {
+      background-color: var(--blue);
+    }
+
+    .description {
+      font-size: 1.563rem;
+      max-width: 33rem;
+    }
+
+    .form {
+      grid-row: 2/3;
+      grid-column: 2/3;
+      margin-top: 0.2em;
+      margin-bottom: 0.2em;
+    }
+
+    .back-button__background {
+      background-color: var(--yellow);
+      grid-column: 1/3;
+      width: 100%;
+    }
+
+    .back-button {
+      width: max-content;
+    }
+
+    .copy-button {
+      margin-top: 1.3em;
+      grid-row: 3/4;
+      align-self: flex-start;
+      justify-self: flex-start;
+    }
   }
 </style>
 
@@ -75,6 +145,7 @@ import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
     <ClientRouter />
   </head>
   <body>
+    <Image class={"picture"} src={FriendsJpg} alt={"friends"} />
     <div class="top-container">
       <img class="logo" src={AbbyLogoSvg.src} alt="Abby logo" />
       <h1 class="title">
