@@ -17,6 +17,16 @@ import WebFooter from "../components/WebFooter.astro";
 
   }
 
+      .fade {
+        animation: fadeLoop 3s infinite ease-in-out;
+
+    }
+
+    @keyframes fadeLoop {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
 
   .key {
     width: 12vh;
@@ -146,7 +156,7 @@ import WebFooter from "../components/WebFooter.astro";
     <h1 class=""><span class="headerBold">You are the key </span><span class="titleLight">to our story</span> </h1>
     <div class="lock" style={`background-image: url(${keyHoleBlack.src})`}>
       <div id="key" class="key"></div>
-      <p class="holdInstruction">click and hold to unlock</p>
+      <p class="holdInstruction fade">click and the key hold to unlock</p>
     </div>
     <div class="description">
       <h2>Dare to try?</h2>
