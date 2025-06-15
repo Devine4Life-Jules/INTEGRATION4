@@ -123,6 +123,7 @@ import WebFooter from "../components/WebFooter.astro";
     }
 
 
+
     .tapeWrapper {
       grid-row: 1;
       grid-column-start: span 2;
@@ -153,7 +154,7 @@ import WebFooter from "../components/WebFooter.astro";
     <div class="tapeWrapper">
       <Tape text="you are the key" />
     </div>
-    <h1 class=""><span class="headerBold">You are the key </span><span class="titleLight">to our story</span> </h1>
+    <h1 class=""><span class="headerBold">You are the key </span><br /> <span class="titleLight">to our story</span> </h1>
     <div class="lock" style={`background-image: url(${keyHoleBlack.src})`}>
       <div id="key" class="key"></div>
       <p class="holdInstruction fade">click and the key hold to unlock</p>
@@ -172,6 +173,28 @@ import WebFooter from "../components/WebFooter.astro";
 
 <script>
   import { navigate } from "astro:transitions/client";
+  import { gsap } from "gsap";
+
+  const tl = gsap.timeline();
+  tl.from(".lock",{
+    x:600,
+    duration:2
+  })
+  
+  .from(".headerBold",{
+    opacity:0,
+    duration:1
+  })
+  .from(".titleLight",{
+    opacity:0,
+    duration:1
+  })
+  .from(".description",{
+        opacity:0,
+    duration:1
+  })
+
+  gsap
 
   const $key = document.querySelector("#key") as HTMLDivElement;
 
