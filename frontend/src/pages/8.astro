@@ -70,15 +70,17 @@ import painter from "../assets/images/painter.png"
     }
 
     .logoWrapper {
-      grid-column: 1;
+      grid-column: 2;
       grid-row: 1;
       z-index: 100;
       padding: 1rem;
       background-color: transparent;
+      justify-content: flex-end;
+      margin-left: auto;
     }
 
     h1 {
-      grid-column: 2;
+      grid-column: 1;
       grid-row: 1;
       font-size: 4rem;
       max-width: 60%;
@@ -113,9 +115,11 @@ import painter from "../assets/images/painter.png"
     }
 
     figure {
-      grid-column: 1;
+      grid-column: 2;
       grid-row: 1 / 4;
       z-index: 1;
+      height: 100%;
+      overflow: hidden;
     }
 
     .locationLabel {
@@ -171,8 +175,7 @@ import painter from "../assets/images/painter.png"
   <body>
     <div class="logoWrapper"><img src={AbbyLogoSvg.src} alt="Abby logo" /></div>
     <h1>
-      <span class="how">how it works</span>
-      Your story begins inside
+      1 image says more than 1000 words
     </h1>
     <div class="locationLabel">
       <img src={LocationSvg.src} alt="Location icon" />
@@ -182,8 +185,7 @@ import painter from "../assets/images/painter.png"
       <img src={painter.src} alt="">
     </figure>
     <p>
-      <span class="whenever">Whenever you’re ready,</span> just drop by the Salon in
-      the museum. That’s where your story will come to life.
+      <span class="whenever">Your moments matter to us</span> After your visit, share your pictures - so your chapter becomes part of our story
     </p>
     <div class="progressBarWrapper">
       <ProgressBar currentStep={3} backLink="/7" nextLink="/9" ></ProgressBar>

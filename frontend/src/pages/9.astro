@@ -1,10 +1,170 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
-import ContinuationProgress from "../components/ContinuationProgress.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
+import LocationSvg from "../assets/icons/location.svg";
+import ProgressBar from "../components/ProgressBar.astro";
+import bringFriend from "../assets/images/newChapter.png"
 ---
+
+<style>
+
+
+
+  .locationLabel {
+    display: inline-flex;
+    background-color: var(--yellow);
+
+  }
+
+  body {
+    background-color: var(--white);
+  }
+
+  @media screen and (min-width: 100px) {
+
+
+
+    .logoWrapper, h1 {
+      background-color: var(--yellow);
+      
+    }
+
+    body {
+      display: grid;
+      grid-template-rows: 5vh 15vh auto 20vh;
+      height: 100vh;
+    }
+
+
+    .locationLabel {
+      position:absolute;
+      padding-right: 1rem;
+      top:23%;
+      left: 3%;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    .how {
+      display: none;
+    }
+    
+  }
+
+
+  @media screen and (min-width: 500px) {
+
+    .logoWrapper, h1 {
+      background-color: var(--white);
+      
+    }
+
+    .how {
+      display: block;
+      font-weight: 200;
+      font-size: 2rem;
+    }
+
+    .logoWrapper {
+      grid-column: 2;
+      grid-row: 1;
+      z-index: 100;
+      padding: 1rem;
+      background-color: transparent;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+
+    h1 {
+      grid-column: 1;
+      grid-row: 1;
+      font-size: 4rem;
+      max-width: 60%;
+      line-height: 1;
+      margin-left: 2rem;
+      margin-top: 2rem;
+    }
+
+    body {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 25vh auto auto 15vh;
+      height: 100vh;
+      
+      
+
+    }
+
+    p {
+      margin-top: autos;
+      max-height: 5rem;
+      align-self: flex-end;
+      padding-left: 2rem;
+      padding-bottom: 2rem;
+      
+      text-align: left;
+    }
+
+    figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    figure {
+      grid-column: 2;
+      grid-row: 1 / 4;
+      z-index: 1;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .locationLabel {
+      position: relative;
+      width: 5rem;
+      height: 2rem;
+      display: inline-flex;
+      align-items: center;
+      top: 0;
+      left: 0;
+      margin-left: 2rem;
+      
+
+    }
+
+    .locationLabel img {
+      width: 3rem;
+    }
+
+    .locationLabel span {
+      font-size: inherit;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .progressBarWrapper {
+      grid-column: 1 / 3;
+      background-color: var(--yellow);
+      
+      
+    }
+
+   
+
+    .whenever {
+      font-size: 1.5rem;
+      display: block;
+    }
+
+  }
+
+
+
+</style>
+
 
 <!doctype html>
 <html lang="en">
@@ -13,22 +173,22 @@ import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
     <ClientRouter />
   </head>
   <body>
-    <img src={AbbyLogoSvg.src} alt="Abby logo" />
-    <h1>Because stories are better together</h1>
-    <div>
-      <!-- !TODO <Image /> -->
-      <span>Share the moment</span>
+    <div class="logoWrapper"><img src={AbbyLogoSvg.src} alt="Abby logo" /></div>
+    <h1>
+      Because stories are better toghether
+    </h1>
+    <div class="locationLabel">
+      <img src={LocationSvg.src} alt="Location icon" />
+      <span>ABBY</span>
     </div>
-    <ContinuationProgress />
+    <figure>
+      <img src={bringFriend.src} alt="">
+    </figure>
     <p>
-      Come
-      <span class="bold">alone</span> or <span class="bold">bring a friend</span
-      > it’s totally up to you. If you want to share the moment, feel free to invite
-      them to join your chapter.
+      <span class="whenever">Come alone or with friend</span> If you want to share the moment, feel free to send them a personal invite to your chapter
     </p>
-    <div class="buttons">
-      <a href="./8">Back</a>
-      <a href="./10">Next</a>
+    <div class="progressBarWrapper">
+      <ProgressBar currentStep={4} backLink="/8" nextLink="/10" ></ProgressBar>
     </div>
   </body>
 </html>
