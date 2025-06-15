@@ -79,6 +79,22 @@ h1 {
 
 }
 
+@keyframes bounceDown {
+
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px); /
+  }
+}
+
+.thumbsDownLabel img {
+  animation: bounceDown 1s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+
 .qrWrapper {
   width: 50vw;
   margin: 0 auto;
