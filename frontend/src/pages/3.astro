@@ -132,3 +132,61 @@ import newChapter from "../assets/images/newChapter.png"
     </WebFooter>
   </body>
 </html>
+
+
+<script>
+    import { gsap, Power1 } from "gsap";
+
+  const mm = gsap.matchMedia();
+
+  const tl = gsap.timeline();
+  tl
+      const tlDuration = .4
+  
+
+  mm.add("(min-width: 500px)", () => {
+    const tl = gsap.timeline();
+
+    tl
+    
+
+      .from("h1, .areYouDown", {
+      opacity: 0,
+      x:-600,
+      duration: tlDuration
+    })
+
+    .from(".newChapterPic", {
+      x: 600,
+      opacity: 0,
+      duration: tlDuration,
+      ease: Power1.easeOut,
+    })
+
+
+
+  });
+
+  
+
+  mm.add("(min-width: 100px) and (max-width: 499px)", () => {
+    const tl = gsap.timeline();
+
+    
+    tl
+    .from(".headerBold", {
+      x: -300,
+      opacity: 0,
+      duration: tlDuration
+    })
+    .from(".blueBg", {
+      x: -300,
+      opacity: 0,
+      duration: tlDuration
+    })
+
+  });
+
+
+
+</script>
