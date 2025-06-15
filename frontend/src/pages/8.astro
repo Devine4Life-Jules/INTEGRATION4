@@ -10,6 +10,8 @@ import painter from "../assets/images/painter.png"
 
 <style>
 
+  
+
 
 
   .locationLabel {
@@ -33,7 +35,7 @@ import painter from "../assets/images/painter.png"
 
     body {
       display: grid;
-      grid-template-rows: 5vh 15vh auto 20vh;
+      grid-template-rows: 8vh 15vh auto 20vh;
       height: 100vh;
     }
 
@@ -44,6 +46,23 @@ import painter from "../assets/images/painter.png"
       top:23%;
       left: 3%;
     }
+
+      figure {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+
+  figure img {
+   
+    height: auto;
+    width: 200%;
+    object-fit: cover;
+    display: block;
+  }
 
     p {
       text-align: center;

@@ -166,6 +166,17 @@ canvas {
 }
 
 
+.footerBtn--blue {
+  background-color: var(--blue);
+  text-decoration: none;
+  color:var(--black);
+  font-size: 1.3rem;
+  padding: .5rem;
+  margin: .5rem;
+  
+}
+
+
 
 
 .button {
@@ -186,12 +197,52 @@ canvas {
   padding: calc(0.8em - 0.2em) 0.8em;
 }
 
+a:visited {
+  text-decoration: none;
+}
+
+.button--back:visited {
+  text-decoration: none;
+  color: var(--black);
+}
+
 
 @media screen and (min-width: 100px) {
   .footerButtons {
     display: flex;
     flex-direction: column;
     text-align: center;
+  }
+
+.logoWrapper {
+  padding-top: 3%;
+}
+
+
+    .logoWrapper {
+      grid-row: 1;
+      padding: 1rem 0.8rem;
+      z-index: 3;
+
+    }
+
+    h1 {
+      grid-row: 2;
+      padding: .2rem 0.8rem 1rem;
+      z-index: 3;
+
+    }
+
+  h1, .logoWrapper {
+    padding-left: .8rem;
+  }
+
+  p {
+    padding-top: 1rem
+  }
+
+  figure {
+    overflow: hidden;
   }
   
 }
