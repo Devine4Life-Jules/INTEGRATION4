@@ -15,6 +15,11 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
     <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
     ></script>
     <style>
+
+      body {
+        background-color: var(--yellow);
+      }
+
       #canvas {
         transform: scaleX(-1);
         margin-bottom: 0;
@@ -90,8 +95,7 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
       const tl = gsap.timeline();
 
       tl
-      
-       .from("canvas", {
+.from("canvas", {
         opacity: 0,
         scale: 0,
         duration: tlDuration

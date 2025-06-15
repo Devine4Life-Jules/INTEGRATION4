@@ -17,6 +17,16 @@ import WebFooter from "../components/WebFooter.astro";
 
   }
 
+      .fade {
+        animation: fadeLoop 3s infinite ease-in-out;
+
+    }
+
+    @keyframes fadeLoop {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
 
   .key {
     width: 12vh;
@@ -113,6 +123,7 @@ import WebFooter from "../components/WebFooter.astro";
     }
 
 
+
     .tapeWrapper {
       grid-row: 1;
       grid-column-start: span 2;
@@ -143,10 +154,10 @@ import WebFooter from "../components/WebFooter.astro";
     <div class="tapeWrapper">
       <Tape text="you are the key" />
     </div>
-    <h1 class=""><span class="headerBold">You are the key </span><span class="titleLight">to our story</span> </h1>
+    <h1 class=""><span class="headerBold">You are the key </span><br /> <span class="titleLight">to our story</span> </h1>
     <div class="lock" style={`background-image: url(${keyHoleBlack.src})`}>
       <div id="key" class="key"></div>
-      <p class="holdInstruction">click and hold to unlock</p>
+      <p class="holdInstruction fade">click and the key hold to unlock</p>
     </div>
     <div class="description">
       <h2>Dare to try?</h2>
@@ -162,6 +173,57 @@ import WebFooter from "../components/WebFooter.astro";
 
 <script>
   import { navigate } from "astro:transitions/client";
+  import { gsap } from "gsap";
+
+  const mm = gsap.matchMedia();
+
+  const tl = gsap.timeline();
+  tl
+  
+  
+
+  mm.add("(min-width: 500px)", () => {
+    const tl = gsap.timeline();
+
+    tl.from(".lock", {
+      x: 600,
+      duration: 2
+    })
+    .from(".headerBold", {
+      opacity: 0,
+      duration: 1
+    })
+    .from(".titleLight", {
+      opacity: 0,
+      duration: 1
+    })
+    .from(".description", {
+      opacity: 0,
+      duration: 1
+    });
+  });
+
+
+  mm.add("(min-width: 100px) and (max-width: 499px)", () => {
+    const tl = gsap.timeline();
+
+    
+    tl
+    .from(".headerBold", {
+      scale: 0.5,
+      opacity: 0,
+      duration: 1
+    })
+    .from(".description", {
+      opacity: 0,
+      y: 50,
+      duration: 1
+    });
+  });
+
+
+
+  gsap
 
   const $key = document.querySelector("#key") as HTMLDivElement;
 

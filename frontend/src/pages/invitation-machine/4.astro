@@ -9,6 +9,10 @@ import thumbsDown from "../../assets/illustrations/thumbsDown.svg"
 
 <style>
 
+  body {
+    background-color: var(--yellow);
+  }
+
 #qr{
   background-color: white;
 }
@@ -79,6 +83,22 @@ h1 {
 
 }
 
+@keyframes bounceDown {
+
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px); 
+  }
+}
+
+.thumbsDownLabel img {
+  animation: bounceDown 1s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+
 .qrWrapper {
   width: 50vw;
   margin: 0 auto;
@@ -136,10 +156,31 @@ h1 {
 </html>
 
 <script>
+  import { gsap } from "gsap"
   import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
   import checkDislike from "../../scripts/invitation-machine/checkDislike";
   import handleReset from "../../scripts/handleReset";
   import changeActivity from "../../scripts/invitation-machine/4/changeActivity";
+
+  console.log("GSAP loaded?", typeof gsap === "function" || typeof gsap === "object");
+  console.log("GSAP version:", gsap.version);
+
+  const tl = gsap.timeline()
+  const tlDuration = .6
+
+  tl.from(".headerIntro",{
+    opacity:0,
+    scale: 0,
+    duration: tlDuration
+  }).from("#activity",{
+    opacity:0,
+    scale: 0,
+    duration: tlDuration
+  })
+
+  console.log("js loaded");
+
+
 
   changeActivity();
   handleHandPose((pose: any) => {

@@ -8,6 +8,8 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
 
 <style>
 
+
+
   #canvas {
       display: block;
   width: 50vw;
@@ -17,6 +19,8 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
 
   body {
     padding-top: 6rem;
+    background-color: var(--yellow);
+
   }
 
   .videoBox{
@@ -41,8 +45,10 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
   }
 
 
-
+  .firstTitle {
+    text-align: center;
   }
+  
 
   h1 {
     text-align: center;
@@ -65,7 +71,7 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
       <canvas width="1000" height="1200" id="canvas"></canvas>
       <div class="videoDescripton">
         <img src={thumbs.src} alt=""><div>
-          <p>show thumbs</p><p> up to continue </p>
+          <p>show thumbs</p><p> up to continue</p>
         </div><img src={thumbs.src} alt="">
       </div>
     </div>
@@ -79,6 +85,21 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
   import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
   import checkLike from "../../scripts/invitation-machine/checkLike";
   import { navigate } from "astro:transitions/client";
+
+  import { gsap } from "gsap";
+
+  const tlDuration = .5
+  const tl = gsap.timeline();
+
+  tl.from(".firstTitle", {
+    opacity:0,
+    duration: tlDuration,
+  }).from(".videoBox", {
+    scale:0,
+    opacity:0,
+    
+    duration:tlDuration
+  })
 
   handleHandPose((pose: any) => {
     if (new URL(location.href).pathname !== "/invitation-machine/3") return;
