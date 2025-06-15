@@ -97,7 +97,7 @@ import  boardGames from "../assets/images/boardGames.png"
             <h1>
         
         <span class="blueBg">Play board games</span>
-        in living room
+        <span class="location">in our living room</span>
             </h1>
             <p>You can enjoy it solo — or bring a friend along to join your chapter</p>
       </header>
@@ -114,3 +114,34 @@ import  boardGames from "../assets/images/boardGames.png"
     </WebFooter>
   </body>
 </html>
+
+<script>
+  import {gsap, Power1} from "gsap";
+  const tl = gsap.timeline();
+  const tlDuration = .4;
+
+  tl.from(".wePicked",{
+    opacity:0,
+    x:-50,
+    duration:tlDuration,
+    ease:Power1.easeOut
+  })
+  .from(".blueBg",{
+    opacity:0,
+    x:-50,
+    duration:tlDuration,
+    ease:Power1.easeOut
+  })
+    .from(".location",{
+    opacity:0,
+    x:-50,
+    duration:tlDuration,
+    ease:Power1.easeOut
+  })
+    .from("p",{
+    opacity:0,
+    x:-50,
+    duration:tlDuration,
+    ease:Power1.easeOut
+  })
+</script>
