@@ -3,211 +3,159 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
-import LocationSvg from "../assets/icons/location.svg";
 import ProgressBar from "../components/ProgressBar.astro";
-import painter from "../assets/images/painter.png"
+import UploadJpg from "../assets/images/upload.jpg";
+import Image from "astro/components/Image.astro";
 ---
 
 <style>
-
-  
-
-
-
-  .locationLabel {
-    display: inline-flex;
-    background-color: var(--yellow);
-
-  }
-
   body {
     background-color: var(--white);
+    display: grid;
+    grid-template-rows: auto auto auto 1fr max-content;
+    grid-template-columns: 1fr;
+    max-height: 100vh;
   }
 
-  @media screen and (min-width: 100px) {
-
-
-
-    .logoWrapper, h1 {
-      background-color: var(--yellow);
-      
-    }
-
-    body {
-      display: grid;
-      grid-template-rows: 8vh 15vh auto 20vh;
-      height: 100vh;
-    }
-
-
-    .locationLabel {
-      position:absolute;
-      padding-right: 1rem;
-      top:23%;
-      left: 3%;
-    }
-
-      figure {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0 auto;
-    width: 100%;
+  .logo__wrapper,
+  .title {
+    background-color: var(--yellow);
+    padding: var(--screen-padding);
   }
 
+  .title {
+    line-height: 1.3;
+  }
 
-  figure img {
-   
+  .label {
+    background-color: var(--yellow);
+  }
+
+  .picture {
     height: auto;
-    width: 200%;
     object-fit: cover;
     display: block;
+    grid-row: 3/4;
+    grid-column: 1/2;
   }
 
-    p {
-      text-align: center;
-    }
-
-    .how {
-      display: none;
-    }
-    
+  .label {
+    background-color: var(--yellow);
+    grid-row: 3/4;
+    grid-column: 1/2;
+    z-index: 100;
+    height: max-content;
+    width: max-content;
+    align-self: end;
+    display: flex;
+    gap: 0.4em;
+    flex-direction: column;
+    padding: 0.4em;
+    line-height: 1;
+    margin: var(--screen-padding);
   }
 
+  .label__small-text {
+    font-size: 1.125rem;
+    font-weight: 300;
+  }
 
-  @media screen and (min-width: 500px) {
+  .label__big-text {
+    font-size: 1.625rem;
+    font-weight: 500;
+  }
 
-    .logoWrapper, h1 {
-      background-color: var(--white);
-      
-    }
+  .description {
+    text-align: center;
+    margin: var(--screen-padding);
+  }
 
-    .how {
-      display: block;
-      font-weight: 200;
-      font-size: 2rem;
-    }
-
-    .logoWrapper {
-      grid-column: 2;
-      grid-row: 1;
-      z-index: 100;
-      padding: 1rem;
-      background-color: transparent;
-      justify-content: flex-end;
-      margin-left: auto;
-    }
-
-    h1 {
-      grid-column: 1;
-      grid-row: 1;
-      font-size: 4rem;
-      max-width: 60%;
-      line-height: 1;
-      margin-left: 2rem;
-      margin-top: 2rem;
-    }
-
+  @media (orientation: landscape) {
     body {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 25vh auto auto 15vh;
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto 1fr max-content;
       height: 100vh;
-      
-      
-
     }
 
-    p {
-      margin-top: autos;
-      max-height: 5rem;
-      align-self: flex-end;
-      padding-left: 2rem;
-      padding-bottom: 2rem;
-      
-      text-align: left;
+    .logo__wrapper,
+    .title {
+      background: none;
     }
 
-    figure img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .logo__wrapper {
+      grid-column: 2/3;
+      grid-row: 1/2;
+      z-index: 10;
+      padding: var(--screen-padding);
+      justify-self: end;
     }
 
-    figure {
-      grid-column: 2;
+    .title {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      font-size: 4.375rem;
+      padding-bottom: 0;
+    }
+
+    .title__highlight {
+      background-color: var(--blue);
+    }
+
+    .picture {
+      grid-column: 2/3;
       grid-row: 1 / 4;
       z-index: 1;
       height: 100%;
       overflow: hidden;
+      object-fit: cover;
     }
 
-    .locationLabel {
-      position: relative;
-      width: 5rem;
-      height: 2rem;
-      display: inline-flex;
-      align-items: center;
-      top: 0;
-      left: 0;
-      margin-left: 2rem;
-      
-
+    .label {
+      grid-row: 2/3;
+      margin-top: 1em;
     }
 
-    .locationLabel img {
-      width: 3rem;
+    .description {
+      grid-row: 3/4;
+      /* grid-row: 1/2; */
+      align-self: end;
+      display: flex;
+      flex-direction: column;
+      text-align: start;
+      font-size: 1.563rem;
     }
 
-    .locationLabel span {
-      font-size: inherit;
-      font-weight: bold;
-      line-height: 1;
+    .description .bold {
+      font-size: 2.5rem;
     }
-
-    .progressBarWrapper {
-      grid-column: 1 / 3;
-      background-color: var(--yellow);
-      
-      
-    }
-
-   
-
-    .whenever {
-      font-size: 1.5rem;
-      display: block;
-    }
-
   }
-
-
-
 </style>
 
-
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    <div class="logoWrapper"><img src={AbbyLogoSvg.src} alt="Abby logo" /></div>
-    <h1>
-      1 image says more than 1000 words
+    <div class="logo__wrapper">
+      <img class="logo" src={AbbyLogoSvg.src} alt="Abby logo" />
+    </div>
+    <h1 class="title">
+      <span class="title__highlight">1 image</span> says more than 1000 words
     </h1>
-    <div class="locationLabel">
-      <img src={LocationSvg.src} alt="Location icon" />
-      <span>ABBY</span>
+    <Image
+      class={"picture"}
+      src={UploadJpg}
+      alt="a guy painting on canvas and a child's face"
+    />
+    <div class="label">
+      <span class="label__small-text">snap and upload your</span>
+      <span class="label__big-text">Pictures</span>
     </div>
-    <figure>
-      <img src={painter.src} alt="">
-    </figure>
-    <p>
-      <span class="whenever">Your moments matter to us</span> After your visit, share your pictures - so your chapter becomes part of our story
+    <p class="description">
+      <span class="bold">Your moments matter to us</span> After your visit, share
+      your pictures - so your chapter becomes part of our story
     </p>
-    <div class="progressBarWrapper">
-      <ProgressBar currentStep={3} backLink="/7" nextLink="/9" ></ProgressBar>
-    </div>
+    <ProgressBar currentStep={3} backLink="/7" nextLink="/9" />
   </body>
 </html>

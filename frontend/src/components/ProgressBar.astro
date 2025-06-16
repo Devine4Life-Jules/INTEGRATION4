@@ -10,7 +10,6 @@ const totalSteps = 4;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    
   }
 
   a:visited {
@@ -31,40 +30,36 @@ const totalSteps = 4;
     position: relative;
   }
 
-    .square.filled {
+  .square.filled {
     background-color: var(--blue);
   }
 
   .square:not(:last-child)::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 100%;
-    width: .6rem; /* length of line */
+    width: 0.6rem; /* length of line */
     height: 2px;
     background-color: var(--blue);
     transform: translateY(-50%);
   }
 
-  @media screen and (min-width:500px) {
+  @media (orientation: landscape) {
     .wrapper {
-        grid-column: 1 / 3;
+      grid-column: 1 / 3;
+      background: var(--yellow);
     }
-    
   }
-
-
-
 </style>
 <div class="wrapper">
-    <a class="button--back" href={Astro.props.backLink}>back</a>
-    <div class="progress">
+  <a class="button button--back" href={Astro.props.backLink}>back</a>
+  <div class="progress">
     {
       Array.from({ length: totalSteps }).map((_, i) => (
-        <div class={`square ${i < currentStep ? 'filled' : ''}`}></div>
+        <div class={`square ${i < currentStep ? "filled" : ""}`} />
       ))
     }
-    </div>
-    <a class="button"  href={Astro.props.nextLink}>next</a>
+  </div>
+  <a class="button" href={Astro.props.nextLink}>next</a>
 </div>
-
