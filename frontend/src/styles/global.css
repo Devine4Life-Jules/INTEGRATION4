@@ -72,6 +72,7 @@ canvas {
 
 .blueBg {
   background-color: var(--blue);
+  padding: .05rem .3rem;
 }
 
 .greenBg {

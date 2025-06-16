@@ -9,12 +9,53 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
 <style>
 
 
+@keyframes bounceUp {
+
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px); 
+  }
+}
+
+
+  .blueBg {
+    padding: .1rem 1rem;
+    margin-top:3rem;
+  }
 
   #canvas {
-      display: block;
+  display: block;
   width: 50vw;
   height: 25vh;
     
+  }
+
+  .show {
+    font-size: 1em;
+  }
+
+  .continue {
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
+
+
+  h1 {
+    margin-bottom: 5rem;
+    text-align: center;
+  }
+
+  p {
+    line-height: .5;
+  }
+
+  .thumbsUp {
+    display: block;
+    width: 5vw;
+    animation: bounceUp 1s ease-in-out infinite;
+    animation-delay: 3s;
   }
 
   body {
@@ -28,21 +69,20 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
     background-color: var(--white);
     margin: 3rem auto;
     padding: 2rem;
+    padding-bottom: 5rem;
     width: 50vw;
   }
 
   .videoDescripton {
     display: flex;
     justify-content: center;
+    gap: 2rem;
+    align-items: flex-end;
     text-align: center;
 
   
   }
 
-  .videoDescripton p {
-    margin: 3rem;
-    font-size: 1.9rem;
-  }
 
 
   .firstTitle {
@@ -70,9 +110,10 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
     <div class="videoBox">
       <canvas width="1000" height="1200" id="canvas"></canvas>
       <div class="videoDescripton">
-        <img src={thumbs.src} alt=""><div>
-          <p>show thumbs</p><p> up to continue</p>
-        </div><img src={thumbs.src} alt="">
+        <img class="thumbsUp" src={thumbs.src} alt="thumbsUp"><div>
+          <p class="show">show thumbs up</p>
+          <p class="continue"> to continue</p>
+        </div><img class="thumbsUp" src={thumbs.src} alt="thumbsUp">
       </div>
     </div>
     <!-- !TODO visualization of a user story -->
@@ -85,9 +126,9 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
   import { handleHandPose } from "../../scripts/invitation-machine/handlePose";
   import checkLike from "../../scripts/invitation-machine/checkLike";
   import { navigate } from "astro:transitions/client";
-
   import { gsap } from "gsap";
 
+  
   const tlDuration = .5
   const tl = gsap.timeline();
 
