@@ -59,10 +59,20 @@ import newChapter from "../assets/images/newChapter.png"
           display: grid;
           grid-template-rows: auto auto auto auto;
           grid-template-columns: 1fr 1fr;
+          height: 100vh;
         }
         h1 {
           grid-column: 1;
           font-size: 4rem;
+        }
+
+        .newChapterPic {
+          width: 100%;
+        }
+
+        .newChapterPic img {
+          width: 100%;
+          object-fit: cover;
         }
 
 
@@ -84,8 +94,6 @@ import newChapter from "../assets/images/newChapter.png"
 
 
         .newChapterPic img {
-          max-height: 100%;
-          max-width: 100%;
           height: auto;
           width: auto;
           object-fit: contain; 
