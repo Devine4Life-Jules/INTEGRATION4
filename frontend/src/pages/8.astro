@@ -12,8 +12,9 @@ import Image from "astro/components/Image.astro";
   body {
     background-color: var(--white);
     display: grid;
-    grid-template-rows: auto auto auto 1fr auto;
-    height: 100vh;
+    grid-template-rows: auto auto auto 1fr max-content;
+    grid-template-columns: 1fr;
+    max-height: 100vh;
   }
 
   .logo__wrapper,
@@ -31,13 +32,14 @@ import Image from "astro/components/Image.astro";
   }
 
   .picture {
-    position: relative;
-  }
-
-  .picture__img {
     height: auto;
     object-fit: cover;
     display: block;
+  }
+
+  .label {
+    background-color: var(--yellow);
+    grid-row: 3/4;
   }
 
   .description {
@@ -45,40 +47,32 @@ import Image from "astro/components/Image.astro";
     margin: var(--screen-padding);
   }
 
-  @media screen and (min-width: 500px) {
-    .logoWrapper,
-    h1 {
-      background-color: var(--white);
+  /* @media (orientation: landscape) {
+    .logo__wrapper,
+    .title {
+      background: none;
     }
 
-    .how {
-      display: block;
-      font-weight: 200;
-      font-size: 2rem;
+    .logo__wrapper {
+      grid-column: 2/3;
+      grid-row: 1/2;
+      z-index: 10;
+      padding: var(--screen-padding);
+      justify-self: end;
     }
 
-    .logoWrapper {
-      grid-column: 2;
-      grid-row: 1;
-      z-index: 100;
-      padding: 1rem;
-      background-color: transparent;
-      justify-content: flex-end;
-      margin-left: auto;
+    .title {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      font-size: 4.375rem;
     }
 
-    h1 {
-      grid-column: 1;
-      grid-row: 1;
-      font-size: 4rem;
-      max-width: 60%;
-      line-height: 1;
-      margin-left: 2rem;
-      margin-top: 2rem;
+    .title__highlight {
+      background-color: var(--blue);
     }
 
     body {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: auto auto;
       grid-template-rows: 25vh auto auto 15vh;
       height: 100vh;
     }
@@ -137,7 +131,7 @@ import Image from "astro/components/Image.astro";
       font-size: 1.5rem;
       display: block;
     }
-  }
+  } */
 </style>
 
 <html lang="en">
@@ -149,18 +143,18 @@ import Image from "astro/components/Image.astro";
     <div class="logo__wrapper">
       <img class="logo" src={AbbyLogoSvg.src} alt="Abby logo" />
     </div>
-    <h1 class="title">1 image says more than 1000 words</h1>
-    <figure class="picture">
-      <Image
-        class={"picture__img"}
-        src={UploadJpg}
-        alt="a guy painting on canvas and a child's face"
-      />
-      <figcaption>
-        <span class="label__small-text">snap and upload your</span>
-        <span class="label__big-text">Pictures</span>
-      </figcaption>
-    </figure>
+    <h1 class="title">
+      <span class="title__highlight">1 image</span> says more than 1000 words
+    </h1>
+    <Image
+      class={"picture"}
+      src={UploadJpg}
+      alt="a guy painting on canvas and a child's face"
+    />
+    <!-- <div class="label">
+      <span class="label__small-text">snap and upload your</span>
+      <span class="label__big-text">Pictures</span>
+    </div> -->
     <p class="description">
       <span class="bold">Your moments matter to us</span> After your visit, share
       your pictures - so your chapter becomes part of our story
