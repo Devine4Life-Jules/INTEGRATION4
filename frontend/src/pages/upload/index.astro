@@ -14,6 +14,10 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
     height: 100vh;
   }
 
+  .form__file__container.success {
+  background-color: #b6f7b0; /* soft green */
+}
+
   .picture {
     display: none;
   }
@@ -92,6 +96,11 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
   }
 
   @media (orientation: landscape) {
+
+    .form__file__container.success {
+  background-color: #b6f7b0;
+}
+
     body {
       grid-template-columns: auto auto;
       grid-template-rows: auto 1fr max-content;
@@ -237,13 +246,19 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
     </form>
     <div class="buttons">
       <a class="button button--back">Back</a>
-      <button class="button">Upload</button>
+      <button class="button submit">Upload</button>
     </div>
   </body>
 </html>
 
 <script>
   import { API_URL } from "../../consts";
+
+
+
+  const dropZone = document.querySelector(".form__file__container");
+  const fileInput = document.getElementById("picture-input");
+  let droppedFile = null;
 
   const $form = document.querySelector("#form") as HTMLFormElement;
   const $submit = document.querySelector(".submit") as HTMLButtonElement;
@@ -266,7 +281,7 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
       body: picture,
     });
 
-
+xs
 
 
 
@@ -309,4 +324,56 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
       }),
     });
   });
+
+
+
+  const setUploadSuccessState = () => {
+  if (fileInput.files && fileInput.files.length > 0) {
+    dropZone.classList.add("success");
+  } else {
+    dropZone.classList.remove("success");
+  }
+}
+
+fileInput.addEventListener("change", setUploadSuccessState);
+
+
+
+  document.querySelector(".form__file__button").addEventListener("click", (e) => {
+  e.preventDefault();
+  document.getElementById("picture-input").click();
+  
+});
+
+
+dropZone.addEventListener("drop", (e) => {
+  e.preventDefault();
+  dropZone.classList.remove("dragover");
+  dropZone.classList.add("dragover");
+
+  const files = e.dataTransfer.files;
+  if (files.length) {
+    droppedFile = files[0];
+    setUploadSuccessState();
+
+    console.log("File dropped:", droppedFile);
+  }
+});
+
+$submit.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  const fileToUpload = droppedFile || fileInput.files[0];
+  if (!fileToUpload) return;
+
+  const files = e.dataTransfer.files;
+  if (files.length) {
+    fileInput.files = files;
+    setUploadSuccessState();
+
+
+    // Optional: preview or show filename
+    console.log("File dropped:", files[0]);
+  }
+});
 </script>
