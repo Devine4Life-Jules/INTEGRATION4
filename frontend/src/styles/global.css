@@ -102,9 +102,9 @@ canvas {
   margin-top: 6rem;
 }
 
-    .titleLight {
-      font-weight: 400;
-    }
+.titleLight {
+  font-weight: 400;
+}
 
 .installationBody {
   display: flex;
@@ -157,6 +157,10 @@ canvas {
   
 }
 
+.footerBtn:hover, .footerBtn--secondary:hover {
+  background-color: var(--blue);
+}
+
 
 .footerBtn--secondary {
   border: 2px solid var(--green);
@@ -193,6 +197,10 @@ canvas {
   border: none;
   display: block;
   text-align: center;
+}
+
+.button:hover {
+  background-color: var(--blue);
 }
 
 .button--back {
@@ -244,6 +252,10 @@ a:visited {
   p {
     padding-top: 1rem
   }
+
+  .buttons__button:hover {
+  background-color: var(--blue);
+}
 
   figure {
     overflow: hidden;
