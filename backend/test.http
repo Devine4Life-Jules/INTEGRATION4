@@ -4,7 +4,7 @@
 @imagePath = /Users/oliwierzgorniak/Pictures/igi.png
 
 
-POST {{baseUrl}}/jsonapi/node/story/field_picture HTTP/1.1
+POST {{remoteBaseUrl}}/drupal/jsonapi/node/story/field_picture HTTP/1.1
 Content-Type: application/octet-stream
 Accept: application/vnd.api+json
 Content-Disposition: file; filename="igi.png"
@@ -12,7 +12,7 @@ Content-Disposition: file; filename="igi.png"
 < {{imagePath}}
 
 ###
-POST http://localhost:8080/jsonapi/node/story HTTP/1.1
+POST {{remoteBaseUrl}}/drupal/jsonapi/node/story HTTP/1.1
 Content-Type: application/vnd.api+json
 Accept: application/vnd.api+json
 
@@ -22,13 +22,13 @@ Accept: application/vnd.api+json
     "attributes": {
       "title": "8",
       "field_username": "oliwier",
-      "field_description": "Playing cards"
+      "field_message": "Playing cards"
     },
     "relationships": {
       "field_picture": {
         "data": {
           "type": "file--file",
-          "id": "13b93af5-7384-4e2d-8769-83ba0310f08a"
+          "id": "866aa30d-4782-49ce-9774-77de7ccd1bfb"
         }
       }
     }

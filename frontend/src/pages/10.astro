@@ -1,6 +1,4 @@
-
 ---
-
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
@@ -9,13 +7,9 @@ import ProgressBar from "../components/ProgressBar.astro";
 ---
 
 <style>
-
-
-
   .locationLabel {
     display: inline-flex;
     background-color: var(--yellow);
-
   }
 
   body {
@@ -24,20 +18,15 @@ import ProgressBar from "../components/ProgressBar.astro";
   }
 
   .iframeContainer {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
   }
 
-
-
   @media screen and (min-width: 100px) {
-
-
-
-    .logoWrapper, h1 {
+    .logoWrapper,
+    h1 {
       background-color: var(--yellow);
-      
     }
 
     body {
@@ -45,17 +34,12 @@ import ProgressBar from "../components/ProgressBar.astro";
       grid-template-rows: 8vh 15vh auto 20vh;
     }
 
-
-
-
     .locationLabel {
-      position:absolute;
+      position: absolute;
       padding-right: 1rem;
-      top:23%;
+      top: 23%;
       left: 3%;
     }
-
-
 
     p {
       text-align: center;
@@ -68,18 +52,13 @@ import ProgressBar from "../components/ProgressBar.astro";
     footer {
       display: flex;
       flex-direction: column;
-
     }
-    
-    
   }
 
-
   @media screen and (min-width: 500px) {
-
-    .logoWrapper, h1 {
+    .logoWrapper,
+    h1 {
       background-color: var(--white);
-      
     }
 
     .how {
@@ -112,9 +91,6 @@ import ProgressBar from "../components/ProgressBar.astro";
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 25vh auto auto 15vh;
       height: 100vh;
-      
-      
-
     }
 
     p {
@@ -123,7 +99,7 @@ import ProgressBar from "../components/ProgressBar.astro";
       align-self: flex-end;
       padding-left: 2rem;
       padding-bottom: 2rem;
-      
+
       text-align: left;
     }
 
@@ -137,7 +113,6 @@ import ProgressBar from "../components/ProgressBar.astro";
       grid-column: 1;
       grid-row: 1 / 4;
       z-index: 1;
-
     }
 
     .locationLabel {
@@ -149,8 +124,6 @@ import ProgressBar from "../components/ProgressBar.astro";
       top: 0;
       left: 0;
       margin-left: 2rem;
-      
-
     }
 
     .locationLabel img {
@@ -168,40 +141,27 @@ import ProgressBar from "../components/ProgressBar.astro";
       background-color: var(--yellow);
       align-items: center;
       flex-direction: row;
-      
-      
-      
     }
 
-    .footerBtn{
+    .footerBtn {
       margin-left: auto;
-      
     }
-
 
     .iframeContainer iframe {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
-   
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
 
     .whenever {
       font-size: 1.5rem;
       display: block;
     }
-
   }
-
-
-
 </style>
 
-
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
@@ -209,43 +169,28 @@ import ProgressBar from "../components/ProgressBar.astro";
   </head>
   <body>
     <div class="logoWrapper"><img src={AbbyLogoSvg.src} alt="Abby logo" /></div>
-    <h1>
-      Now you know how it works
-    </h1>
+    <h1>Now you know how it works</h1>
 
     <div class="iframeContainer">
-         <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2520.0948520386924!2d3.2670543133349703!3d50.829406971548806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c33bdfbfa9a1f5%3A0xd60955fa51b1a1b9!2sAbby%20Kortrijk!5e0!3m2!1sen!2sbe!4v1749760662309!5m2!1sen!2sbe"
-      width="600"
-      height="450"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2520.0948520386924!2d3.2670543133349703!3d50.829406971548806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c33bdfbfa9a1f5%3A0xd60955fa51b1a1b9!2sAbby%20Kortrijk!5e0!3m2!1sen!2sbe!4v1749760662309!5m2!1sen!2sbe"
+        width="600"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <p>
-      Visit Abby whenever you’d like. We’re looking forward to seeing what you’ll share. No rush - visit Abby whenever you’d like.
+      Visit Abby whenever you’d like. We’re looking forward to seeing what
+      you’ll share. No rush - visit Abby whenever you’d like.
     </p>
     <footer>
-        <a class="footerBtn--secondary" href="/9">Back</a>
-        <a class="footerBtn--blue" href="/11">Invite a friend</a>
-        <a class="footerBtn" href="/story">Our Shared Story</a>
+      <a class="footerBtn--secondary" href="/9">Back</a>
+      <a class="footerBtn--blue" href="/11">Invite a friend</a>
+      <a class="footerBtn" href={"/story?back=" + encodeURI("/10")}
+        >Our Shared Story</a
+      >
     </footer>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

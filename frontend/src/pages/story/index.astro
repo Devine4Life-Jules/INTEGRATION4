@@ -91,6 +91,7 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
     width: 90vw;
     align-items: flex-end;
     margin-bottom: 1.8em;
+    flex-direction: row-reverse;
   }
 </style>
 
@@ -119,14 +120,29 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
       </div>
     </div>
     <div class="buttons">
+      <a class="button" href={"/upload?back" + encodeURI("/story")}
+        >Upload your pictures</a
+      >
       <a class="button button--back" href="/10">Back</a>
-      <a class="button" href="/upload">upload pictures</a>
     </div>
   </body>
 </html>
 
 <script>
   import { API_URL } from "../../consts";
+
+  // handle back button
+  const $backButton = document.querySelector(
+    ".buttons .button--back"
+  ) as HTMLAnchorElement;
+  const searchParams = new URL(location.href).searchParams;
+
+  const backParam = searchParams.get("back");
+  if (!backParam) {
+    $backButton.classList.add("hidden");
+  } else {
+    $backButton.href = backParam;
+  }
 
   const res = await fetch(
     `${API_URL}/drupal/jsonapi/node/story?include=field_picture`

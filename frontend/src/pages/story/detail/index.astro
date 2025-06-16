@@ -134,7 +134,7 @@ import AbbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
   const storyId = new URL(location.href).searchParams.get("id");
 
   const res = await fetch(
-    `${API_URL}/jsonapi/node/story/${storyId}?include=field_picture`
+    `${API_URL}/drupal/jsonapi/node/story/${storyId}?include=field_picture`
   );
   const data = await res.json();
 

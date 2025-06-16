@@ -5,6 +5,7 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
 import { Image } from "astro:assets";
 import UploadJpg from "../../assets/images/upload.jpg";
 import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
+import DoneSvg from "../../assets/icons/done.svg";
 ---
 
 <style>
@@ -89,6 +90,7 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
     padding: var(--screen-padding);
     align-items: center;
     justify-content: space-between;
+    flex-direction: row-reverse;
   }
 
   @media (orientation: landscape) {
@@ -154,7 +156,8 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
       display: none;
     }
 
-    .form__file__icon {
+    .form__file__icon,
+    .form__file__icon-uploaded {
       display: initial;
       padding: 1.5em;
       border: 0.2em solid var(--black);
@@ -178,6 +181,15 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
       grid-column: 1/3;
       background-color: var(--yellow);
     }
+
+    .solid-border {
+      border-style: solid;
+      border-color: var(--green);
+    }
+
+    /* .buttons__upload {
+      justify-self: flex-end;
+    } */
   }
 </style>
 
@@ -208,6 +220,11 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
           src={ArrowUpSvg.src}
           alt="Arrow up icon"
         />
+        <img
+          class="form__file__icon-uploaded hidden"
+          alt="done icon"
+          src={DoneSvg.src}
+        />
         <p class="form__file__text">
           Drop your image here or <button class="form__file__button"
             >browse</button
@@ -236,17 +253,136 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
       >
     </form>
     <div class="buttons">
-      <a class="button button--back" href="/story">Back</a>
-      <button class="button">Upload</button>
+      <button class="buttons__upload button">Upload</button>
+      <a class="button button--back">Back</a>
     </div>
   </body>
 </html>
 
 <script>
+  import { navigate } from "astro:transitions/client";
   import { API_URL } from "../../consts";
+  import heic2any from "heic2any";
+
+  // handle back button
+  const $backButton = document.querySelector(
+    ".buttons .button--back"
+  ) as HTMLAnchorElement;
+  const searchParams = new URL(location.href).searchParams;
+
+  const backParam = searchParams.get("back");
+  if (!backParam) {
+    $backButton.classList.add("hidden");
+  } else {
+    $backButton.href = backParam;
+  }
+
+  // handle browse button
+  const $browse = document.querySelector(
+    ".form__file__button"
+  ) as HTMLButtonElement;
+  const $inputFile = document.querySelector(
+    ".form__file__input"
+  ) as HTMLInputElement;
+
+  $browse.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    $inputFile.click();
+    $inputFile.addEventListener("change", () => {
+      showImageUploaded();
+    });
+  });
+
+  const $fileContainer = document.querySelector(
+    ".form__file__container"
+  ) as HTMLDivElement;
+  const $fileIcon = document.querySelector(
+    ".form__file__icon"
+  ) as HTMLImageElement;
+  const $fileIconUploaded = document.querySelector(
+    ".form__file__icon-uploaded"
+  ) as HTMLImageElement;
+  $fileContainer.addEventListener("dragover", (e) => e.preventDefault());
+
+  const IMAGE_SIZE = 920;
+
+  const getImgOffset = (image: any, option: string) => {
+    const imageCanvasRatio = image[option] / IMAGE_SIZE;
+    const diffrence = image[option] - IMAGE_SIZE;
+    const scaledDifference = diffrence / imageCanvasRatio;
+    return scaledDifference / 2;
+  };
+
+  const getCroppedJpg = async (file: File) => {
+    let blob: File | Blob = file;
+    // Convert HEIC to JPEG if needed
+    if (
+      file.type === "image/heic" ||
+      file.name.toLowerCase().endsWith(".heic")
+    ) {
+      blob = (await heic2any({
+        blob: file,
+        toType: "image/jpeg",
+        quality: 0.8,
+      })) as Blob;
+    }
+    // Optional: Resize/compress using Canvas
+    const img = new Image();
+    const canvas = document.createElement("canvas");
+    return new Promise((resolve) => {
+      img.src = URL.createObjectURL(blob);
+      img.onload = () => {
+        canvas.width = 920;
+        canvas.height = 920;
+        const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+        const offset =
+          img.width < img.height
+            ? getImgOffset(img, "height")
+            : getImgOffset(img, "width");
+
+        if (img.width < img.height) {
+          ctx.drawImage(img, 0, -offset, canvas.width, canvas.height + offset);
+        } else {
+          ctx.drawImage(img, -offset, 0, canvas.width + offset, canvas.height);
+        }
+
+        // const $a = document.createElement("a");
+        // $a.href = canvas.toDataURL();
+        // $a.download = "img.png";
+        // $a.click();
+        canvas.toBlob((newBlob) => resolve(newBlob), "image/jpeg", 0.8);
+        URL.revokeObjectURL(img.src);
+      };
+    });
+  };
+
+  $fileContainer.addEventListener("drop", async (e) => {
+    e.preventDefault();
+
+    if (!e.dataTransfer) return;
+    if (!e.dataTransfer.files) return;
+
+    const blob = (await getCroppedJpg(e.dataTransfer.files[0])) as Blob;
+    const dataTransfer = new DataTransfer();
+    const file = new File([blob], "activity.jpg");
+    dataTransfer.items.add(file);
+
+    $inputFile.files = dataTransfer.files;
+    showImageUploaded();
+  });
+
+  const showImageUploaded = () => {
+    $fileIcon.classList.add("hidden");
+    $fileIconUploaded.classList.remove("hidden");
+    $fileContainer.classList.add("solid-border");
+  };
 
   const $form = document.querySelector("#form") as HTMLFormElement;
-  const $submit = document.querySelector(".submit") as HTMLButtonElement;
+  const $submit = document.querySelector(
+    ".buttons__upload"
+  ) as HTMLButtonElement;
   $submit.addEventListener("click", async (e) => {
     e.preventDefault();
     const $fileInput = $form.querySelector(
@@ -256,15 +392,18 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
     if (!$fileInput.files || $fileInput.files.length === 0) return;
 
     const picture = $fileInput.files[0];
-    const res = await fetch(`${API_URL}/jsonapi/node/story/field_picture`, {
-      method: "POST",
-      headers: {
-        Accept: "application/vnd.api+json",
-        "Content-Type": "application/octet-stream",
-        "Content-Disposition": `file; filename="${picture.name}"`,
-      },
-      body: picture,
-    });
+    const res = await fetch(
+      `${API_URL}/drupal/jsonapi/node/story/field_picture`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/vnd.api+json",
+          "Content-Type": "application/octet-stream",
+          "Content-Disposition": `file; filename="${picture.name}"`,
+        },
+        body: picture,
+      }
+    );
     const resJson = await res.json();
     const pictureId = resJson?.data.id as string | undefined;
 
@@ -278,7 +417,8 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
     const usernname = data.get("username");
     const description = data.get("message");
 
-    await fetch(`${API_URL}/jsonapi/node/story`, {
+    // !TODO handle error
+    await fetch(`${API_URL}/drupal/jsonapi/node/story`, {
       method: "POST",
       headers: {
         "Content-Type": "application/vnd.api+json",
@@ -290,7 +430,7 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
           attributes: {
             title: Date.now(),
             field_username: usernname,
-            field_description: description,
+            field_message: description,
           },
           relationships: {
             field_picture: {
@@ -303,5 +443,7 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
         },
       }),
     });
+
+    navigate("/upload/complete");
   });
 </script>
