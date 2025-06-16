@@ -89,7 +89,6 @@ import WebFooter from "../components/WebFooter.astro";
     @media screen and (min-width: 500px){
 
 
-
       body {
         display: grid;
         grid-template-rows: 5vh 42vh 42vh auto;
@@ -133,9 +132,6 @@ import WebFooter from "../components/WebFooter.astro";
       background-color: var(--green);
       height: 100%;
       padding-top:.5rem;
-      
-      
-      
     }
 
 
@@ -176,11 +172,7 @@ import WebFooter from "../components/WebFooter.astro";
   import { gsap } from "gsap";
 
   const mm = gsap.matchMedia();
-
   const tl = gsap.timeline();
-  tl
-  
-  
 
   mm.add("(min-width: 500px)", () => {
     const tl = gsap.timeline();
@@ -221,9 +213,6 @@ import WebFooter from "../components/WebFooter.astro";
     });
   });
 
-
-
-  gsap
 
   const $key = document.querySelector("#key") as HTMLDivElement;
 

@@ -122,8 +122,24 @@ import Polaroid from "../../../components/Polaroid.astro";
       </p>
     </div>
     <div class="buttons">
-      <a class="button" href="/story">See our shared story</a>
-      <a class="button button--back" href="/4?another">Start another chapter</a>
+      <a class="button" href={"/story?back=/upload/complete"}
+        >See our shared story</a
+      >
+      <a class="button button--back" href="/4">Start another chapter</a>
     </div>
   </body>
 </html>
+
+<script>
+  const $backButton = document.querySelector(
+    ".buttons .button--back"
+  ) as HTMLAnchorElement;
+  const searchParams = new URL(location.href).searchParams;
+
+  const backParam = searchParams.get("back");
+  if (!backParam) {
+    $backButton.classList.add("hidden");
+  } else {
+    $backButton.href = backParam;
+  }
+</script>

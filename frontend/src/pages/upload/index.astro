@@ -90,6 +90,7 @@ import DoneSvg from "../../assets/icons/done.svg";
     padding: var(--screen-padding);
     align-items: center;
     justify-content: space-between;
+    flex-direction: row-reverse;
   }
 
   @media (orientation: landscape) {
@@ -185,6 +186,10 @@ import DoneSvg from "../../assets/icons/done.svg";
       border-style: solid;
       border-color: var(--green);
     }
+
+    /* .buttons__upload {
+      justify-self: flex-end;
+    } */
   }
 </style>
 
@@ -248,8 +253,8 @@ import DoneSvg from "../../assets/icons/done.svg";
       >
     </form>
     <div class="buttons">
-      <a class="button button--back">Back</a>
       <button class="buttons__upload button">Upload</button>
+      <a class="button button--back">Back</a>
     </div>
   </body>
 </html>
@@ -258,6 +263,19 @@ import DoneSvg from "../../assets/icons/done.svg";
   import { navigate } from "astro:transitions/client";
   import { API_URL } from "../../consts";
   import heic2any from "heic2any";
+
+  // handle back button
+  const $backButton = document.querySelector(
+    ".buttons .button--back"
+  ) as HTMLAnchorElement;
+  const searchParams = new URL(location.href).searchParams;
+
+  const backParam = searchParams.get("back");
+  if (!backParam) {
+    $backButton.classList.add("hidden");
+  } else {
+    $backButton.href = backParam;
+  }
 
   // handle browse button
   const $browse = document.querySelector(
@@ -374,7 +392,6 @@ import DoneSvg from "../../assets/icons/done.svg";
     if (!$fileInput.files || $fileInput.files.length === 0) return;
 
     const picture = $fileInput.files[0];
-    console.log(picture);
     const res = await fetch(
       `${API_URL}/drupal/jsonapi/node/story/field_picture`,
       {
