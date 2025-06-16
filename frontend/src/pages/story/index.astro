@@ -128,7 +128,7 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
   import { API_URL } from "../../consts";
 
   const res = await fetch(
-    `${API_URL}/jsonapi/node/story?include=field_picture`
+    `${API_URL}/drupal/jsonapi/node/story?include=field_picture`
   );
   const data = await res.json();
   const parsedData = data.data.map((story: any, i: number) => {

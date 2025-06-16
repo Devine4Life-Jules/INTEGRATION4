@@ -3,83 +3,52 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
-import LocationSvg from "../assets/icons/location.svg";
 import ProgressBar from "../components/ProgressBar.astro";
-import painter from "../assets/images/painter.png"
+import UploadJpg from "../assets/images/upload.jpg";
+import Image from "astro/components/Image.astro";
 ---
 
 <style>
-
-  
-
-
-
-  .locationLabel {
-    display: inline-flex;
-    background-color: var(--yellow);
-
-  }
-
   body {
     background-color: var(--white);
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+    height: 100vh;
   }
 
-  @media screen and (min-width: 100px) {
-
-
-
-    .logoWrapper, h1 {
-      background-color: var(--yellow);
-      
-    }
-
-    body {
-      display: grid;
-      grid-template-rows: 8vh 15vh auto 20vh;
-      height: 100vh;
-    }
-
-
-    .locationLabel {
-      position:absolute;
-      padding-right: 1rem;
-      top:23%;
-      left: 3%;
-    }
-
-      figure {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0 auto;
-    width: 100%;
+  .logo__wrapper,
+  .title {
+    background-color: var(--yellow);
+    padding: var(--screen-padding);
   }
 
+  .title {
+    line-height: 1.3;
+  }
 
-  figure img {
-   
+  .label {
+    background-color: var(--yellow);
+  }
+
+  .picture {
+    position: relative;
+  }
+
+  .picture__img {
     height: auto;
-    width: 200%;
     object-fit: cover;
     display: block;
   }
 
-    p {
-      text-align: center;
-    }
-
-    .how {
-      display: none;
-    }
-    
+  .description {
+    text-align: center;
+    margin: var(--screen-padding);
   }
 
-
   @media screen and (min-width: 500px) {
-
-    .logoWrapper, h1 {
+    .logoWrapper,
+    h1 {
       background-color: var(--white);
-      
     }
 
     .how {
@@ -112,9 +81,6 @@ import painter from "../assets/images/painter.png"
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 25vh auto auto 15vh;
       height: 100vh;
-      
-      
-
     }
 
     p {
@@ -123,7 +89,7 @@ import painter from "../assets/images/painter.png"
       align-self: flex-end;
       padding-left: 2rem;
       padding-bottom: 2rem;
-      
+
       text-align: left;
     }
 
@@ -150,8 +116,6 @@ import painter from "../assets/images/painter.png"
       top: 0;
       left: 0;
       margin-left: 2rem;
-      
-
     }
 
     .locationLabel img {
@@ -167,47 +131,40 @@ import painter from "../assets/images/painter.png"
     .progressBarWrapper {
       grid-column: 1 / 3;
       background-color: var(--yellow);
-      
-      
     }
-
-   
 
     .whenever {
       font-size: 1.5rem;
       display: block;
     }
-
   }
-
-
-
 </style>
 
-
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    <div class="logoWrapper"><img src={AbbyLogoSvg.src} alt="Abby logo" /></div>
-    <h1>
-      1 image says more than 1000 words
-    </h1>
-    <div class="locationLabel">
-      <img src={LocationSvg.src} alt="Location icon" />
-      <span>ABBY</span>
+    <div class="logo__wrapper">
+      <img class="logo" src={AbbyLogoSvg.src} alt="Abby logo" />
     </div>
-    <figure>
-      <img src={painter.src} alt="">
+    <h1 class="title">1 image says more than 1000 words</h1>
+    <figure class="picture">
+      <Image
+        class={"picture__img"}
+        src={UploadJpg}
+        alt="a guy painting on canvas and a child's face"
+      />
+      <figcaption>
+        <span class="label__small-text">snap and upload your</span>
+        <span class="label__big-text">Pictures</span>
+      </figcaption>
     </figure>
-    <p>
-      <span class="whenever">Your moments matter to us</span> After your visit, share your pictures - so your chapter becomes part of our story
+    <p class="description">
+      <span class="bold">Your moments matter to us</span> After your visit, share
+      your pictures - so your chapter becomes part of our story
     </p>
-    <div class="progressBarWrapper">
-      <ProgressBar currentStep={3} backLink="/7" nextLink="/9" ></ProgressBar>
-    </div>
+    <ProgressBar currentStep={3} backLink="/7" nextLink="/9" />
   </body>
 </html>
