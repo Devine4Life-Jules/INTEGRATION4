@@ -127,8 +127,8 @@ import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
   <body>
     <img class="container__logo" src={abbySvg.src} alt="Abby logo" />
     <h1 class="container__title">
-      Hey,
-      <span class="blueBg">ready to begin</span> your journey<span
+      <span class="hey">Hey,</span>
+      <span class="blueBg">ready to begin</span> <span class="yourJourney">your journey</span><span
         class="container__title__question-mark">?</span
       >
     </h1>
@@ -144,3 +144,31 @@ import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
     </div>
   </body>
 </html>
+
+
+<script>
+  import {gsap, Power1} from "gsap";
+  const tl = gsap.timeline();
+  const tlDuration = .4;
+  tl
+  .from(".hey", {
+    opacity:0,
+    x:-50,
+    duration:tlDuration
+  })
+    .from(".blueBg", {
+    opacity:0,
+    x:-50,
+    duration:tlDuration
+  })
+    .from(".yourJourney, .container__title__question-mark", {
+    opacity:0,
+    x:-50,
+    duration:tlDuration
+  })
+      .from("p", {
+    opacity:0,
+    x:-50,
+    duration:tlDuration
+  })
+</script>
