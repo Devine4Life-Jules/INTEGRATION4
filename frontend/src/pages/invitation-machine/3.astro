@@ -9,6 +9,21 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
 <style>
 
 
+@keyframes bounceUp {
+
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px); 
+  }
+}
+
+
+  .blueBg {
+    padding: .1rem 1rem;
+    margin-top:3rem;
+  }
 
   #canvas {
   display: block;
@@ -17,13 +32,20 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
     
   }
 
+
+  h1 {
+    margin-bottom: 10rem;
+  }
+
   p {
-    line-height: 1;
+    line-height: .5;
   }
 
   .thumbsUp {
     display: block;
     max-height: 5rem;
+    animation: bounceUp 1s ease-in-out infinite;
+    animation-delay: 3s;
   }
 
   body {
@@ -43,7 +65,7 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
   .videoDescripton {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
     align-items: center;
     text-align: center;
 
@@ -81,7 +103,7 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
       <canvas width="1000" height="1200" id="canvas"></canvas>
       <div class="videoDescripton">
         <img class="thumbsUp" src={thumbs.src} alt="thumbsUp"><div>
-          <p>show thumbs</p><p> up to continue</p>
+          <p class="bold">show thumbs up</p><p> to continue</p>
         </div><img class="thumbsUp" src={thumbs.src} alt="thumbsUp">
       </div>
     </div>
@@ -96,8 +118,8 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
   import checkLike from "../../scripts/invitation-machine/checkLike";
   import { navigate } from "astro:transitions/client";
 
-  // import { gsap } from "gsap";
 
+  
   const tlDuration = .5
   const tl = gsap.timeline();
 
