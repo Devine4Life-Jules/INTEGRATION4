@@ -271,7 +271,7 @@ import DoneSvg from "../../assets/icons/done.svg";
 
     $inputFile.click();
     $inputFile.addEventListener("change", () => {
-      if ($inputFile.files) console.log($inputFile.files[0].name);
+      showImageUploaded();
     });
   });
 
@@ -293,10 +293,14 @@ import DoneSvg from "../../assets/icons/done.svg";
     if (!e.dataTransfer.files) return;
 
     $inputFile.files = e.dataTransfer.files;
+    showImageUploaded();
+  });
+
+  const showImageUploaded = () => {
     $fileIcon.classList.add("hidden");
     $fileIconUploaded.classList.remove("hidden");
     $fileContainer.classList.add("solid-border");
-  });
+  };
 
   const $form = document.querySelector("#form") as HTMLFormElement;
   const $submit = document.querySelector(
