@@ -14,8 +14,7 @@ import AbbyInside from "../assets/images/abbyInside.png"
 
 
 
-  .activity {
-    display: inline-flex;
+  .activityBox {
     background-color: var(--yellow);
 
   }
@@ -40,19 +39,26 @@ import AbbyInside from "../assets/images/abbyInside.png"
     }
 
 
-    .activity {
+
+    .activityBox {
       position:absolute;
-      padding-right: 1rem;
-      top:23%;
+      padding: .3rem;
+      top:26%;
       left: 3%;
     }
 
     p {
       text-align: center;
+      width: 85%;
+      margin: 0 auto;
     }
 
     .how {
       display: none;
+    }
+
+    .location {
+      display: flex;
     }
     
   }
@@ -64,6 +70,25 @@ import AbbyInside from "../assets/images/abbyInside.png"
       background-color: var(--white);
       
     }
+
+    .activityBox {
+      position: relative;
+      background-color: var(--white);
+      display: flex;
+    }
+
+    .activityBox div {
+      margin-left: 2rem;
+    }
+
+    .location {
+      background-color: var(--yellow);
+      height: 1.3rem;
+      width: 5rem;
+      text-align: center;
+    }
+
+
 
     .how {
       display: block;
@@ -167,15 +192,15 @@ import AbbyInside from "../assets/images/abbyInside.png"
     <h1>
       Make your activity part of the story
     </h1>
-    <div class="activity">
-      <img src={LocationSvg.src} alt="Location icon" />
-      <span>ABBY</span>
+    <div class="activityBox">
+      <div class="activity">play Boardgames</div>
+      <div class="location"><figure><img src={LocationSvg.src} alt="locationIcon"></figure>Salon</div>
     </div>
     <figure>
       <img src={AbbyInside.src} alt="">
     </figure>
     <p>
-      <span class="whenever">This is your moment</span>By doing this activity, you’re shaping your personal chapter. Whether you’re alone or with a friend, what you create becomes part of your story at Abby.
+      <span class="whenever">This is your moment</span> By doing this, you’re shaping your  chapter. Whether you’re alone or with a friend, what you create becomes part of your story at Abby.
     </p>
     <div class="progressBarWrapper">
       <ProgressBar currentStep={2} backLink="/6" nextLink="/8" ></ProgressBar>
