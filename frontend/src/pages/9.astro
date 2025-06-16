@@ -73,10 +73,10 @@ import bringFriend from "../assets/images/newChapter.png";
       grid-column: 1;
       grid-row: 1;
       font-size: 4rem;
-      max-width: 60%;
       line-height: 1;
       margin-left: 2rem;
       margin-top: 2rem;
+      margin-bottom: 0;
     }
 
     body {
@@ -86,12 +86,13 @@ import bringFriend from "../assets/images/newChapter.png";
     }
 
     p {
-      margin-top: autos;
+      margin-top: auto;
+      margin-bottom: 3rem;
+      max-width: 65%;
       max-height: 5rem;
       align-self: flex-end;
       padding-left: 2rem;
       padding-bottom: 2rem;
-
       text-align: left;
     }
 
@@ -115,10 +116,13 @@ import bringFriend from "../assets/images/newChapter.png";
       height: 2rem;
       display: inline-flex;
       align-items: center;
-      margin-top: 3rem;
+      align-self: start;
       max-width: 9rem;
       margin-left: 1.3rem;
       background-color: var(--yellow);
+      top: 0;
+      left: 0;
+      margin-left: 3rem;
     }
 
     .locationLabel img {
@@ -150,7 +154,7 @@ import bringFriend from "../assets/images/newChapter.png";
   </head>
   <body>
     <div class="logoWrapper"><img src={AbbyLogoSvg.src} alt="Abby logo" /></div>
-    <h1>Because stories are better toghether</h1>
+    <h1>Because stories are better <span class="blueBg">toghether</span></h1>
     <div class="locationLabel">
       share the moment
     </div>
