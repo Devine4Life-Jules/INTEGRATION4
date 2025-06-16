@@ -5,6 +5,7 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
 import { Image } from "astro:assets";
 import UploadJpg from "../../assets/images/upload.jpg";
 import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
+import DoneSvg from "../../assets/icons/done.svg";
 ---
 
 <style>
@@ -154,7 +155,8 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
       display: none;
     }
 
-    .form__file__icon {
+    .form__file__icon,
+    .form__file__icon-uploaded {
       display: initial;
       padding: 1.5em;
       border: 0.2em solid var(--black);
@@ -177,6 +179,11 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
     .buttons {
       grid-column: 1/3;
       background-color: var(--yellow);
+    }
+
+    .solid-border {
+      border-style: solid;
+      border-color: var(--green);
     }
   }
 </style>
@@ -208,6 +215,11 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
           src={ArrowUpSvg.src}
           alt="Arrow up icon"
         />
+        <img
+          class="form__file__icon-uploaded hidden"
+          alt="done icon"
+          src={DoneSvg.src}
+        />
         <p class="form__file__text">
           Drop your image here or <button class="form__file__button"
             >browse</button
@@ -237,16 +249,59 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
     </form>
     <div class="buttons">
       <a class="button button--back">Back</a>
-      <button class="button">Upload</button>
+      <button class="buttons__upload button">Upload</button>
     </div>
   </body>
 </html>
 
 <script>
+  import { navigate } from "astro:transitions/client";
   import { API_URL } from "../../consts";
 
+  // handle browse button
+  const $browse = document.querySelector(
+    ".form__file__button"
+  ) as HTMLButtonElement;
+  const $inputFile = document.querySelector(
+    ".form__file__input"
+  ) as HTMLInputElement;
+
+  $browse.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    $inputFile.click();
+    $inputFile.addEventListener("change", () => {
+      if ($inputFile.files) console.log($inputFile.files[0].name);
+    });
+  });
+
+  const $fileContainer = document.querySelector(
+    ".form__file__container"
+  ) as HTMLDivElement;
+  const $fileIcon = document.querySelector(
+    ".form__file__icon"
+  ) as HTMLImageElement;
+  const $fileIconUploaded = document.querySelector(
+    ".form__file__icon-uploaded"
+  ) as HTMLImageElement;
+  $fileContainer.addEventListener("dragover", (e) => e.preventDefault());
+
+  $fileContainer.addEventListener("drop", (e) => {
+    e.preventDefault();
+
+    if (!e.dataTransfer) return;
+    if (!e.dataTransfer.files) return;
+
+    $inputFile.files = e.dataTransfer.files;
+    $fileIcon.classList.add("hidden");
+    $fileIconUploaded.classList.remove("hidden");
+    $fileContainer.classList.add("solid-border");
+  });
+
   const $form = document.querySelector("#form") as HTMLFormElement;
-  const $submit = document.querySelector(".submit") as HTMLButtonElement;
+  const $submit = document.querySelector(
+    ".buttons__upload"
+  ) as HTMLButtonElement;
   $submit.addEventListener("click", async (e) => {
     e.preventDefault();
     const $fileInput = $form.querySelector(
@@ -256,15 +311,19 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
     if (!$fileInput.files || $fileInput.files.length === 0) return;
 
     const picture = $fileInput.files[0];
-    const res = await fetch(`${API_URL}/jsonapi/node/story/field_picture`, {
-      method: "POST",
-      headers: {
-        Accept: "application/vnd.api+json",
-        "Content-Type": "application/octet-stream",
-        "Content-Disposition": `file; filename="${picture.name}"`,
-      },
-      body: picture,
-    });
+    console.log(picture);
+    const res = await fetch(
+      `${API_URL}/drupal/jsonapi/node/story/field_picture`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/vnd.api+json",
+          "Content-Type": "application/octet-stream",
+          "Content-Disposition": `file; filename="${picture.name}"`,
+        },
+        body: picture,
+      }
+    );
     const resJson = await res.json();
     const pictureId = resJson?.data.id as string | undefined;
 
@@ -278,7 +337,8 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
     const usernname = data.get("username");
     const description = data.get("message");
 
-    await fetch(`${API_URL}/jsonapi/node/story`, {
+    // !TODO handle error
+    await fetch(`${API_URL}/drupal/jsonapi/node/story`, {
       method: "POST",
       headers: {
         "Content-Type": "application/vnd.api+json",
@@ -290,7 +350,7 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
           attributes: {
             title: Date.now(),
             field_username: usernname,
-            field_description: description,
+            field_message: description,
           },
           relationships: {
             field_picture: {
@@ -303,5 +363,7 @@ import ArrowUpSvg from "../../assets/icons/arrow-up.svg";
         },
       }),
     });
+
+    navigate("/upload/complete");
   });
 </script>
