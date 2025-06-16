@@ -11,10 +11,19 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
 
 
   #canvas {
-      display: block;
+  display: block;
   width: 50vw;
   height: 25vh;
     
+  }
+
+  p {
+    line-height: 1;
+  }
+
+  .thumbsUp {
+    display: block;
+    max-height: 5rem;
   }
 
   body {
@@ -34,13 +43,14 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
   .videoDescripton {
     display: flex;
     justify-content: center;
+    gap: 1rem;
+    align-items: center;
     text-align: center;
 
   
   }
 
   .videoDescripton p {
-    margin: 3rem;
     font-size: 1.9rem;
   }
 
@@ -70,9 +80,9 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
     <div class="videoBox">
       <canvas width="1000" height="1200" id="canvas"></canvas>
       <div class="videoDescripton">
-        <img src={thumbs.src} alt=""><div>
+        <img class="thumbsUp" src={thumbs.src} alt="thumbsUp"><div>
           <p>show thumbs</p><p> up to continue</p>
-        </div><img src={thumbs.src} alt="">
+        </div><img class="thumbsUp" src={thumbs.src} alt="thumbsUp">
       </div>
     </div>
     <!-- !TODO visualization of a user story -->
@@ -86,7 +96,7 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
   import checkLike from "../../scripts/invitation-machine/checkLike";
   import { navigate } from "astro:transitions/client";
 
-  import { gsap } from "gsap";
+  // import { gsap } from "gsap";
 
   const tlDuration = .5
   const tl = gsap.timeline();
