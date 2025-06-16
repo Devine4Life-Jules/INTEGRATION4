@@ -172,7 +172,7 @@ import AbbyOutside from "../assets/images/abbyOutside.png"
     <div class="logoWrapper"><img src={AbbyLogoSvg.src} alt="Abby logo" /></div>
     <h1>
       <span class="how">how it works</span>
-      Your story begins inside
+      <span class="inside">Your story begins inside</span>
     </h1>
     <div class="locationLabel">
       <img src={LocationSvg.src} alt="Location icon" />
@@ -190,3 +190,44 @@ import AbbyOutside from "../assets/images/abbyOutside.png"
     </div>
   </body>
 </html>
+
+
+<script>
+  import {gsap, Power1} from "gsap";
+  const tl = gsap.timeline();
+  const tlDuration = .6;
+  tl
+  .from("figure", {
+    opacity:0,
+    x:-350,
+    duration:tlDuration,
+    ease:Power1.easeOut
+  })
+  .from(".how", {
+    opacity:0,
+    x:-50,
+    duration:tlDuration,
+    ease:Power1.easeOut
+  })
+    .from(".inside", {
+    opacity:0,
+    x:-50,
+    duration:tlDuration,
+    ease:Power1.easeOut
+
+  })
+    .from(".locationLabel", {
+    opacity:0,
+    x:-50,
+    duration:tlDuration,
+    ease:Power1.easeOut
+
+  })
+      .from("p", {
+    opacity:0,
+    x:-50,
+    duration:tlDuration,
+    ease:Power1.easeOut
+
+  })
+</script>

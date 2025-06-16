@@ -149,26 +149,33 @@ import abbySvg from "../assets/illustrations/abby-kortrijk.svg";
 <script>
   import {gsap, Power1} from "gsap";
   const tl = gsap.timeline();
-  const tlDuration = .4;
+  const tlDuration = .6;
   tl
   .from(".hey", {
     opacity:0,
     x:-50,
-    duration:tlDuration
+    duration:tlDuration,
+    ease:Power1.easeOut
   })
     .from(".blueBg", {
     opacity:0,
     x:-50,
-    duration:tlDuration
+    duration:tlDuration,
+    ease:Power1.easeOut
+
   })
     .from(".yourJourney, .container__title__question-mark", {
     opacity:0,
     x:-50,
-    duration:tlDuration
+    duration:tlDuration,
+    ease:Power1.easeOut
+
   })
       .from("p", {
     opacity:0,
     x:-50,
-    duration:tlDuration
+    duration:tlDuration,
+    ease:Power1.easeOut
+
   })
 </script>
