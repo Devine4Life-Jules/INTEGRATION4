@@ -234,6 +234,29 @@ import ProgressBar from "../components/ProgressBar.astro";
   </body>
 </html>
 
+<script>
+  import { gsap, Power1 } from "gsap";
+  const tl = gsap.timeline();
+  const tlDuraton = .5
+
+  tl
+
+    .from("h1, p",{
+    x:-300,
+    opacity:0,
+    duration: tlDuraton,
+    ease:Power1.easeOut
+  })
+
+
+
+  .from(".iframeContainer",{
+    opacity:0,
+    duration: tlDuraton,
+    ease:Power1.easeOut
+  })
+
+</script>
 
 
 

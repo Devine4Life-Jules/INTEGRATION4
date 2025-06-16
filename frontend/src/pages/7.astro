@@ -182,3 +182,25 @@ import AbbyInside from "../assets/images/abbyInside.png"
     </div>
   </body>
 </html>
+
+
+<script>
+  import {gsap, Power1} from "gsap";
+  const tl = gsap.timeline();
+  const tlDuration = .3;
+  tl
+
+  .from ("figure", {
+        opacity:0,
+    x:-300,
+    duration:.6,
+    ease:Power1.easeOut
+  })
+
+  .from ("h1", {
+    opacity:0,
+    y:30,
+    duration:tlDuration,
+    ease:Power1.easeOut
+  })
+</script>

@@ -211,3 +211,24 @@ import painter from "../assets/images/painter.png"
     </div>
   </body>
 </html>
+
+
+<script>
+  import { gsap, Power1 } from "gsap";
+  const tl = gsap.timeline();
+  const tlDuraton = .5
+
+  tl
+  .from("figure",{
+    x:300,
+    opacity:0,
+    duration: tlDuraton,
+    ease:Power1.easeOut
+  })
+    .from("h1, p",{
+    x:-300,
+    opacity:0,
+    duration: tlDuraton,
+    ease:Power1.easeOut
+  })
+</script>
