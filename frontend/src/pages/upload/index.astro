@@ -257,6 +257,7 @@ import DoneSvg from "../../assets/icons/done.svg";
 <script>
   import { navigate } from "astro:transitions/client";
   import { API_URL } from "../../consts";
+  import heic2any from "heic2any";
 
   // handle browse button
   const $browse = document.querySelector(
@@ -286,13 +287,71 @@ import DoneSvg from "../../assets/icons/done.svg";
   ) as HTMLImageElement;
   $fileContainer.addEventListener("dragover", (e) => e.preventDefault());
 
-  $fileContainer.addEventListener("drop", (e) => {
+  const IMAGE_SIZE = 920;
+
+  const getImgOffset = (image: any, option: string) => {
+    const imageCanvasRatio = image[option] / IMAGE_SIZE;
+    const diffrence = image[option] - IMAGE_SIZE;
+    const scaledDifference = diffrence / imageCanvasRatio;
+    return scaledDifference / 2;
+  };
+
+  const getCroppedJpg = async (file: File) => {
+    let blob: File | Blob = file;
+    // Convert HEIC to JPEG if needed
+    if (
+      file.type === "image/heic" ||
+      file.name.toLowerCase().endsWith(".heic")
+    ) {
+      blob = (await heic2any({
+        blob: file,
+        toType: "image/jpeg",
+        quality: 0.8,
+      })) as Blob;
+    }
+    // Optional: Resize/compress using Canvas
+    const img = new Image();
+    const canvas = document.createElement("canvas");
+    return new Promise((resolve) => {
+      img.src = URL.createObjectURL(blob);
+      img.onload = () => {
+        canvas.width = 920;
+        canvas.height = 920;
+        const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+        const offset =
+          img.width < img.height
+            ? getImgOffset(img, "height")
+            : getImgOffset(img, "width");
+
+        if (img.width < img.height) {
+          ctx.drawImage(img, 0, -offset, canvas.width, canvas.height + offset);
+        } else {
+          ctx.drawImage(img, -offset, 0, canvas.width + offset, canvas.height);
+        }
+
+        // const $a = document.createElement("a");
+        // $a.href = canvas.toDataURL();
+        // $a.download = "img.png";
+        // $a.click();
+        canvas.toBlob((newBlob) => resolve(newBlob), "image/jpeg", 0.8);
+        URL.revokeObjectURL(img.src);
+      };
+    });
+  };
+
+  $fileContainer.addEventListener("drop", async (e) => {
     e.preventDefault();
 
     if (!e.dataTransfer) return;
     if (!e.dataTransfer.files) return;
 
-    $inputFile.files = e.dataTransfer.files;
+    const blob = (await getCroppedJpg(e.dataTransfer.files[0])) as Blob;
+    const dataTransfer = new DataTransfer();
+    const file = new File([blob], "activity.jpg");
+    dataTransfer.items.add(file);
+
+    $inputFile.files = dataTransfer.files;
     showImageUploaded();
   });
 
