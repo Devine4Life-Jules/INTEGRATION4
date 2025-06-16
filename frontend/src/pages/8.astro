@@ -35,11 +35,34 @@ import Image from "astro/components/Image.astro";
     height: auto;
     object-fit: cover;
     display: block;
+    grid-row: 3/4;
+    grid-column: 1/2;
   }
 
   .label {
     background-color: var(--yellow);
     grid-row: 3/4;
+    grid-column: 1/2;
+    z-index: 100;
+    height: max-content;
+    width: max-content;
+    align-self: end;
+    display: flex;
+    gap: 0.4em;
+    flex-direction: column;
+    padding: 0.4em;
+    line-height: 1;
+    margin: var(--screen-padding);
+  }
+
+  .label__small-text {
+    font-size: 1.125rem;
+    font-weight: 300;
+  }
+
+  .label__big-text {
+    font-size: 1.625rem;
+    font-weight: 500;
   }
 
   .description {
@@ -151,10 +174,10 @@ import Image from "astro/components/Image.astro";
       src={UploadJpg}
       alt="a guy painting on canvas and a child's face"
     />
-    <!-- <div class="label">
+    <div class="label">
       <span class="label__small-text">snap and upload your</span>
       <span class="label__big-text">Pictures</span>
-    </div> -->
+    </div>
     <p class="description">
       <span class="bold">Your moments matter to us</span> After your visit, share
       your pictures - so your chapter becomes part of our story
