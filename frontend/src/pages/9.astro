@@ -198,10 +198,10 @@ import bringFriend from "../assets/images/newChapter.png"
   import { gsap, Power1 } from "gsap";
   const tl = gsap.timeline();
   const tlDuraton = .5
+  const mm = gsap.matchMedia();
 
-  tl
-
-    .from("h1, p",{
+  mm.add("(min-width: 500px", () => {
+    tl.from("h1, p",{
     x:-300,
     opacity:0,
     duration: tlDuraton,
@@ -216,5 +216,11 @@ import bringFriend from "../assets/images/newChapter.png"
     duration: tlDuraton,
     ease:Power1.easeOut
   })
+
+  })
+
+  tl
+
+
 
 </script>

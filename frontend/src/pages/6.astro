@@ -195,8 +195,12 @@ import AbbyOutside from "../assets/images/abbyOutside.png"
 <script>
   import {gsap, Power1} from "gsap";
   const tl = gsap.timeline();
+  const mm = gsap.matchMedia();
+
   const tlDuration = .3;
-  tl
+  
+  mm.add("min-width: 500px", () => {
+      tl
   .from("figure", {
     opacity:0,
     x:-350,
@@ -223,11 +227,12 @@ import AbbyOutside from "../assets/images/abbyOutside.png"
     ease:Power1.easeOut
 
   })
-      .from("p", {
+    .from("p", {
     opacity:0,
     x:-50,
     duration:tlDuration,
     ease:Power1.easeOut
 
+  })
   })
 </script>

@@ -214,11 +214,16 @@ import painter from "../assets/images/painter.png"
 
 
 <script>
+
+  const mm = gsap.matchMedia();
+
   import { gsap, Power1 } from "gsap";
   const tl = gsap.timeline();
   const tlDuraton = .5
 
-  tl
+
+mm.add('min-width:500px', () => {
+    tl
   .from("figure",{
     x:300,
     opacity:0,
@@ -231,4 +236,8 @@ import painter from "../assets/images/painter.png"
     duration: tlDuraton,
     ease:Power1.easeOut
   })
+
+})
+
+
 </script>
