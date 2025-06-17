@@ -5,70 +5,64 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 import LocationSvg from "../assets/icons/location.svg";
 import ProgressBar from "../components/ProgressBar.astro";
-import AbbyInside from "../assets/images/abbyInside.png"
+import AbbyInside from "../assets/images/abbyInside.png";
 ---
 
 <style>
-
-  
-
-
-
-  .activityBox {
-    background-color: var(--yellow);
-
-  }
-
   body {
-    background-color: var(--white);
+    display: grid;
+    grid-template-rows: auto auto auto 1fr max-content;
+    grid-template-columns: 1fr;
+    height: 100vh;
   }
 
-  @media screen and (min-width: 100px) {
-
-
-
-    .logoWrapper, h1 {
-      background-color: var(--yellow);
-      
-    }
-
-    body {
-      display: grid;
-      grid-template-rows: 8vh 15vh auto 20vh;
-      height: 100vh;
-    }
-
-
-
-    .activityBox {
-      position:absolute;
-      padding: .3rem;
-      top:26%;
-      left: 3%;
-    }
-
-    p {
-      text-align: center;
-      width: 85%;
-      margin: 0 auto;
-    }
-
-    .how {
-      display: none;
-    }
-
-    .location {
-      display: flex;
-    }
-    
+  body > * {
+    grid-column: 1/2;
   }
 
+  .activity,
+  .logo,
+  .title {
+    background-color: var(--yellow);
+  }
 
-  @media screen and (min-width: 500px) {
+  .logo {
+    padding: var(--screen-padding) var(--screen-padding) 0 var(--screen-padding);
+    padding-bottom: 1em;
+  }
 
-    .logoWrapper, h1 {
+  .title {
+    line-height: 1.1;
+  }
+
+  .activity {
+    grid-row: 3/4;
+  }
+
+  .location {
+    grid-row: 3/4;
+  }
+
+  .picture {
+    grid-row: 3/4;
+  }
+
+  .chapter {
+    display: none;
+  }
+
+  .text-container {
+    padding: var(--screen-padding);
+  }
+
+  .text-container__p {
+    padding-top: 0.2em;
+  }
+
+  @media (orientation: landscape) {
+    .logoWrapper,
+    h1 {
       background-color: var(--white);
-      
     }
 
     .activityBox {
@@ -87,8 +81,6 @@ import AbbyInside from "../assets/images/abbyInside.png"
       width: 5rem;
       text-align: center;
     }
-
-
 
     .how {
       display: block;
@@ -118,9 +110,6 @@ import AbbyInside from "../assets/images/abbyInside.png"
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 25vh auto auto 15vh;
       height: 100vh;
-      
-      
-
     }
 
     p {
@@ -148,8 +137,6 @@ import AbbyInside from "../assets/images/abbyInside.png"
       overflow: hidden;
     }
 
-
-
     .locationLabel img {
       width: 3rem;
     }
@@ -163,47 +150,46 @@ import AbbyInside from "../assets/images/abbyInside.png"
     .progressBarWrapper {
       grid-column: 1 / 3;
       background-color: var(--yellow);
-      
-      
     }
-
-   
 
     .whenever {
       font-size: 1.5rem;
       display: block;
     }
-
   }
-
-
-
 </style>
 
-
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    <div class="logoWrapper"><img src={AbbyLogoSvg.src} alt="Abby logo" /></div>
-    <h1>
-      Make your activity part of the story
+    <div class="logo">
+      <img class="logo__img" src={AbbyLogoSvg.src} alt="Abby logo" />
+    </div>
+    <span class="chapter">How it works</span>
+    <h1 class="title">
+      <span class="highlight">Make</span> your activity part of the story
     </h1>
-    <div class="activityBox">
-      <div class="activity">play Boardgames</div>
-      <div class="location"><figure><img src={LocationSvg.src} alt="locationIcon"></figure>Salon</div>
+    <div class="activity">
+      <span class="activity__text-small">Your activity:</span>
+      <span class="activity__text-big">Your activity:</span>
     </div>
-    <figure>
-      <img src={AbbyInside.src} alt="">
-    </figure>
-    <p>
-      <span class="whenever">This is your moment</span> By doing this, you’re shaping your  chapter. Whether you’re alone or with a friend, what you create becomes part of your story at Abby.
-    </p>
-    <div class="progressBarWrapper">
-      <ProgressBar currentStep={2} backLink="/6" nextLink="/8" ></ProgressBar>
+    <div class="location">
+      <span class="location__text-small">Your activity:</span>
+      <span class="location__text-big">Your activity:</span>
     </div>
+    <img class="picture" src={AbbyInside.src} alt="Photo of Abby inside" />
+    <div class="text-container">
+      <h2 class="text-container__title">This is your moment</h2>
+      <p class="text-container__p">
+        By doing this, you’re shaping your chapter. Whether you’re alone or with
+        a friend, <span class="bold"
+          >what you create becomes part of your story at Abby.</span
+        >
+      </p>
+    </div>
+    <ProgressBar currentStep={2} backLink="/6" nextLink="/8" />
   </body>
 </html>
