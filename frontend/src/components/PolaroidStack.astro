@@ -13,7 +13,7 @@ import bringFriend from "../assets/images/bringFriend.png";
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     place-items: center;
-    margin: 4rem;
+    margin: 2rem;
   }
 
   .polaroidStack > * {
@@ -46,7 +46,7 @@ import bringFriend from "../assets/images/bringFriend.png";
   }
 </style>
 
-<div class="polaroidStack">
+<div style={Astro.props.style} class="polaroidStack">
   <div class="polaroidWrapper">
     <Polaroid pic={frisbee.src} names={"Oliwier"} />
   </div>

@@ -12,7 +12,7 @@ import PolaroidStack from "../components/PolaroidStack.astro";
   body {
     height: 100vh;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: min-content 1fr auto;
     align-items: center;
   }
 
@@ -91,7 +91,7 @@ import PolaroidStack from "../components/PolaroidStack.astro";
         /><br />
         <span class="title__smaller-text">Story Unlocked</span>
       </h1>
-      <PolaroidStack />
+      <PolaroidStack style="transform: scale(0.8);" />
     </div>
     <div class="logo">
       <img class="logo__img" src={AbbyKortrijkSvg.src} alt="Abby icon" />
