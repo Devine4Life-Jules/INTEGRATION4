@@ -242,13 +242,14 @@ import DoneSvg from "../../assets/icons/done.svg";
           id="picture-input"
           class="form__file__input"
           name="picture"
+          required
           type="file"
           accept="image/jpeg, image/png, image/gif, image/heic, image/webp, image/avif"
         />
       </div>
       <label class="form__label"
         >Your Name or Nickname *
-        <input name="username" placeholder="Lucia" />
+        <input name="username" required placeholder="Lucia" />
       </label>
       <label class="form__label"
         >Short Message
@@ -256,7 +257,7 @@ import DoneSvg from "../../assets/icons/done.svg";
         ></textarea>
       </label>
       <label
-        ><input class="form__consent-input" type="checkbox" name="consent" />I
+        ><input class="form__consent-input" type="checkbox" required name="consent" />I
         agree that ABBY can display these pictures* </label
       >
     </form>
