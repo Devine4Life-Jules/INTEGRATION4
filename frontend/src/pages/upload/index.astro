@@ -290,7 +290,8 @@ import DoneSvg from "../../assets/icons/done.svg";
     e.preventDefault();
 
     $inputFile.click();
-    $inputFile.addEventListener("change", () => {
+    $inputFile.addEventListener("change", (e) => {
+      handleImgTransform();
       showImageUploaded();
     });
   });
@@ -357,6 +358,14 @@ import DoneSvg from "../../assets/icons/done.svg";
         URL.revokeObjectURL(img.src);
       };
     });
+  };
+
+  const handleImgTransform = async () => {
+    const blob = (await getCroppedJpg($inputFile.files[0])) as Blob;
+    const dataTransfer = new DataTransfer();
+    const file = new File([blob], "activity.jpg");
+    dataTransfer.items.add(file);
+    $inputFile.files = dataTransfer.files;
   };
 
   $fileContainer.addEventListener("drop", async (e) => {
