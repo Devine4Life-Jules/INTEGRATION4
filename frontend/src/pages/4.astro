@@ -2,66 +2,70 @@
 import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import WebFooter from "../components/WebFooter.astro";
-
 import boardGames from "../assets/images/boardGames.png";
-import frisbee from "../assets/images/frisbee.png";
-import cafe from "../assets/images/cafe.png";
-import drawing from "../assets/images/painter.png";
+import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
 ---
 
 <style>
   body {
+    display: grid;
+    grid-template-rows: max-content max-content max-content max-content auto 1fr;
+  }
+
+  .logo,
+  .title,
+  .info,
+  .description {
     background-color: var(--yellow);
+    padding: 0 var(--screen-padding);
   }
 
-  button {
-    background-color: var(--white);
+  .logo {
+    padding-top: var(--screen-padding);
+    padding-bottom: 2em;
   }
 
-  .hidden {
-    display: none;
+  .title {
+    line-height: 1.2;
+    padding-bottom: 0.3em;
   }
 
-  .active {
-    display: block;
+  .title__highlight {
+    font-weight: 700;
   }
 
-  figure img {
+  .info {
+    font-size: 1.4rem;
+  }
+
+  .description {
+    font-size: 1.313rem;
+  }
+
+  .picture {
+    max-height: 50vh;
     width: 100%;
-    height: 100%;
     object-fit: cover;
   }
 
-  @media screen and (min-width: 100px) {
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-
-    header {
-      margin-bottom: auto;
-      padding: 1rem;
-    }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--screen-padding);
+    align-items: flex-end;
   }
 
-  @media screen and (min-width: 500px) {
+  @media (orientation: landscape) {
     body {
-      display: grid;
       grid-template-rows: auto auto auto 7rem;
       grid-template-columns: 2fr 3fr;
       height: 100vh;
     }
 
-    h1 {
+    .title {
       font-size: 4rem;
       line-height: 1.3;
       margin-bottom: auto;
-    }
-
-    .wePicked {
-      font-size: 1.7rem;
     }
 
     header {
@@ -79,92 +83,69 @@ import drawing from "../assets/images/painter.png";
       height: 100%;
     }
 
+    figure img {
+      object-fit: fill;
+      height: 100%;
+    }
+
     header {
       grid-column: 2;
     }
   }
 </style>
 
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    <header>
-      <span class="wePicked">We've picked a fun activity for you!</span>
-      <h1>
-        <span class="blueBg name">Play board games</span><br>
-        <span class="location">in our living room</span>
-      </h1>
-      <p>You can enjoy it solo — or bring a friend along to join your chapter</p>
-    </header>
-
-    <figure>
-      <img class="activity-img active" id="img-boardgames" src={boardGames.src} alt="Play Boardgames" />
-      <img class="activity-img hidden" id="img-frisbee" src={frisbee.src} alt="Play frisbee" />
-      <img class="activity-img hidden" id="img-cafe" src={cafe.src} alt="Make a drink" />
-      <img class="activity-img hidden" id="img-drawing" src={drawing.src} alt="Drawing session" />
-    </figure>
-
-    <WebFooter>
-      <div slot="buttons" class="footerButtons">
-        <button id="anotherBtn" class="footerBtn--secondary">Another Activity</button>
-        <a href="/5" class="footerBtn">Accept</a>
-      </div>
-    </WebFooter>
-
-    <script>
-      const activities = [
-        {
-          name: "Play Boardgames",
-          location: "salon",
-          imgId: "img-boardgames"
-        },
-        {
-          name: "Play frisbee",
-          location: "garden",
-          imgId: "img-frisbee"
-        },
-        {
-          name: "Make a drink",
-          location: "café",
-          imgId: "img-cafe"
-        },
-        {
-          name: "Drawing session",
-          location: "atelier",
-          imgId: "img-drawing"
-        }
-      ];
-
-      let currentImgId = "img-boardgames";
-
-      const getRandomActivity = () => {
-        let next;
-        do {
-          next = activities[Math.floor(Math.random() * activities.length)];
-        } while (next.imgId === currentImgId);
-        return next;
-      };
-
-      const updateActivity = () => {
-        const activity = getRandomActivity();
-
-        document.querySelector(".blueBg.name").textContent = activity.name;
-        document.querySelector(".location").textContent = "in our " + activity.location;
-
-        document.getElementById(currentImgId).classList.remove("active");
-        document.getElementById(currentImgId).classList.add("hidden");
-
-        document.getElementById(activity.imgId).classList.add("active");
-        document.getElementById(activity.imgId).classList.remove("hidden");
-
-        currentImgId = activity.imgId;
-      };
-
-      document.getElementById("anotherBtn").addEventListener("click", updateActivity);
-    </script>
+    <div class="logo">
+      <img src={AbbyKortrijkSvg.src} alt="Abby icon" />
+    </div>
+    <span class="info">We've picked a fun activity for you!</span>
+    <h1 class="title">
+      <span class="title__highlight">Play board games</span>
+      in our living room
+    </h1>
+    <p class="description">
+      You can enjoy it solo — or bring a friend along to join your chapter
+    </p>
+    <img class="picture" src={boardGames.src} alt="" />
+    <div class="buttons">
+      <button class="button button--back">Another Activity</button>
+      <a href="/5" class="button">Accept</a>
+    </div>
   </body>
 </html>
+
+<script>
+  import { gsap, Power1 } from "gsap";
+  // const tl = gsap.timeline();
+  // const tlDuration = 0.4;
+
+  // tl.from(".wePicked", {
+  //   opacity: 0,
+  //   x: -50,
+  //   duration: tlDuration,
+  //   ease: Power1.easeOut,
+  // })
+  //   .from(".blueBg", {
+  //     opacity: 0,
+  //     x: -50,
+  //     duration: tlDuration,
+  //     ease: Power1.easeOut,
+  //   })
+  //   .from(".location", {
+  //     opacity: 0,
+  //     x: -50,
+  //     duration: tlDuration,
+  //     ease: Power1.easeOut,
+  //   })
+  //   .from("p", {
+  //     opacity: 0,
+  //     x: -50,
+  //     duration: tlDuration,
+  //     ease: Power1.easeOut,
+  //   });
+</script>
