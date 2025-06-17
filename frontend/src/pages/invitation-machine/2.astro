@@ -4,8 +4,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
 import PolaroidStack from "../../components/PolaroidStack.astro";
 import InstallationFooter from "../../components/InstallationFooter.astro";
-import smileyOrange from "../../assets/illustrations/smileyOrange.svg"
+import smileyOrange from "../../assets/illustrations/smileyOrange.svg";
 ---
+
 <style>
   .headerBold {
     display: flex;
@@ -16,11 +17,7 @@ import smileyOrange from "../../assets/illustrations/smileyOrange.svg"
     margin-top: 7vh;
     margin-bottom: 3rem;
     width: auto;
-    
   }
-
-
-
 
   body {
     background-color: var(--yellow);
@@ -33,11 +30,8 @@ import smileyOrange from "../../assets/illustrations/smileyOrange.svg"
   body {
     padding-top: 6rem;
   }
-
-  
 </style>
 
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
@@ -47,24 +41,27 @@ import smileyOrange from "../../assets/illustrations/smileyOrange.svg"
   </head>
   <body class="installationBody">
     <h1 class="firstTitle">
-      <div class="headerBold">Good Job<figure class="smileyOrange"><img src={smileyOrange.src} alt="orange smiley"></figure></div>
-      <span class="bottomTitle"></span>Story unlocked</span>
+      <div class="headerBold">
+        Good Job<figure class="smileyOrange">
+          <img src={smileyOrange.src} alt="orange smiley" />
+        </figure>
+      </div>
+      <span class="bottomTitle"></span>Story unlocked
     </h1>
-    <PolaroidStack></PolaroidStack>
-    <InstallationFooter text="You are the key"></InstallationFooter>
-    <!-- !TODO stories visualization -->
   </body>
+  <PolaroidStack />
+  <InstallationFooter text="You are the key" />
+  <!-- !TODO stories visualization -->
 </html>
 
 <script>
   import { navigate } from "astro:transitions/client";
   import gsap from "gsap";
 
-         gsap.from("h1", {
-        opacity: 0,
-        x: -300,
-      })
-  
+  gsap.from("h1", {
+    opacity: 0,
+    x: -300,
+  });
 
-  // setTimeout(() => navigate("/invitation-machine/3"), 4000);
+  setTimeout(() => navigate("/invitation-machine/3"), 4000);
 </script>
