@@ -5,8 +5,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
 import AbbySmilePng from "../../../assets/icons/abby-smile-yellow.png";
 import AbbyLogoSvg from "../../../assets/illustrations/abby-kortrijk.svg";
 import Polaroid from "../../../components/Polaroid.astro";
-import DialogWindow from "../../../components/dialogWindow.astro";
-
 ---
 
 <style>
@@ -101,9 +99,6 @@ import DialogWindow from "../../../components/dialogWindow.astro";
     <ClientRouter />
   </head>
   <body>
-<DialogWindow id="liked-dialog" title="Liked This Activity?" >
-  You might really like our workshops
-</DialogWindow>
     <h1 class="title">
       Nice one <img
         class="title__img"
@@ -127,24 +122,8 @@ import DialogWindow from "../../../components/dialogWindow.astro";
       </p>
     </div>
     <div class="buttons">
-      <a class="button" href={"/story?back=/upload/complete"}
-        >See our shared story</a
-      >
-      <a class="button button--back" href="/4">Start another chapter</a>
+      <a class="button" href="/story">See our shared story</a>
+      <a class="button button--back" href="/4?another">Start another chapter</a>
     </div>
   </body>
 </html>
-
-<script>
-  const $backButton = document.querySelector(
-    ".buttons .button--back"
-  ) as HTMLAnchorElement;
-  const searchParams = new URL(location.href).searchParams;
-
-  const backParam = searchParams.get("back");
-  if (!backParam) {
-    $backButton.classList.add("hidden");
-  } else {
-    $backButton.href = backParam;
-  }
-</script>
