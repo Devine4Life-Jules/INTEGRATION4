@@ -137,20 +137,20 @@ import AbbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
   const storyId = new URL(location.href).searchParams.get("id");
 
   const res = await fetch(
-    `${API_URL}/drupal/jsonapi/node/story/${storyId}?include=field_picture`
+    `${API_URL}/jsonapi/node/story/${storyId}?include=field_picture`
   );
   const data = await res.json();
 
   type Story = {
     date: string;
     username: string | null;
-    message: string | null;
+    description: string | null;
     photoUrl: string;
   };
   const story: Story = {
     date: data.data.attributes.created,
     username: data.data.attributes.field_username,
-    message: data.data.attributes.field_message,
+    description: data.data.attributes.field_description,
     photoUrl: data.included[0].attributes.uri.url,
   };
 
@@ -170,7 +170,7 @@ import AbbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
   const $description = document.querySelector(
     ".description"
   ) as HTMLParagraphElement;
-  $description.textContent = story.message;
+  $description.textContent = story.description;
 
   const $picture = document.querySelector(".picture") as HTMLImageElement;
   $picture.src = API_URL + story.photoUrl;

@@ -1,8 +1,10 @@
 ---
-// import dummyPic from "../assets/images/dummyPic1.png";
+import dummyPic from "../assets/images/dummyPic1.png";
 import keyBlue from "../assets/illustrations/keyBlue.svg";
 
 const { pic, names } = Astro.props;
+
+
 ---
 
 <style>
@@ -48,6 +50,6 @@ const { pic, names } = Astro.props;
   </figure>
   <div class="polaroidBottom">
     <figure class="key"><img src={keyBlue.src} alt="bluekey" /></figure>
-    <p>{names}</p>
+   <p>{names}</p>
   </div>
 </div>

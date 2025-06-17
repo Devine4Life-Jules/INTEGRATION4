@@ -4,7 +4,7 @@
 @imagePath = /Users/oliwierzgorniak/Pictures/igi.png
 
 
-POST {{remoteBaseUrl}}/drupal/jsonapi/node/story/field_picture HTTP/1.1
+POST {{baseUrl}}/jsonapi/node/story/field_picture HTTP/1.1
 Content-Type: application/octet-stream
 Accept: application/vnd.api+json
 Content-Disposition: file; filename="igi.png"
@@ -12,7 +12,7 @@ Content-Disposition: file; filename="igi.png"
 < {{imagePath}}
 
 ###
-POST {{remoteBaseUrl}}/drupal/jsonapi/node/story HTTP/1.1
+POST http://localhost:8080/jsonapi/node/story HTTP/1.1
 Content-Type: application/vnd.api+json
 Accept: application/vnd.api+json
 
@@ -22,13 +22,13 @@ Accept: application/vnd.api+json
     "attributes": {
       "title": "8",
       "field_username": "oliwier",
-      "field_message": "Playing cards"
+      "field_description": "Playing cards"
     },
     "relationships": {
       "field_picture": {
         "data": {
           "type": "file--file",
-          "id": "a5d21ba1-c04e-499d-8fc4-4ec18b560b75"
+          "id": "13b93af5-7384-4e2d-8769-83ba0310f08a"
         }
       }
     }
@@ -36,41 +36,6 @@ Accept: application/vnd.api+json
 }
 
 ###
-POST {{remoteBaseUrl}}/drupal/jsonapi/media/activity/field_media_image HTTP/1.1
-Content-Type: application/octet-stream
-Accept: application/vnd.api+json
-Content-Disposition: file; filename="igi.png"
-
-< {{imagePath}}
-
-###
-
-###
-POST {{remoteBaseUrl}}/drupal/jsonapi/node/story HTTP/1.1
-Content-Type: application/vnd.api+json
-Accept: application/vnd.api+json
-
-{
-  "data": {
-    "type": "node--story",
-    "attributes": {
-      "title": "12312",
-      "field_username": "oliwier",
-      "field_message": "Playing cards"
-    },
-    "relationships": {
-      "field_picture": {
-        "data": {
-          "type": "media--image",
-          "id": "519876af-d35f-42d0-992d-e98644d3f941"
-        }
-      }
-    }
-  }
-}
-
-
-
 
 GET http://localhost:8080/jsonapi/node/story?include=field_pciture HTTP/1.1
 

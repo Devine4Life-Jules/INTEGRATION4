@@ -3,103 +3,124 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbySmilePng from "../assets/icons/abby-smile-black.png";
-import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
+import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 import Tape from "../components/Tape.astro";
 import PolaroidStack from "../components/PolaroidStack.astro";
+import WebFooter from "../components/WebFooter.astro";
+
 ---
 
 <style>
   body {
-    height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    align-items: center;
-  }
-
-  .container {
     background-color: var(--blue);
-    height: 100%;
+  }
+
+  .titleWrapper {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    align-items: flex-end;
+
   }
 
-  .title {
-    font-size: 3.125rem;
-    line-height: 0.8;
-    white-space: nowrap;
-    margin-top: 0.2em;
-  }
+  @media screen and (min-width:100px) {
 
-  .title__img {
-    display: inline;
-    width: 3.5rem;
-  }
-
-  .title__smaller-text {
-    font-size: 1.875rem;
-    font-weight: 400;
-  }
-
-  .logo {
-    align-self: flex-end;
-    padding: var(--screen-padding);
-    font-variant:;
-  }
-
-  @media (orientation: landscape) {
-    .container {
-      flex-direction: row-reverse;
-      justify-items: center;
+    h1 {
+      margin: 0 auto;
+      width: 60vw;
     }
 
-    .title {
-      font-size: 5rem;
-      margin: var(--screen-padding);
-      margin-top: 1em;
-      line-height: 1;
-    }
-
-    .title__smaller-text {
-      font-size: 5rem;
-    }
-
-    .title__img {
-      width: 5rem;
-    }
-
-    .logo {
+    body {
+     
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100vh;
     }
+
+    .pageWrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    
+
+
+    .smiley {
+      width: 15vw;
+      margin-left: 1rem;
+    }
+
   }
+
+    @media screen and (min-width:500px) {
+
+      body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+
+      }
+
+      h1 {
+        font-size: 5rem;
+        margin-top: 5rem;
+        margin-left: 6rem;
+        line-height: 1;
+      }
+
+      .headerBold {
+        
+        padding-bottom: 0;
+      }
+
+
+
+      .smiley {
+        width: 7vw;
+      }
+
+      .pageWrapper {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: auto;
+        align-items: block-end;
+        padding-bottom: 8rem;
+        padding-left: 17rem;
+      }
+    
+      }
+
+    
+  }
+
+
 </style>
 
+<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
+    
+    <div class="tapeWrapper">
     <Tape text="you are the key" />
-    <div class="container">
-      <h1 class="title">
-        Good job <img
-          class="title__img"
-          src={AbbySmilePng.src}
-          alt="Abby smile icon"
-        /><br />
-        <span class="title__smaller-text">Story Unlocked</span>
+    </div>
+    <div class="pageWrapper">
+      <h1>
+        <div class="titleWrapper"><div class="headerBold">Good job </div><div class="smiley"><img src={AbbySmilePng.src} alt="Abby smile" /></div></div>
+        <span class="bottomTitle">Story Unlocked</span>
       </h1>
-      <PolaroidStack />
+      <PolaroidStack></PolaroidStack>
     </div>
-    <div class="logo">
-      <img class="logo__img" src={AbbyKortrijkSvg.src} alt="Abby icon" />
-    </div>
-  </body>
+    <WebFooter mobileBgColor="yellow" desktopBgColor="white" /></WebFooter>
+    
 
-  <script>
+  </body>
+</html>
+
+<script>
     import { navigate } from "astro:transitions/client";
     setTimeout(() => navigate("/3"), 4000);
-  </script>
-</html>
+
+</script>
