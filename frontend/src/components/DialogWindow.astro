@@ -59,6 +59,10 @@ import AbbyWorkshop from "../assets/images/abbyWorkshop.webp"
     margin-top: .5rem;
   }
 
+  #hidden {
+    display: none;
+  }
+
   @keyframes fadeInScale {
     from {transform: scale(0); }
     to {transform: scale(1); }
@@ -81,7 +85,7 @@ import AbbyWorkshop from "../assets/images/abbyWorkshop.webp"
       <figure  style={`display: ${display};`}>
         <img src={AbbyWorkshop.src} alt="abbyWorkshop">
       </figure>
-      <a href="https://www.abbykortrijk.be/bezoek/kalender">Calendar</a>
+      <a href="https://www.abbykortrijk.be/bezoek/kalender" style={`display: ${display};`}>Calendar</a>
     </div>
   </div>
 </div>

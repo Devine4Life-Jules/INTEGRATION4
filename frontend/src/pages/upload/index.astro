@@ -94,9 +94,13 @@ import DoneSvg from "../../assets/icons/done.svg";
   }
 
   @media (orientation: landscape) {
+
+
+
     body {
       grid-template-columns: auto auto;
       grid-template-rows: auto 1fr max-content;
+      height: 100vh;
     }
 
     .picture {
@@ -168,6 +172,13 @@ import DoneSvg from "../../assets/icons/done.svg";
       display: initial;
       font-size: 1.25rem;
       text-align: center;
+    }
+
+    .error {
+      text-align: center;
+      width: 100%;
+      display: none;
+      color: red;
     }
 
     .form__file__button {
@@ -260,7 +271,11 @@ import DoneSvg from "../../assets/icons/done.svg";
         ><input class="form__consent-input" type="checkbox" required name="consent" />I
         agree that ABBY can display these pictures* </label
       >
+      <span class="error">please fill in all required fields</span>
+
+     
     </form>
+    
     <div class="buttons">
       <button class="buttons__upload button">Upload</button>
       <a class="button button--back">Back</a>
@@ -277,6 +292,8 @@ import DoneSvg from "../../assets/icons/done.svg";
     ".buttons .button--back"
   ) as HTMLAnchorElement;
   const searchParams = new URL(location.href).searchParams;
+  
+
 
   const backParam = searchParams.get("back");
   if (!backParam) {
@@ -392,70 +409,79 @@ import DoneSvg from "../../assets/icons/done.svg";
     ".buttons__upload"
   ) as HTMLButtonElement;
   console.log($submit);
-  $submit.addEventListener("click", async (e) => {
-    e.preventDefault();
-    const $fileInput = $form.querySelector(
-      "#picture-input"
-    ) as HTMLInputElement;
+ $submit.addEventListener("click", async (e) => {
+  e.preventDefault();
 
-    console.log($fileInput.files);
+  const $fileInput = $form.querySelector("#picture-input");
+  const username = $form.querySelector('input[name="username"]');
+  const consent = $form.querySelector('input[name="consent"]');
+  const errorSpan = $form.querySelector(".error");
 
-    if (!$fileInput.files || $fileInput.files.length === 0) return;
-    console.log($fileInput.files);
+  // Basic validation
+  const isFileSelected = $fileInput.files && $fileInput.files.length > 0;
+  const isUsernameFilled = username.value.trim() !== "";
+  const isConsentChecked = consent.checked;
 
-    const picture = $fileInput.files[0];
-    const res = await fetch(
-      `${API_URL}/drupal/jsonapi/node/story/field_picture`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/vnd.api+json",
-          "Content-Type": "application/octet-stream",
-          "Content-Disposition": `file; filename="${picture.name}"`,
+  if (!isFileSelected || !isUsernameFilled || !isConsentChecked) {
+    errorSpan.style.display = "block";
+    return;
+  } else {
+    errorSpan.style.display = "none";
+  }
+
+  const picture = $fileInput.files[0];
+
+  // upload picture to API
+  const res = await fetch(`${API_URL}/drupal/jsonapi/node/story/field_picture`, {
+    method: "POST",
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/octet-stream",
+      "Content-Disposition": `file; filename="${picture.name}"`,
+    },
+    body: picture,
+  });
+
+  const resJson = await res.json();
+  const pictureId = resJson?.data?.id;
+
+  if (!pictureId) {
+    console.error("pictureId is not defined!");
+    // you could show error message here too
+    return;
+  }
+
+  const data = new FormData($form);
+  const usernname = data.get("username");
+  const description = data.get("message");
+
+  await fetch(`${API_URL}/drupal/jsonapi/node/story`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/vnd.api+json",
+      Accept: "application/vnd.api+json",
+    },
+    body: JSON.stringify({
+      data: {
+        type: "node--story",
+        attributes: {
+          title: Date.now(),
+          field_username: usernname,
+          field_message: description,
         },
-        body: picture,
-      }
-    );
-    const resJson = await res.json();
-    const pictureId = resJson?.data.id as string | undefined;
-
-    if (!pictureId) {
-      // !TODO handle error with UI
-      console.error("pictureId is not defined!");
-      return;
-    }
-
-    const data = new FormData($form);
-    const usernname = data.get("username");
-    const description = data.get("message");
-
-    // !TODO handle error
-    await fetch(`${API_URL}/drupal/jsonapi/node/story`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/vnd.api+json",
-        Accept: "application/vnd.api+json",
-      },
-      body: JSON.stringify({
-        data: {
-          type: "node--story",
-          attributes: {
-            title: Date.now(),
-            field_username: usernname,
-            field_message: description,
-          },
-          relationships: {
-            field_picture: {
-              data: {
-                type: "file--file",
-                id: pictureId,
-              },
+        relationships: {
+          field_picture: {
+            data: {
+              type: "file--file",
+              id: pictureId,
             },
           },
         },
-      }),
-    });
-
-    navigate("/upload/complete");
+      },
+    }),
   });
+
+  navigate("/upload/complete");
+});
+
 </script>
