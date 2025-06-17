@@ -7,7 +7,6 @@ import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 import Tape from "../components/Tape.astro";
 import PolaroidStack from "../components/PolaroidStack.astro";
 import WebFooter from "../components/WebFooter.astro";
-
 ---
 
 <style>
@@ -18,18 +17,15 @@ import WebFooter from "../components/WebFooter.astro";
   .titleWrapper {
     display: flex;
     align-items: flex-end;
-
   }
 
-  @media screen and (min-width:100px) {
-
+  @media screen and (min-width: 100px) {
     h1 {
       margin: 0 auto;
       width: 60vw;
     }
 
     body {
-     
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -41,88 +37,74 @@ import WebFooter from "../components/WebFooter.astro";
       flex-direction: column;
     }
 
-    
-
-
     .smiley {
       width: 15vw;
       margin-left: 1rem;
     }
-
   }
 
-    @media screen and (min-width:500px) {
+  @media screen and (min-width: 500px) {
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
 
-      body {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
+    h1 {
+      font-size: 5rem;
+      margin-top: 5rem;
+      margin-left: 6rem;
+      line-height: 1;
+    }
 
-      }
+    .headerBold {
+      padding-bottom: 0;
+    }
 
-      h1 {
-        font-size: 5rem;
-        margin-top: 5rem;
-        margin-left: 6rem;
-        line-height: 1;
-      }
+    body {
+      height: 100vh;
+    }
 
-      .headerBold {
-        
-        padding-bottom: 0;
-      }
+    .smiley {
+      width: 7vw;
+    }
 
-      body {
-        height: 100vh;
-      }
-
-      .smiley {
-        width: 7vw;
-      }
-
-      .pageWrapper {
-        display: flex;
-        flex-direction: row-reverse;
-        margin-bottom: auto;
-        align-items: block-end;
-        padding-bottom: 8rem;
-        padding-left: 17rem;
-      }
-    
-      }
-
-    
+    .pageWrapper {
+      display: flex;
+      flex-direction: row-reverse;
+      margin-bottom: auto;
+      align-items: block-end;
+      padding-bottom: 8rem;
+      padding-left: 17rem;
+    }
   }
-
-
 </style>
 
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    
     <div class="tapeWrapper">
-    <Tape text="you are the key" />
+      <Tape text="you are the key" />
     </div>
     <div class="pageWrapper">
       <h1>
-        <div class="titleWrapper"><div class="headerBold">Good job </div><div class="smiley"><img src={AbbySmilePng.src} alt="Abby smile" /></div></div>
+        <div class="titleWrapper">
+          <div class="headerBold">Good job</div><div class="smiley">
+            <img src={AbbySmilePng.src} alt="Abby smile" />
+          </div>
+        </div>
         <span class="bottomTitle">Story Unlocked</span>
       </h1>
-      <PolaroidStack></PolaroidStack>
+      <PolaroidStack />
     </div>
-    <WebFooter mobileBgColor="yellow" desktopBgColor="white" /></WebFooter>
-    
-
-  </body>
+    <WebFooter mobileBgColor="yellow" desktopBgColor="white" /></body
+  >
 </html>
 
 <script>
-    import { navigate } from "astro:transitions/client";
-    // setTimeout(() => navigate("/3"), 4000);
-
+  import { navigate } from "astro:transitions/client";
+  // setTimeout(() => navigate("/3"), 4000);
 </script>
