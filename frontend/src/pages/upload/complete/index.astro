@@ -5,6 +5,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../../consts";
 import AbbySmilePng from "../../../assets/icons/abby-smile-yellow.png";
 import AbbyLogoSvg from "../../../assets/illustrations/abby-kortrijk.svg";
 import Polaroid from "../../../components/Polaroid.astro";
+import Friends from "../../../assets/images/bringFriend.png";
 ---
 
 <style>
@@ -72,6 +73,7 @@ import Polaroid from "../../../components/Polaroid.astro";
       grid-row: 1/2;
       justify-self: end;
       z-index: 10;
+      display: none;
     }
 
     .polaroids {
@@ -112,7 +114,7 @@ import Polaroid from "../../../components/Polaroid.astro";
     <img class="logo" src={AbbyLogoSvg.src} alt="Abby logo" />
     <div class="polaroids">
       <!-- !TODO fill with images from the database -->
-      <Polaroid />
+      <Polaroid pic={Friends} names="Jules and Sebastian" />
     </div>
     <div class="text-container">
       <h2 class="text-container__title">Want to keep going?</h2>

@@ -1,6 +1,7 @@
 ---
-import dummyPic from "../assets/images/dummyPic1.png";
+import { Image } from "astro:assets";
 import keyBlue from "../assets/illustrations/keyBlue.svg";
+import Friends from "../assets/images/bringFriend.png";
 
 const { pic, names } = Astro.props;
 ---
@@ -16,8 +17,15 @@ const { pic, names } = Astro.props;
     position: relative;
   }
 
+  .picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   figure img {
     width: 100%;
+    object-fit: cover;
   }
 
   figure {
@@ -26,13 +34,16 @@ const { pic, names } = Astro.props;
     max-width: 400px;
     aspect-ratio: 1/1;
     overflow: hidden;
+    display: flex;
+    align-items: center;
   }
 
   .polaroidBottom {
     display: flex;
-    justify-content: flex-between;
+    justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    text-align: end;
   }
 
   .key {
@@ -44,7 +55,7 @@ const { pic, names } = Astro.props;
 
 <div class="polaroid">
   <figure>
-    <img src={pic} alt="people of abby" />
+    <Image class={"picture"} src={pic} alt="people of abby" />
   </figure>
   <div class="polaroidBottom">
     <figure class="key"><img src={keyBlue.src} alt="bluekey" /></figure>
