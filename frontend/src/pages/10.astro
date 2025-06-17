@@ -18,7 +18,7 @@ import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
   }
 
   .title {
-    padding-bottom: 0;
+    padding: 0 var(--screen-padding);
     line-height: 1.2;
   }
 
@@ -129,11 +129,11 @@ import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"></iframe>
     <div class="buttons">
-      <a class="button button--back" href="/9">Back</a>
       <a class="button buttons__invite" href="/11">Invite a friend</a>
       <a class="button" href={"/story?back=" + encodeURI("/10")}
         >Our Shared Story</a
       >
+      <a class="button button--back" href="/9">Back</a>
     </div>
   </body>
 </html>
