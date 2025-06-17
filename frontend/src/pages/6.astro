@@ -69,91 +69,88 @@ import AbbyOutside from "../assets/images/abbyOutside.png";
   }
 
   @media (orientation: landscape) {
-    .logoWrapper,
-    h1 {
-      background-color: var(--white);
-    }
-
-    .how {
-      display: block;
-      font-weight: 200;
-      font-size: 2rem;
-    }
-
-    .logoWrapper {
-      grid-column: 1;
-      grid-row: 1;
-      z-index: 100;
-      padding: 1rem;
-      background-color: transparent;
-    }
-
-    h1 {
-      grid-column: 2;
-      grid-row: 1;
-      font-size: 4rem;
-      max-width: 60%;
-      line-height: 1;
-      margin-left: 2rem;
-      margin-top: 2rem;
-    }
-
     body {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 25vh auto auto 15vh;
-      height: 100vh;
+      grid-template-rows: auto auto auto 1fr max-content;
+      grid-template-columns: auto auto;
     }
 
-    p {
-      margin-top: autos;
-      max-height: 5rem;
+    .logo,
+    .title {
+      background: none;
+    }
+
+    .logo {
+      position: absolute;
+      top: var(--screen-padding);
+      left: var(--screen-padding);
+      padding: 0;
+      z-index: 100;
+    }
+
+    .title {
+      grid-column: 2/3;
+      grid-row: 2/3;
+      font-size: 4rem;
+      padding: var(--screen-padding);
+      padding-bottom: 0.5em;
+      padding-top: 0;
+      line-height: 1.1;
+    }
+
+    .title__highlight {
+      background-color: var(--blue);
+    }
+
+    .text-contaiener {
+      padding: var(--screen-padding);
+    }
+
+    .text-container__p {
       align-self: flex-end;
-      padding-left: 2rem;
-      padding-bottom: 2rem;
       text-align: left;
     }
 
-    figure img {
-      width: 100%;
+    .text-container__title {
+      text-align: left;
+    }
+
+    .picture {
+      grid-column: 1/2;
+      grid-row: 1 / 5;
       height: 100%;
       object-fit: cover;
     }
 
-    figure {
-      grid-column: 1;
-      grid-row: 1 / 4;
-      z-index: 1;
+    .chapter {
+      display: initial;
+      padding: var(--screen-padding);
+      padding-bottom: 0.2em;
+      height: min-content;
+      font-size: 2.5rem;
     }
 
-    .locationLabel {
-      position: relative;
-      width: 5rem;
-      height: 2rem;
-      display: inline-flex;
-      align-items: center;
-      top: 0;
-      left: 0;
-      margin-left: 2rem;
+    .label {
+      grid-column: 2/3;
+      grid-row: 3/4;
+      margin-top: 0em;
+      font-size: 1.625rem;
     }
 
-    .locationLabel img {
-      width: 3rem;
+    .label__img {
+      width: 2rem;
     }
 
-    .locationLabel span {
-      font-size: inherit;
-      font-weight: bold;
-      line-height: 1;
+    .text-container {
+      align-self: flex-end;
+      max-width: 35rem;
     }
 
-    .progressBarWrapper {
-      grid-column: 1 / 3;
-      background-color: var(--yellow);
+    .text-container__title {
+      font-size: 2.5rem;
     }
 
-    .whenever {
-      font-size: 1.5rem;
-      display: block;
+    .text-container__p {
+      font-size: 1.6rem;
     }
   }
 </style>
