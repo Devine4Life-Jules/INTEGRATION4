@@ -5,64 +5,73 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 import LocationSvg from "../assets/icons/location.svg";
 import ProgressBar from "../components/ProgressBar.astro";
-import AbbyOutside from "../assets/images/abbyOutside.png"
+import AbbyOutside from "../assets/images/abbyOutside.png";
 ---
 
 <style>
+  body {
+    display: grid;
+    grid-template-rows: auto auto auto 1fr max-content;
+    height: 100vh;
+  }
 
-
-
-  .locationLabel {
+  .label {
     display: inline-flex;
     background-color: var(--yellow);
-
+    grid-row: 3/4;
+    grid-column: 1/2;
+    z-index: 100;
+    height: max-content;
+    width: max-content;
+    align-items: center;
+    padding: 0.3em 0.5em 0.3em 0;
+    margin: var(--screen-padding);
   }
 
-  body {
-    background-color: var(--white);
+  .label__img {
+    width: 1.5rem;
   }
 
-  @media screen and (min-width: 100px) {
-
-
-
-    .logoWrapper, h1 {
-      background-color: var(--yellow);
-      
-    }
-
-    body {
-      display: grid;
-      grid-template-rows: 8vh 15vh auto 20vh;
-      height: 100vh;
-    }
-
-
-    .locationLabel {
-      position:absolute;
-      padding-right: 1rem;
-      top:26%;
-      left: 3%;
-    }
-
-    p {
-      text-align: center;
-      width: 85%;
-      margin: 0 auto;
-    }
-
-    .how {
-      display: none;
-    }
-    
+  .picture {
+    grid-row: 3/4;
+    grid-column: 1/2;
   }
 
+  .logo,
+  .title {
+    background-color: var(--yellow);
+  }
 
-  @media screen and (min-width: 500px) {
+  .title {
+    line-height: 1.2;
+    padding-top: 0.6em;
+  }
 
-    .logoWrapper, h1 {
+  .logo {
+    padding: var(--screen-padding);
+  }
+
+  .chapter {
+    display: none;
+  }
+
+  .text-container {
+    padding: var(--screen-padding);
+  }
+
+  .text-container {
+    text-align: center;
+  }
+
+  .text-container__p {
+    text-align: center;
+    padding-top: 0.2em;
+  }
+
+  @media (orientation: landscape) {
+    .logoWrapper,
+    h1 {
       background-color: var(--white);
-      
     }
 
     .how {
@@ -93,9 +102,6 @@ import AbbyOutside from "../assets/images/abbyOutside.png"
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 25vh auto auto 15vh;
       height: 100vh;
-      
-      
-
     }
 
     p {
@@ -128,8 +134,6 @@ import AbbyOutside from "../assets/images/abbyOutside.png"
       top: 0;
       left: 0;
       margin-left: 2rem;
-      
-
     }
 
     .locationLabel img {
@@ -145,51 +149,40 @@ import AbbyOutside from "../assets/images/abbyOutside.png"
     .progressBarWrapper {
       grid-column: 1 / 3;
       background-color: var(--yellow);
-      
-      
     }
-
-   
 
     .whenever {
       font-size: 1.5rem;
       display: block;
     }
-
   }
-
-
-
-
-
 </style>
 
-
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    <div class="logoWrapper"><img src={AbbyLogoSvg.src} alt="Abby logo" /></div>
-    <h1>
-      <span class="how">how it works</span>
-      Your story begins inside
+    <div class="logo">
+      <img class="logo__img" src={AbbyLogoSvg.src} alt="Abby logo" />
+    </div>
+    <span class="chapter">How it works</span>
+    <h1 class="title">
+      <span class="title__highlight">Your</span> story begins inside
     </h1>
-    <div class="locationLabel">
-      <img src={LocationSvg.src} alt="Location icon" />
-      <span>ABBY</span>
+    <div class="label">
+      <img class="label__img" src={LocationSvg.src} alt="Location icon" />
+      ABBY
     </div>
-    <figure>
-      <img src={AbbyOutside.src} alt="">
-    </figure>
-    <p>
-      <span class="whenever">Whenever you’re ready,</span> just drop by the Salon in
-      the museum. That’s where your story will come to life.
-    </p>
-    <div class="progressBarWrapper">
-      <ProgressBar currentStep={1} backLink="/5" nextLink="/7" ></ProgressBar>
+    <img class="picture" src={AbbyOutside.src} alt="image of Abby" />
+    <div class="text-container">
+      <h2 class="text-container__title">Whenever you're ready</h2>
+      <p class="text-container__p">
+        Just drop by the Salon in the museum. That’s where your story will come
+        to life.
+      </p>
     </div>
+    <ProgressBar currentStep={1} backLink="/5" nextLink="/7" />
   </body>
 </html>
