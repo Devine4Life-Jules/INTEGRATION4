@@ -1,91 +1,85 @@
 ---
-import Polaroid from "./Polaroid.astro"
-import dummyPic from "../assets/images/dummyPic1.png";
+import Polaroid from "./Polaroid.astro";
 import frisbee from "../assets/images/frisbee.png";
-import chess from "../assets/images/chess.png"
-import cards from "../assets/images/cards.png"
-import cocktail from "../assets/images/cocktail.png"
+import chess from "../assets/images/chess.png";
+import cards from "../assets/images/cards.png";
+import cocktail from "../assets/images/cocktail.png";
 import bringFriend from "../assets/images/bringFriend.png";
 ---
+
 <style>
-    .polaroidStack {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
-        place-items: center;
-        margin: 4rem auto;
-    }
+  .polaroidStack {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+    margin: 4rem;
+  }
 
+  .polaroidStack > * {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+  }
 
-
-    .polaroidStack > * {
-        grid-column: 1;
-        grid-row: 1;
-        position: relative;
-    }
-
-    .polaroidStack > :nth-child(1) {
-        z-index: 1;
-        transform: rotate(0deg);
-        }
-    .polaroidStack > :nth-child(2) {
+  .polaroidStack > :nth-child(1) {
+    z-index: 1;
+    transform: rotate(0deg);
+  }
+  .polaroidStack > :nth-child(2) {
     z-index: 2;
     transform: rotate(-10deg);
-    }
-    .polaroidStack > :nth-child(3) {
+  }
+  .polaroidStack > :nth-child(3) {
     z-index: 3;
     transform: rotate(-7deg);
-    }
-    .polaroidStack > :nth-child(4) {
+  }
+  .polaroidStack > :nth-child(4) {
     z-index: 4;
     transform: rotate(7deg);
-    }
-    .polaroidStack > :nth-child(5) {
+  }
+  .polaroidStack > :nth-child(5) {
     z-index: 4;
     transform: rotate(-15deg);
-    }
-    .polaroidStack > :nth-child(6) {
-        
-    }
-    
-
+  }
+  .polaroidStack > :nth-child(6) {
+  }
 </style>
 
-
 <div class="polaroidStack">
-    <div class="polaroidWrapper">
-        <Polaroid pic={frisbee.src} names={"Oliwier"}/>
-    </div>
-    <div class="polaroidWrapper">
-        <Polaroid pic={chess.src} names={"Jules"}/>
-    </div>
-    <div class="polaroidWrapper">
-         <Polaroid pic={cards.src} names={"Sarah and Amelie"}/>
-    </div>
-     <div class="polaroidWrapper">
-         <Polaroid pic={cocktail.src} names={"Andreaa"}/>
-    </div>
-    <div class="polaroidWrapper">
-        <Polaroid pic={bringFriend.src} names={"Jules & Sebastiaan"}/>
-    </div>
-
-
+  <div class="polaroidWrapper">
+    <Polaroid pic={frisbee.src} names={"Oliwier"} />
+  </div>
+  <div class="polaroidWrapper">
+    <Polaroid pic={chess.src} names={"Jules"} />
+  </div>
+  <div class="polaroidWrapper">
+    <Polaroid pic={cards.src} names={"Sarah and Amelie"} />
+  </div>
+  <div class="polaroidWrapper">
+    <Polaroid pic={cocktail.src} names={"Andreaa"} />
+  </div>
+  <div class="polaroidWrapper">
+    <Polaroid pic={bringFriend.src} names={"Jules & Sebastiaan"} />
+  </div>
 </div>
-
 
 <script>
   import { gsap } from "gsap";
 
-    console.log("GSAP loaded?", typeof gsap === "function" || typeof gsap === "object");
+  console.log(
+    "GSAP loaded?",
+    typeof gsap === "function" || typeof gsap === "object"
+  );
   console.log("GSAP version:", gsap.version);
 
-  const wrappers = document.querySelectorAll('.polaroid-wrapper');
+  const wrappers = document.querySelectorAll(".polaroid-wrapper");
 
   const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
   gsap.from(".polaroidWrapper", {
     scale: 0,
-    
+
     duration: 0.6,
     stagger: 0.5, // show one after the other
     ease: "power2.out",
