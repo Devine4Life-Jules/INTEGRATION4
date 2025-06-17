@@ -3,150 +3,160 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Tape from "../components/Tape.astro";
-import AbbySvg from "../assets/illustrations/abby-kortrijk.svg";
-import keyHoleBlack from "../assets/illustrations/keyholeBlack.svg";
-import WebFooter from "../components/WebFooter.astro";
+import keyholeBlackSvg from "../assets/illustrations/keyholeBlack.svg";
+import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
 ---
 
 <style>
   body {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: var(--white);
-
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-columns: 1fr 1fr;
   }
 
-
-    .fade {
-      animation: fadeLoop 3s infinite ease-in-out;
-
+  body > * {
+    grid-column: 1/3;
   }
 
-    @keyframes fadeLoop {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
+  .fade {
+    animation: fadeLoop 3s infinite ease-in-out;
   }
 
-  .key {
+  @keyframes fadeLoop {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .lock {
+    background-color: var(--blue);
+    padding: var(--screen-padding);
+  }
+
+  .lock__container {
+    margin: auto;
     width: 12vh;
-    height: 5vh;
+    display: grid;
+    justify-items: center;
+    position: relative;
+  }
+
+  .lock__instruction {
+    text-align: center;
+    padding-top: 0.7em;
+    padding-bottom: 2em;
+  }
+
+  .lock__img {
+    width: 100%;
+  }
+
+  .lock__key {
+    position: absolute;
+    top: 22%;
     background: var(--yellow);
-    // margin: 16vh auto;
+    z-index: 100;
+    width: 80%;
+    height: 10%;
   }
 
-  @media screen and (min-width: 100px){
-    h1 {
-      font-size: 2rem;
-      background-color: var(--blue);
-      padding-top: 2rem;
-      padding-left:1rem;
-      text-align:center
-    }
-
-
-
-    .lock {
-      background-color: var(--blue);
-      width: 100vw;
-      min-height: 55vh;
-      background-repeat: no-repeat;
-      background-position: center 10vh;
-      background-size: 30%;
-      display: flex;
-      flex-direction: column; 
-      align-items: center;    
-      justify-content: center; 
-      position: relative;
-      
-
-      
-    }
-
-    .key {
-      justify-content: flex-start;
-      margin-top: 15vh;
-    }
-
-    .holdInstruction{
-      margin-top: 25vh;
-      text-align: center;
-      padding-bottom: 3rem;
-      background-color: var(--blue);
-    }
-
-    .description {
-      padding: 1.5rem;
-    }
-
-    .titleLight {
-      font-weight: 400;
-    }
-
-
-
-    
+  .title {
+    font-size: 2rem;
+    background-color: var(--blue);
+    padding: var(--screen-padding);
+    padding-top: 1em;
+    text-align: center;
+    line-height: 1.2;
   }
 
-    @media screen and (min-width: 500px){
+  .title__bottom {
+    font-weight: 400;
+  }
 
+  .description {
+    margin-top: 1.4em;
+    font-size: 2;
+    padding: var(--screen-padding);
+  }
 
+  .logo {
+    align-self: flex-end;
+    padding: var(--screen-padding);
+  }
 
-      body {
-        display: grid;
-        grid-template-rows: 5vh 42vh 42vh auto;
-        grid-template-columns: 50vw 50vw;
-        justify-content: space-around;
-        width: 100%;
-        gap: 0;
-        height: 100vh;
-      }
+  @media (orientation: landscape) {
+    body {
+      display: grid;
+      grid-template-rows: auto auto 1fr max-content;
+      grid-template-columns: auto auto;
+      justify-content: space-around;
+      height: 100vh;
+    }
 
-    h1 {
-      font-size: 3rem;
-      background-color: var(--white);
-      margin: 0;
-      grid-row: 2;
-      background-color: none;
+    .title {
+      font-size: 5rem;
+      line-height: 1;
+      grid-row: 2/3;
+      background: none;
       text-align: left;
     }
 
+    .title__highlight {
+      background-color: var(--blue);
+    }
+
     .description {
-      grid-row: 3;
-      grid-column: 1;
+      grid-row: 3/4;
+      grid-column: 1/2;
+      margin-top: 0;
+      align-self: flex-end;
+    }
+
+    .description__title {
+      font-size: 2.5rem;
+      font-weight: 500;
+    }
+
+    .description__p {
+      font-size: 1.563rem;
+      max-width: 30rem;
     }
 
     .lock {
-      grid-row: 2 / 4; ;
-      z-index: 300000;
-      width: 100%;
-      min-width: none;
-      height: 100%;
-
+      grid-row: 2 / 4;
+      grid-column: 2/3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-
-
-    .tapeWrapper {
-      grid-row: 1;
-      grid-column-start: span 2;
-      z-index: 1;
-      padding: 0;
-      margin: 0;
-      background-color: var(--green);
-      height: 100%;
-      padding-top:.5rem;
-      
-      
-      
+    .lock__container {
+      width: 20vh;
+      margin-top: 8em;
+      margin-bottom: 1em;
     }
 
+    .lock__instruction {
+      font-size: 2.5rem;
+      max-width: 20rem;
+      margin: 0 auto;
+      line-height: 1.2;
+    }
 
-    
+    .logo {
+      grid-row: 4/5;
+      background-color: var(--yellow);
+      grid-column: 1/3;
+    }
   }
-
-
 </style>
 
 <html lang="en">
@@ -155,89 +165,90 @@ import WebFooter from "../components/WebFooter.astro";
     <ClientRouter />
   </head>
   <body>
-    <div class="tapeWrapper">
-      <Tape text="you are the key" />
-    </div>
-    <h1 class=""><span class="headerBold"><span class="blueBg">You are </span>the key </span><br /> <span class="titleLight">to our story</span> </h1>
-    <div class="lock" style={`background-image: url(${keyHoleBlack.src})`}>
-      <div id="key" class="key"></div>
-      <p class="holdInstruction fade">click and the key hold to unlock</p>
-    </div>
-    <div class="description">
-      <h2>Dare to try?</h2>
-      <p>
-        Find out what will happen after unlocking our story, you are the key -
-        we need you.
-      </p>
-    </div>
-    <WebFooter mobileBgColor="white" desktopBgColor="yellow"></WebFooter>
-
+    <Tape style="grid-column:1/3;" text="you are the key" />
+    <h1 class="title">
+      <span class="title__top">
+        <span class="title__highlight">You are</span> the key
+      </span><br />
+      <span class="title__bottom">to our story</span>
+    </h1>
   </body>
+  <div class="lock">
+    <div class="lock__container">
+      <img
+        class="lock__img"
+        src={keyholeBlackSvg.src}
+        alt="icon of a keyhole"
+      />
+      <div class="lock__key"></div>
+    </div>
+    <p class="lock__instruction fade">click and the key hold to unlock</p>
+  </div>
+  <div class="description">
+    <h2 class="description__title">Dare to try?</h2>
+    <p class="description__p">
+      Find out what will happen after unlocking our story, you are the key - we
+      need you.
+    </p>
+  </div>
+  <div class="logo">
+    <img class="logo__img" src={AbbyKortrijkSvg.src} alt="Abby icon" />
+  </div>
 </html>
 
 <script>
   import { navigate } from "astro:transitions/client";
   import { gsap, Power1 } from "gsap";
 
-  const mm = gsap.matchMedia();
+  // const mm = gsap.matchMedia();
+  // const tl = gsap.timeline();
+  // const tlDuration = .5;
 
-  const tl = gsap.timeline();
-  const tlDuration = .5;
-  
-  
+  // mm.add("(min-width: 500px)", () => {
+  //   const tl = gsap.timeline();
 
-  mm.add("(min-width: 500px)", () => {
-    const tl = gsap.timeline();
-    
+  //   tl.from(".lock", {
+  //     x: 600,
+  //     duration: tlDuration,
+  //     ease:Power1.easeInOut
+  //   })
+  //   .from(".headerBold", {
+  //     opacity: 0,
+  //     duration: tlDuration,
+  //     ease:Power1.easeInOut
 
-    tl.from(".lock", {
-      x: 600,
-      duration: tlDuration,
-      ease:Power1.easeInOut
-    })
-    .from(".headerBold", {
-      opacity: 0,
-      duration: tlDuration,
-      ease:Power1.easeInOut
+  //   })
+  //   .from(".titleLight", {
+  //     opacity: 0,
+  //     duration: tlDuration,
+  //     ease:Power1.easeInOut
 
-    })
-    .from(".titleLight", {
-      opacity: 0,
-      duration: tlDuration,
-      ease:Power1.easeInOut
+  //   })
+  //   .from(".description", {
+  //     opacity: 0,
+  //     duration: tlDuration,
+  //     ease:Power1.easeInOut
 
-    })
-    .from(".description", {
-      opacity: 0,
-      duration: tlDuration,
-      ease:Power1.easeInOut
+  //   });
+  // });
 
-    });
-  });
+  // mm.add("(min-width: 100px) and (max-width: 499px)", () => {
+  //   const tl = gsap.timeline();
 
+  //   tl
+  //   .from(".headerBold", {
+  //     scale: 0.5,
+  //     opacity: 0,
+  //     duration: 1
+  //   })
+  //   .from(".description", {
+  //     opacity: 0,
+  //     y: 50,
+  //     duration: 1
+  //   });
+  // });
 
-  mm.add("(min-width: 100px) and (max-width: 499px)", () => {
-    const tl = gsap.timeline();
-
-    
-    tl
-    .from(".headerBold", {
-      scale: 0.5,
-      opacity: 0,
-      duration: 1
-    })
-    .from(".description", {
-      opacity: 0,
-      y: 50,
-      duration: 1
-    });
-  });
-
-
-
-  gsap
-
-  const $key = document.querySelector("#key") as HTMLDivElement;
+  const $key = document.querySelector(".lock__key") as HTMLDivElement;
 
   let intervalId: ReturnType<typeof setInterval>;
   let keyRotaion = 0;
