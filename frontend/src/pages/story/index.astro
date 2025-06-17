@@ -149,11 +149,14 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
   );
   const data = await res.json();
   const parsedData = data.data.map((story: any, i: number) => {
-    const photo = data.included[i];
+    const pictureId = story.relationships.field_picture.data.id;
+    const photoUrl = data.included.find((a: any) => a.id === pictureId)
+      .attributes.uri.url;
+
     return {
       id: story.id,
       username: story.attributes.field_username,
-      photoUrl: photo.attributes.uri.url,
+      photoUrl: photoUrl,
     };
   });
 
