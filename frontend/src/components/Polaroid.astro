@@ -1,6 +1,10 @@
 ---
 import dummyPic from "../assets/images/dummyPic1.png";
 import keyBlue from "../assets/illustrations/keyBlue.svg";
+
+const { pic, names } = Astro.props;
+
+
 ---
 
 <style>
@@ -21,6 +25,9 @@ import keyBlue from "../assets/illustrations/keyBlue.svg";
   figure {
     margin: 0 auto;
     width: 90%;
+    max-width: 400px;
+    aspect-ratio: 1/1;
+    overflow:hidden;
   }
 
   .polaroidBottom {
@@ -39,10 +46,10 @@ import keyBlue from "../assets/illustrations/keyBlue.svg";
 
 <div class="polaroid">
   <figure>
-    <img src={dummyPic.src} alt="people of abby" />
+    <img src={pic} alt="people of abby" />
   </figure>
   <div class="polaroidBottom">
     <figure class="key"><img src={keyBlue.src} alt="bluekey" /></figure>
-    <p>names</p>
+   <p>{names}</p>
   </div>
 </div>

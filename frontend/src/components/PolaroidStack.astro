@@ -1,5 +1,11 @@
 ---
 import Polaroid from "./Polaroid.astro"
+import dummyPic from "../assets/images/dummyPic1.png";
+import frisbee from "../assets/images/frisbee.png";
+import chess from "../assets/images/chess.png"
+import cards from "../assets/images/cards.png"
+import cocktail from "../assets/images/cocktail.png"
+import bringFriend from "../assets/images/bringFriend.png";
 ---
 <style>
     .polaroidStack {
@@ -48,23 +54,21 @@ import Polaroid from "./Polaroid.astro"
 
 <div class="polaroidStack">
     <div class="polaroidWrapper">
-        <Polaroid></Polaroid>
+        <Polaroid pic={frisbee.src} names={"Oliwier"}/>
     </div>
     <div class="polaroidWrapper">
-        <Polaroid></Polaroid>
+        <Polaroid pic={chess.src} names={"Jules"}/>
     </div>
     <div class="polaroidWrapper">
-        <Polaroid></Polaroid>
+         <Polaroid pic={cards.src} names={"Sarah and Amelie"}/>
     </div>
      <div class="polaroidWrapper">
-        <Polaroid></Polaroid>
+         <Polaroid pic={cocktail.src} names={"Andreaa"}/>
     </div>
     <div class="polaroidWrapper">
-        <Polaroid></Polaroid>
+        <Polaroid pic={bringFriend.src} names={"Jules & Sebastiaan"}/>
     </div>
-    <div class="polaroidWrapper">
-        <Polaroid></Polaroid>
-    </div>
+
 
 </div>
 
