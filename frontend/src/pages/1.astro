@@ -12,7 +12,12 @@ import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
     background-color: var(--white);
     height: 100vh;
     display: grid;
-    grid-template-rows: auto auto auto auto 1fr;
+    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body > * {
+    grid-column: 1/3;
   }
 
   .fade {
@@ -50,16 +55,12 @@ import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
   }
 
   .lock__img {
-    grid-column: 1/2;
-    grid-row: 1/2;
     width: 100%;
   }
 
   .lock__key {
     position: absolute;
     top: 22%;
-    grid-column: 1/2;
-    grid-row: 1/2;
     background: var(--yellow);
     z-index: 100;
     width: 80%;
@@ -81,56 +82,68 @@ import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
 
   .description {
     margin-top: 1.4em;
+    font-size: 2;
     padding: var(--screen-padding);
   }
 
   .logo {
     align-self: flex-end;
-    margin: var(--screen-padding);
+    padding: var(--screen-padding);
   }
 
   @media (orientation: landscape) {
     body {
       display: grid;
       grid-template-rows: auto auto 1fr max-content;
-      grid-template-columns: 50vw 50vw;
+      grid-template-columns: auto auto;
       justify-content: space-around;
-      width: 100%;
-      gap: 0;
       height: 100vh;
     }
 
-    h1 {
-      font-size: 3rem;
-      background-color: var(--white);
+    .title {
+      font-size: 5rem;
+      line-height: 1;
+      background: none;
       margin: 0;
-      grid-row: 2;
-      background-color: none;
       text-align: left;
     }
 
+    .title__highlight {
+      background-color: var(--blue);
+    }
+
     .description {
-      grid-row: 3;
-      grid-column: 1;
+      grid-row: 3/4;
+      grid-column: 1/2;
+      margin-top: 0;
+      align-self: flex-end;
+    }
+
+    .description__title {
+      font-size: 2.5rem;
+      font-weight: 500;
+    }
+
+    .description__p {
+      font-size: 1.563rem;
+      max-width: 30rem;
     }
 
     .lock {
       grid-row: 2 / 4;
-      z-index: 300000;
-      width: 100%;
-      min-width: none;
-      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .tapeWrapper {
-      grid-row: 1;
-      grid-column-start: span 2;
-      z-index: 1;
-      padding: 0;
-      margin: 0;
-      background-color: var(--green);
-      height: 100%;
-      padding-top: 0.5rem;
+    .lock__container {
+      width: 20vh;
+    }
+
+    .logo {
+      grid-row: 4/5;
+      background-color: var(--yellow);
+      grid-column: 1/3;
     }
   }
 </style>
@@ -141,10 +154,10 @@ import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
     <ClientRouter />
   </head>
   <body>
-    <Tape class={"tape"} text="you are the key" />
+    <Tape style="grid-column:1/3;" text="you are the key" />
     <h1 class="title">
       <span class="title__top">
-        <span class="title__highlight">You are </span>the key
+        <span class="title__highlight">You are</span> the key
       </span><br />
       <span class="title__bottom">to our story</span>
     </h1>
@@ -161,13 +174,15 @@ import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
     <p class="lock__instruction fade">click and the key hold to unlock</p>
   </div>
   <div class="description">
-    <h2>Dare to try?</h2>
-    <p>
+    <h2 class="description__title">Dare to try?</h2>
+    <p class="description__p">
       Find out what will happen after unlocking our story, you are the key - we
       need you.
     </p>
   </div>
-  <img class="logo" src={AbbyKortrijkSvg.src} alt="Abby icon" />
+  <div class="logo">
+    <img class="logo__img" src={AbbyKortrijkSvg.src} alt="Abby icon" />
+  </div>
 </html>
 
 <script>
