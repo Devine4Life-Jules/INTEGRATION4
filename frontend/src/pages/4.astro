@@ -5,14 +5,18 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import WebFooter from "../components/WebFooter.astro";
 
 import boardGames from "../assets/images/boardGames.png";
-import frisbee from "../assets/images/abbyInside.png";
-import cafe from "../assets/images/bringFriend.png";
+import frisbee from "../assets/images/frisbee.png";
+import cafe from "../assets/images/cafe.png";
 import drawing from "../assets/images/painter.png";
 ---
 
 <style>
   body {
     background-color: var(--yellow);
+  }
+
+  button {
+    background-color: var(--white);
   }
 
   .hidden {
@@ -91,7 +95,7 @@ import drawing from "../assets/images/painter.png";
     <header>
       <span class="wePicked">We've picked a fun activity for you!</span>
       <h1>
-        <span class="blueBg name">Play board games</span>
+        <span class="blueBg name">Play board games</span><br>
         <span class="location">in our living room</span>
       </h1>
       <p>You can enjoy it solo — or bring a friend along to join your chapter</p>
