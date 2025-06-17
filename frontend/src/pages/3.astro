@@ -3,142 +3,118 @@ import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Tape from "../components/Tape.astro";
-import WebFooter from "../components/WebFooter.astro";
-
-import newChapter from "../assets/images/newChapter.png"
+import newChapter from "../assets/images/newChapter.png";
+import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
 ---
+
 <style>
-  h1 {
-    background-color: var(--yellow);
-    height: 100%;
-  }
-    
   body {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-rows: min-content min-content minmax(10rem, 50vh) 1fr min-content;
+    height: 100vh;
   }
 
-  @media screen and (min-width:100px) {
+  .text-container {
+    padding: var(--screen-padding);
+  }
 
-    
+  .text-container__p {
+    padding-top: 0.2em;
+  }
 
+  .title {
+    background-color: var(--yellow);
+    padding: 1rem;
+    font-size: 2.8rem;
+  }
 
-    .areYouDown {
-      background-color: var(--white);
-      flex-grow: 1;
-      padding: 1rem 1rem auto 1rem;
+  .picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    }
+  .picture__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
+  .buttons {
+    display: flex;
+    padding: var(--screen-padding);
+    justify-content: space-between;
+  }
 
-
-    main {
-      justify-content: flex-end;
-      justify-self: block-end;
-      display: flex;
-      flex-direction: column;
+  @media (orientation: landscape) {
+    body {
+      grid-template-rows: min-content auto auto min-content;
+      grid-template-columns: 1fr 1fr;
+      height: 100vh;
     }
 
     h1 {
-      padding: 1rem;
-      font-size: 2.8rem;
-      
+      grid-column: 1;
+      font-size: 4rem;
     }
 
-    
-
-
-    .tapeWrapper, h1 {
-     margin-bottom: auto;
+    .picture {
+      object-fit: cover;
     }
-    
 
-      @media screen and (min-width:500px){
-        body {
-          display: grid;
-          grid-template-rows: auto auto auto auto;
-          grid-template-columns: 1fr 1fr;
-          height: 100vh;
-        }
-        h1 {
-          grid-column: 1;
-          font-size: 4rem;
-        }
+    .areYouDown {
+      grid-column: 1;
+      grid-row: 3;
+      display: block;
+      background-color: var(--yellow);
+    }
 
-       
+    .newChapterPic {
+      grid-row: 2 / 4;
+      overflow: hidden; /* Optional, prevents spillover */
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
 
-        .newChapterPic {
-          width: 100%;
-        }
+    .newChapterPic img {
+      height: auto;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
 
-        .newChapterPic img {
-          width: 100%;
-          object-fit: cover;
-        }
-
-
-        .areYouDown {
-          grid-column: 1 ;
-          grid-row: 3;
-          display: block;
-          background-color: var(--yellow);
-        }
-
-        .newChapterPic {
-          grid-row: 2 / 4;
-          overflow: hidden; /* Optional, prevents spillover */
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-         
-        }
-
-
-        .newChapterPic img {
-          height: auto;
-          width: auto;
-          object-fit: contain; 
-          display: block;
-}
-
-        .tapeWrapper {
-          grid-column: 1 / 3;
-        }
-
-
-      }
-
-
+    .tapeWrapper {
+      grid-column: 1 / 3;
+    }
   }
-  
 </style>
 
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    <div class="tapeWrapper">
-      <Tape text="you are the key" />
+    <Tape text="you are the key" />
+    <h1 class="title">
+      <span class="title__highlight">You shape</span>
+      the new chapter
+    </h1>
+    <div class="picture">
+      <img
+        class="picture__img"
+        src={newChapter.src}
+        alt="me and the boys walking through museum"
+      />
     </div>
-    <h1><span class="headerBold">You shape</span>  <span class="blueBg bottomTitle">the new chapter</span></h1>
-    <!-- !TODO image -->
-    
-      <div class="newChapterPic">
-        <img src={newChapter.src} alt="">
-      </div>
-      <div class="areYouDown">
-        <h2>Are you down for some fun?</h2>
-        <p>click "next" if you're in!</p>
-      </div>
-    
-    <WebFooter>
-  <div slot="buttons" class="footerButtons">
-    <a href="/4" class="footerBtn">Next</a>
-  </div>
-    </WebFooter>
+    <div class="text-container">
+      <h2 class="text-container__title">Are you down for some fun?</h2>
+      <p class="text-container__p">click "next" if you're in!</p>
+    </div>
+    <div class="buttons">
+      <img class="logo-global" src={AbbyKortrijkSvg.src} alt="Abby logo" />
+      <a href="/4" class="button">Next</a>
+    </div>
   </body>
 </html>
