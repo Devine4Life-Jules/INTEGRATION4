@@ -1,6 +1,6 @@
 ---
 // Props
-const { id = "dialog-window", title = "Dialog", children } = Astro.props;
+const { id = "dialog-window", title = "Dialog", children, image, display="null" } = Astro.props;
 import AbbyWorkshop from "../assets/images/abbyWorkshop.webp"
 ---
 
@@ -78,8 +78,8 @@ import AbbyWorkshop from "../assets/images/abbyWorkshop.webp"
     </div>
     <div class="dialog-body">
       <slot />
-      <figure>
-        <img src={AbbyWorkshop.src} alt="">
+      <figure  style={`display: ${display};`}>
+        <img src={AbbyWorkshop.src} alt="abbyWorkshop">
       </figure>
       <a href="https://www.abbykortrijk.be/bezoek/kalender">Calendar</a>
     </div>
