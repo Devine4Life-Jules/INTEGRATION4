@@ -177,6 +177,11 @@ import DoneSvg from "../../assets/icons/done.svg";
       cursor: pointer;
     }
 
+    .required {
+      display: block;
+      font-size: 1rem;
+    }
+
     .buttons {
       grid-column: 1/3;
       background-color: var(--yellow);
@@ -213,6 +218,7 @@ import DoneSvg from "../../assets/icons/done.svg";
       </h1>
       <p class="text-container__p">
         <span class="bold">Share</span> the memories you made at ABBY
+        <span class="required">* - required</span>
       </p>
     </div>
     <form id="form" class="form">
@@ -229,8 +235,8 @@ import DoneSvg from "../../assets/icons/done.svg";
         />
         <p class="form__file__text">
           Drop your image here or <button class="form__file__button"
-            >browse</button
-          >
+            >browse  </button>*
+            
         </p>
         <input
           id="picture-input"
@@ -241,7 +247,7 @@ import DoneSvg from "../../assets/icons/done.svg";
         />
       </div>
       <label class="form__label"
-        >Your Name or Nickname
+        >Your Name or Nickname *
         <input name="username" placeholder="Lucia" />
       </label>
       <label class="form__label"
@@ -251,7 +257,7 @@ import DoneSvg from "../../assets/icons/done.svg";
       </label>
       <label
         ><input class="form__consent-input" type="checkbox" name="consent" />I
-        agree that ABBY can display these pictures</label
+        agree that ABBY can display these pictures* </label
       >
     </form>
     <div class="buttons">
