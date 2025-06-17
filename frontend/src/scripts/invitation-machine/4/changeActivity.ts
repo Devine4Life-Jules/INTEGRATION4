@@ -1,7 +1,6 @@
 import { API_URL } from "../../../consts";
-import QRCode from "qrcode";
 
-const res = await fetch(`${API_URL}/jsonapi/node/activities`);
+const res = await fetch(`${API_URL}/drupal/jsonapi/node/activitiy`);
 const { data } = await res.json();
 const activities = data.map(
   ({ attributes }: { attributes: any }) => attributes.title
@@ -16,10 +15,9 @@ const changeActivity = () => {
   currentIndex++;
   if (currentIndex >= activities.length) currentIndex = 0;
   const $qr = document.querySelector("#qr");
-  const host = new URL(location.href).host;
   QRCode.toCanvas(
     $qr,
-    `https://${host}/5?activity=${encodeURI(activities[currentIndex])}`
+    `${API_URL}/5?activity=${encodeURI(activities[currentIndex])}`
   );
   const $activity = document.querySelector("#activity") as HTMLSpanElement;
   $activity.textContent = activities[currentIndex];
