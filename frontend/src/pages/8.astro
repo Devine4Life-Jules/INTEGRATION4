@@ -122,7 +122,11 @@ import Image from "astro/components/Image.astro";
       display: flex;
       flex-direction: column;
       text-align: start;
-      font-size: 1.563rem;
+      font-size: 1rem;
+    }
+
+      .text-container__title {
+      font-size: 1.5rem;
     }
 
     .description .bold {
@@ -153,7 +157,7 @@ import Image from "astro/components/Image.astro";
       <span class="label__big-text">Pictures</span>
     </div>
     <p class="description">
-      <span class="bold">Your moments matter to us</span> After your visit, share
+      <span class="text-container__title">Your moments matter to us</span> After your visit, share
       your pictures - so your chapter becomes part of our story
     </p>
     <ProgressBar currentStep={3} backLink="/7" nextLink="/9" />
