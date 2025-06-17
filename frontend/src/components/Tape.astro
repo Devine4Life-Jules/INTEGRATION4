@@ -35,6 +35,12 @@ const style = Astro.props.style
     background-color: var(--yellow);
   }
 
+  @media (orientation: landscape) {
+    .tape {
+      grid-column: 1/3;
+    }
+  }
+
 </style>
     <div class={"tape"} style={style}>
       <div class="tape__inner">

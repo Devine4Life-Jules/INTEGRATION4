@@ -8,8 +8,8 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
 <style>
   body {
     display: grid;
-    min-height: 100vh;
-    grid-template-rows: repeat(4, auto) 1fr;
+    height: 100vh;
+    grid-template-rows: repeat(3, auto) 1fr;
     justify-items: center;
     background-color: var(--yellow);
   }
@@ -18,7 +18,7 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
     font-size: 3.75rem;
     background-color: var(--blue);
     width: max-content;
-    margin: 0.8em auto 0.2em;
+    margin: 0.3em auto 0.2em;
     font-weight: 700;
     text-transform: capitalize;
     line-height: 1.2;
@@ -39,6 +39,7 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
     padding: 0.4em 0.8em;
     width: 80%;
     max-width: 22rem;
+    display: none;
   }
 
   .stories__outer {
@@ -51,16 +52,16 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
     display: grid;
     gap: 1em;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    width: 700%;
-    padding: 1em 5vw;
+    grid-template-rows: 1fr;
+    padding: 2em 20em 1em 2em;
   }
 
   .stories__story {
     background-color: var(--white);
     padding: 7%;
     display: block;
-    width: 45vw;
+    width: 20rem;
+    max-width: 90vw;
     text-decoration: none;
     position: relative;
   }
@@ -69,7 +70,6 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
     aspect-ratio: 1/1;
     width: 100%;
     object-fit: cover;
-    object-position: 50% 30%;
   }
 
   .stories__story__username {
@@ -85,6 +85,10 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
     left: -0.6em;
   }
 
+  .stories__padding {
+    width: 0.5em;
+  }
+
   .buttons {
     display: flex;
     justify-content: space-between;
@@ -92,6 +96,7 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
     align-items: flex-end;
     margin-bottom: 1.8em;
     flex-direction: row-reverse;
+    align-self: flex-end;
   }
 </style>
 
@@ -111,6 +116,7 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
     <input class="search" type="text" placeholder="Search bar" id="search" />
     <div class="stories__outer">
       <div class="stories">
+        <div class="stories__padding"></div>
         <a class="stories__story hidden" href="#">
           <figure>
             <img class="stories__story__img" alt="activity photo" />
@@ -149,11 +155,14 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
   );
   const data = await res.json();
   const parsedData = data.data.map((story: any, i: number) => {
-    const photo = data.included[i];
+    const pictureId = story.relationships.field_picture.data.id;
+    const photoUrl = data.included.find((a: any) => a.id === pictureId)
+      .attributes.uri.url;
+
     return {
       id: story.id,
       username: story.attributes.field_username,
-      photoUrl: photo.attributes.uri.url,
+      photoUrl: photoUrl,
     };
   });
 
@@ -179,6 +188,6 @@ import AbbySvg from "../../assets/illustrations/abby-kortrijk.svg";
     $storyFigcaption.textContent = story.username;
     $story.classList.remove("hidden");
 
-    $stories.append($story);
+    $stories.prepend($story);
   });
 </script>

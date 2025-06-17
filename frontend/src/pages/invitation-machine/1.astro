@@ -4,7 +4,7 @@ import InstallationFooter from "../../components/InstallationFooter.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { ClientRouter } from "astro:transitions";
 import keyholeImg from "../../assets/illustrations/keyhole.svg";
-import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
+import smileyBlue from "../../assets/illustrations/smileyBlue.svg";
 ---
 
 <!doctype html>
@@ -15,7 +15,6 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
     <script defer src="https://cdn.jsdelivr.net/npm/ml5@1.2.1/dist/ml5.min.js"
     ></script>
     <style>
-
       body {
         background-color: var(--yellow);
       }
@@ -43,40 +42,47 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
         margin: 0 auto;
         font-size: 3rem;
         padding-top: 1.3rem;
-        padding-bottom: 1.3rem ;
-
+        padding-bottom: 1.3rem;
       }
 
       .fade {
-          animation: fadeLoop 3s infinite ease-in-out;
-
+        animation: fadeLoop 3s infinite ease-in-out;
       }
 
       @keyframes fadeLoop {
-      0% { opacity: 0; }
-      50% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-      
-
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
     </style>
   </head>
   <body class="installationBody">
     <div class="page1Wrapper">
-      <h1 class="firstTitle"><span class="headerBold highlightText">You are the key</span> 
-      <div class="bottomTitle">to our story<figure class="smileyBlue"><img src={smileyBlue.src} alt="blue smiley"></figure></div>
+      <h1 class="firstTitle">
+        <span class="headerBold highlightText">You are the key</span>
+        <div class="bottomTitle">
+          to our story<figure class="smileyBlue">
+            <img src={smileyBlue.src} alt="blue smiley" />
+          </figure>
+        </div>
       </h1>
-      
 
       <!-- !TODO test if these sizes works on different devices -->
       <video width="733" height="1111" id="video" class="hidden"></video>
-      <canvas class="keyholeCanvas" width="733" height="1111" id="canvas"></canvas>
+      <canvas class="keyholeCanvas" width="733" height="1111" id="canvas"
+      ></canvas>
       <div class="spinToUnlock"><span class="fade">Spin To Unlock</span></div>
 
       <img src={keyholeImg.src} class="keyholeSvg hidden" />
       <!-- !TODO encouraging image -->
     </div>
-    <InstallationFooter text="You are the key"></InstallationFooter>
+    <InstallationFooter text="You are the key" />
   </body>
 </html>
 
@@ -84,41 +90,38 @@ import smileyBlue from "../../assets/illustrations/smileyBlue.svg"
   import checkSpinState from "../../scripts/invitation-machine/1/checkSpinState";
   import { handleBodyPose } from "../../scripts/invitation-machine/handlePose";
 
-    import { gsap } from "gsap";
+  import { gsap } from "gsap";
 
-    console.log("GSAP loaded?", typeof gsap === "function" || typeof gsap === "object");
-    console.log("GSAP version:", gsap.version);
+  console.log(
+    "GSAP loaded?",
+    typeof gsap === "function" || typeof gsap === "object"
+  );
+  console.log("GSAP version:", gsap.version);
 
-      const tlDuration = .6;
+  const tlDuration = 0.6;
 
-      const tl = gsap.timeline();
+  const tl = gsap.timeline();
 
-      tl
-.from("canvas", {
-        opacity: 0,
-        scale: 0,
-        duration: tlDuration
-      })
-      .from("h1", {
-        opacity: 0,
-        x: -300,
-        duration: tlDuration
-      })
-      .from(".bottomTitle", {
-        opacity: 0,
-        x: 300,
-        duration: tlDuration
-      })
-      .from(".spinToUnlock", {
-        opacity:0,
-        y:15,
-        duration: tlDuration
-      });
-     
-
-
-
-
+  tl.from("canvas", {
+    opacity: 0,
+    scale: 0,
+    duration: tlDuration,
+  })
+    .from("h1", {
+      opacity: 0,
+      x: -300,
+      duration: tlDuration,
+    })
+    .from(".bottomTitle", {
+      opacity: 0,
+      x: 300,
+      duration: tlDuration,
+    })
+    .from(".spinToUnlock", {
+      opacity: 0,
+      y: 15,
+      duration: tlDuration,
+    });
 
   handleBodyPose((pose: any) => {
     if (new URL(location.href).pathname !== "/invitation-machine/1") return;

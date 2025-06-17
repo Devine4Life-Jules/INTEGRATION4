@@ -1,11 +1,11 @@
 import { API_URL } from "../../../consts";
-import QRCode from "qrcode";
 
-const res = await fetch(`${API_URL}/jsonapi/node/activities`);
+const res = await fetch(`${API_URL}/drupal/jsonapi/node/activitiy`);
 const { data } = await res.json();
-const activities = data.map(
-  ({ attributes }: { attributes: any }) => attributes.title
-);
+const activities = data.map(({ attributes }: { attributes: any }) => ({
+  name: attributes.field_name,
+  location: attributes.field_location,
+}));
 let currentIndex = -1;
 let lastChange: number;
 
@@ -22,7 +22,9 @@ const changeActivity = () => {
     `https://${host}/5?activity=${encodeURI(activities[currentIndex])}`
   );
   const $activity = document.querySelector("#activity") as HTMLSpanElement;
-  $activity.textContent = activities[currentIndex];
+  $activity.textContent = activities[currentIndex].name;
+  const $label = document.querySelector(".label") as HTMLSpanElement;
+  $label.textContent = activities[currentIndex].location;
 };
 
 export default changeActivity;

@@ -141,13 +141,13 @@ import AbbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
   type Story = {
     date: string;
     username: string | null;
-    description: string | null;
+    message: string | null;
     photoUrl: string;
   };
   const story: Story = {
     date: data.data.attributes.created,
     username: data.data.attributes.field_username,
-    description: data.data.attributes.field_description,
+    message: data.data.attributes.field_message,
     photoUrl: data.included[0].attributes.uri.url,
   };
 
@@ -167,7 +167,7 @@ import AbbySvg from "../../../assets/illustrations/abby-kortrijk.svg";
   const $description = document.querySelector(
     ".description"
   ) as HTMLParagraphElement;
-  $description.textContent = story.description;
+  $description.textContent = story.message;
 
   const $picture = document.querySelector(".picture") as HTMLImageElement;
   $picture.src = API_URL + story.photoUrl;
