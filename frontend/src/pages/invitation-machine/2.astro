@@ -13,12 +13,15 @@ import smileyOrange from "../../assets/illustrations/smileyOrange.svg"
   }
 
   h1 {
-    margin-top: 7vh;
-    margin-bottom: 3rem;
+    margin-top: 4vh;
+    margin-bottom: 8rem;
     width: auto;
     
   }
 
+  .polaroidWrapper {
+    transform: scale(1.3);
+  }
 
 
 
@@ -50,7 +53,9 @@ import smileyOrange from "../../assets/illustrations/smileyOrange.svg"
       <div class="headerBold">Good Job<figure class="smileyOrange"><img src={smileyOrange.src} alt="orange smiley"></figure></div>
       <span class="bottomTitle"></span>Story unlocked</span>
     </h1>
-    <PolaroidStack></PolaroidStack>
+    <div class="polaroidWrapper">
+      <PolaroidStack></PolaroidStack>
+    </div>
     <InstallationFooter text="You are the key"></InstallationFooter>
     <!-- !TODO stories visualization -->
   </body>
@@ -66,5 +71,5 @@ import smileyOrange from "../../assets/illustrations/smileyOrange.svg"
       })
   
 
-  setTimeout(() => navigate("/invitation-machine/3"), 4000);
+  // setTimeout(() => navigate("/invitation-machine/3"), 4000);
 </script>

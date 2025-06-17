@@ -20,8 +20,11 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
 }
 
 
+  .yourTurn {
+    font-weight: 700;
+  }
+
   .blueBg {
-    padding: .1rem 1rem;
     margin-top:3rem;
   }
 
@@ -45,6 +48,7 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
   h1 {
     margin-bottom: 5rem;
     text-align: center;
+    line-height: 1.2;
   }
 
   p {
@@ -105,7 +109,7 @@ import thumbs from "../../assets/illustrations/thumbsUp.svg"
     ></script>
   </head>
   <body class="installationBody">
-    <h1 class="firstTitle">It's your turn to shape the <span class="blueBg">new chapter</span></h1>
+    <h1 class="firstTitle"><span class="yourTurn">It's your turn </span>to shape the <span class="blueBg">new chapter</span></h1>
     <video width="1000" height="1200" class="hidden" id="video"></video>
     <div class="videoBox">
       <canvas width="1000" height="1200" id="canvas"></canvas>
