@@ -4,6 +4,8 @@ import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import boardGames from "../assets/images/boardGames.png";
 import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
+import { Image } from "astro:assets";
+import second from "";
 ---
 
 <style>
@@ -115,17 +117,48 @@ import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
     <div class="logo">
       <img src={AbbyKortrijkSvg.src} alt="Abby icon" />
     </div>
-    <span class="info">We've picked a fun activity for you!</span>
+    <span class="info"> We've picked a fun activity for you!</span>
     <h1 class="title">
       <span class="title__highlight">Play board games</span>
-      in our living room
+      <span class="title__location"> in our living room </span>
     </h1>
     <p class="description">
       You can enjoy it solo — or bring a friend along to join your chapter
     </p>
-    <img class="picture" src={boardGames.src} alt="" />
+    <!-- <img
+      class="activity-img active"
+      id="img-boardgames"
+      src={boardGames.src}
+      alt="Play Boardgames"
+    />
+    <img
+      class="activity-img hidden"
+      id="img-frisbee"
+      src={frisbee.src}
+      alt="Play frisbee"
+    />
+    <img
+      class="activity-img hidden"
+      id="img-cafe"
+      src={cafe.src}
+      alt="Make a drink"
+    />
+    <img
+      class="activity-img hidden"
+      id="img-drawing"
+      src={drawing.src}
+      alt="Drawing session"
+    /> -->
+    <Image
+      class="picture"
+      id="img-boardgames"
+      src={boardGames}
+      alt="board games"
+    />
     <div class="buttons">
-      <button class="button button--back">Another Activity</button>
+      <button class="buttons__another button button--back"
+        >Another Activity</button
+      >
       <a href="/5" class="button">Accept</a>
     </div>
   </body>
@@ -160,4 +193,57 @@ import AbbyKortrijkSvg from "../assets/illustrations/abby-kortrijk.svg";
   //     duration: tlDuration,
   //     ease: Power1.easeOut,
   //   });
+
+  const activities = [
+    {
+      name: "Play Boardgames",
+      location: "salon",
+      imgId: "img-boardgames",
+    },
+    {
+      name: "Play frisbee",
+      location: "garden",
+      imgId: "img-frisbee",
+    },
+    {
+      name: "Make a drink",
+      location: "café",
+      imgId: "img-cafe",
+    },
+    {
+      name: "Drawing session",
+      location: "atelier",
+      imgId: "img-drawing",
+    },
+  ];
+
+  let currentImgId = "img-boardgames";
+
+  const getRandomActivity = () => {
+    let next;
+    do {
+      next = activities[Math.floor(Math.random() * activities.length)];
+    } while (next.imgId === currentImgId);
+    return next;
+  };
+
+  const updateActivity = () => {
+    const activity = getRandomActivity();
+
+    document.querySelector(".title__highlight").textContent = activity.name;
+    document.querySelector(".title__location").textContent =
+      "in " + activity.location;
+
+    // document.getElementById(currentImgId).classList.remove("active");
+    // document.getElementById(currentImgId).classList.add("hidden");
+
+    // document.getElementById(activity.imgId).classList.add("active");
+    // document.getElementById(activity.imgId).classList.remove("hidden");
+
+    currentImgId = activity.imgId;
+  };
+
+  document
+    .querySelector(".buttons__another")
+    .addEventListener("click", updateActivity);
 </script>
