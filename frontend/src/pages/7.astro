@@ -5,205 +5,195 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AbbyLogoSvg from "../assets/illustrations/abby-kortrijk.svg";
 import LocationSvg from "../assets/icons/location.svg";
 import ProgressBar from "../components/ProgressBar.astro";
-import AbbyInside from "../assets/images/abbyInside.png"
+import AbbyInside from "../assets/images/abbyInside.png";
 ---
 
 <style>
-
-  
-
-
-
-  .activityBox {
-    background-color: var(--yellow);
-
-  }
-
   body {
-    background-color: var(--white);
+    display: grid;
+    grid-template-rows: auto auto auto 1fr max-content;
+    grid-template-columns: 1fr;
+    height: 100vh;
   }
 
-  @media screen and (min-width: 100px) {
+  body > * {
+    grid-column: 1/2;
+  }
 
+  .activity,
+  .logo,
+  .title {
+    background-color: var(--yellow);
+  }
 
+  .logo {
+    padding: var(--screen-padding) var(--screen-padding) 0 var(--screen-padding);
+    padding-bottom: 1em;
+  }
 
-    .logoWrapper, h1 {
-      background-color: var(--yellow);
-      
-    }
+  .title {
+    line-height: 1.1;
+  }
 
+  .activity {
+    grid-row: 3/4;
+  }
+
+  .location {
+    grid-row: 3/4;
+  }
+
+  .picture {
+    grid-row: 3/4;
+  }
+
+  .chapter {
+    display: none;
+  }
+
+  .text-container {
+    padding: var(--screen-padding);
+  }
+
+  .text-container__p {
+    padding-top: 0.2em;
+  }
+
+  @media (orientation: landscape) {
     body {
-      display: grid;
-      grid-template-rows: 8vh 15vh auto 20vh;
-      height: 100vh;
+      grid-template-columns: auto min-content auto;
     }
 
-
-
-    .activityBox {
-      position:absolute;
-      padding: .3rem;
-      top:26%;
-      left: 3%;
-    }
-
-    p {
-      text-align: center;
-      width: 85%;
-      margin: 0 auto;
-    }
-
-    .how {
-      display: none;
+    .logo,
+    .title {
+      background-color: var(--white);
     }
 
     .location {
-      display: flex;
-    }
-    
-  }
-
-
-  @media screen and (min-width: 500px) {
-
-    .logoWrapper, h1 {
-      background-color: var(--white);
-      
+      background-color: none;
     }
 
-    .activityBox {
-      position: relative;
-      background-color: var(--white);
-      display: flex;
+    .chapter {
+      display: initial;
+      grid-row: 1/2;
+      grid-column: 2/4;
+      font-size: 2.25rem;
+      padding: var(--screen-padding);
+      padding-bottom: 0;
     }
 
-    .activityBox div {
-      margin-left: 2rem;
-    }
-
-    .location {
-      background-color: var(--yellow);
-      height: 1.3rem;
-      width: 5rem;
-      text-align: center;
-    }
-
-
-
-    .how {
-      display: block;
-      font-weight: 200;
-      font-size: 2rem;
-    }
-
-    .logoWrapper {
-      grid-column: 1;
-      grid-row: 1;
+    .logo {
+      grid-column: 1/2;
+      grid-row: 1/2;
       z-index: 100;
-      padding: 1rem;
-      background-color: transparent;
+      padding: var(--screen-padding);
+      background: none;
     }
 
-    h1 {
-      grid-column: 2;
-      grid-row: 1;
+    .title {
+      grid-column: 2/4;
+      grid-row: 2/3;
       font-size: 4rem;
-      max-width: 60%;
       line-height: 1;
-      margin-left: 2rem;
-      margin-top: 2rem;
+      padding: 0 var(--screen-padding);
+      margin-bottom: 0.5em;
     }
 
-    body {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 25vh auto auto 15vh;
-      height: 100vh;
-      
-      
-
+    .title__highlight {
+      background-color: var(--blue);
     }
 
-    p {
-      grid-column: 2;
-      grid-row: 3;
+    .activity,
+    .location {
+      font-size: 1.25rem;
+      background: none;
+    }
+
+    .activity__text-big,
+    .location__text-big {
+      font-size: 1.5rem;
+      background-color: var(--yellow);
+      font-weight: 500;
+    }
+
+    .activity {
+      grid-row: 3/4;
+      grid-column: 2/3;
+      margin-left: var(--screen-padding);
+      white-space: nowrap;
+      margin-right: 1.5em;
+    }
+
+    .location {
+      grid-row: 3/4;
+      grid-column: 3/4;
+    }
+
+    .text-container {
+      grid-row: 4/5;
+      grid-column: 2/4;
       margin-top: auto;
-      max-height: 5rem;
-      align-self: flex-start;
-      padding-left: 2rem;
-      padding-bottom: 7rem;
+      align-self: flex-end;
       text-align: left;
+      max-width: 48rem;
     }
 
-    figure img {
-      width: 100%;
+    .text-container__title {
+      font-size: 2.5rem;
+      font-weight: 500;
+    }
+
+    .text-container__p {
+      font-size: 1.5rem;
+    }
+
+    .picture {
+      /* width: 100%;
+      height: 100%; */
       height: 100%;
       object-fit: cover;
+      grid-column: 1/2;
+      grid-row: 1 / 5;
     }
-
-    figure {
-      grid-column: 1;
-      grid-row: 1 / 4;
-      z-index: 1;
-      height: 100%;
-      overflow: hidden;
-    }
-
-
-
-    .locationLabel img {
-      width: 3rem;
-    }
-
-    .locationLabel span {
-      font-size: inherit;
-      font-weight: bold;
-      line-height: 1;
-    }
-
-    .progressBarWrapper {
-      grid-column: 1 / 3;
-      background-color: var(--yellow);
-      
-      
-    }
-
-   
-
-    .whenever {
-      font-size: 1.5rem;
-      display: block;
-    }
-
   }
-
-
-
 </style>
 
-
-<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
-    <div class="logoWrapper"><img src={AbbyLogoSvg.src} alt="Abby logo" /></div>
-    <h1>
-      Make your activity part of the story
+    <div class="logo">
+      <img class="logo__img" src={AbbyLogoSvg.src} alt="Abby logo" />
+    </div>
+    <span class="chapter">How it works</span>
+    <h1 class="title">
+      <span class="title__highlight">Make</span> your activity part of the story
     </h1>
-    <div class="activityBox">
-      <div class="activity">play Boardgames</div>
-      <div class="location"><figure><img src={LocationSvg.src} alt="locationIcon"></figure>Salon</div>
+    <div class="activity">
+      <span class="activity__text-small">Your activity:</span>
+      <span class="activity__text-big">Boardgames</span>
     </div>
-    <figure>
-      <img src={AbbyInside.src} alt="">
-    </figure>
-    <p>
-      <span class="whenever">This is your moment</span> By doing this, you’re shaping your  chapter. Whether you’re alone or with a friend, what you create becomes part of your story at Abby.
-    </p>
-    <div class="progressBarWrapper">
-      <ProgressBar currentStep={2} backLink="/6" nextLink="/8" ></ProgressBar>
+    <div class="location">
+      <span class="location__text-small">Your activity:</span>
+      <span class="location__text-big">Abby's living room</span>
     </div>
+    <img class="picture" src={AbbyInside.src} alt="Photo of Abby inside" />
+    <div class="text-container">
+      <h2 class="text-container__title">This is your moment</h2>
+      <p class="text-container__p">
+        By doing this, you’re shaping your chapter. Whether you’re alone or with
+        a friend, <span class="bold"
+          >what you create becomes part of your story at Abby.</span
+        >
+      </p>
+    </div>
+    <ProgressBar
+      style="grid-column: 1/4;"
+      currentStep={2}
+      backLink="/6"
+      nextLink="/8"
+    />
   </body>
 </html>

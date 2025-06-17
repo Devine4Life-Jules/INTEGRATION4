@@ -52,7 +52,7 @@ const totalSteps = 4;
     }
   }
 </style>
-<div class="wrapper">
+<div style={Astro.props.style} class="wrapper">
   <a class="button button--back" href={Astro.props.backLink}>back</a>
   <div class="progress">
     {
