@@ -217,8 +217,10 @@ a:visited {
   color: var(--black);
 }
 
+/*
 
 @media screen and (min-width: 100px) {
+
   .footerButtons {
     display: flex;
     flex-direction: column;
@@ -262,10 +264,16 @@ a:visited {
   
 }
 
+
 @media screen and (min-width: 500px) {
   .footerButtons {
     flex-direction: row;
   }
   
+}
+
+*/
+.logo-global {
+  width: 10rem;
 }
 
