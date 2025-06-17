@@ -189,13 +189,15 @@ import DoneSvg from "../../assets/icons/done.svg";
 
     /* .buttons__upload {
       justify-self: flex-end;
-    } */
+      } */
   }
 </style>
 
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script defer src="https://unpkg.com/heic2any@0.0.4/dist/heic2any.js"
+    ></script>
   </head>
   <body>
     <Image
@@ -262,7 +264,6 @@ import DoneSvg from "../../assets/icons/done.svg";
 <script>
   import { navigate } from "astro:transitions/client";
   import { API_URL } from "../../consts";
-  import heic2any from "heic2any";
 
   // handle back button
   const $backButton = document.querySelector(
@@ -383,13 +384,17 @@ import DoneSvg from "../../assets/icons/done.svg";
   const $submit = document.querySelector(
     ".buttons__upload"
   ) as HTMLButtonElement;
+  console.log($submit);
   $submit.addEventListener("click", async (e) => {
     e.preventDefault();
     const $fileInput = $form.querySelector(
       "#picture-input"
     ) as HTMLInputElement;
 
+    console.log($fileInput.files);
+
     if (!$fileInput.files || $fileInput.files.length === 0) return;
+    console.log($fileInput.files);
 
     const picture = $fileInput.files[0];
     const res = await fetch(
