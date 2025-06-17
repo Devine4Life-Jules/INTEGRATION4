@@ -1,6 +1,8 @@
 ---
-import dummyPic from "../assets/images/dummyPic1.png";
+// import dummyPic from "../assets/images/dummyPic1.png";
 import keyBlue from "../assets/illustrations/keyBlue.svg";
+
+const { pic } = Astro.props;
 ---
 
 <style>
@@ -39,7 +41,7 @@ import keyBlue from "../assets/illustrations/keyBlue.svg";
 
 <div class="polaroid">
   <figure>
-    <img src={dummyPic.src} alt="people of abby" />
+    <img src={pic} alt="people of abby" />
   </figure>
   <div class="polaroidBottom">
     <figure class="key"><img src={keyBlue.src} alt="bluekey" /></figure>
