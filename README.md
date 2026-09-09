@@ -1,5 +1,7 @@
 # INTEGRATION4
 
+you are the key to our story, interactive installation for Abby, Kortrijk built with ml5, astro and more
+
 ## members and roles
 - Liza -> Cooördinator/Plant UX, DESIGN -> 
 - Andreea -> recourse investigator/Teamworker UX, DESIGN
